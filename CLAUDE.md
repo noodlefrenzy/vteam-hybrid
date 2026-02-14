@@ -115,7 +115,7 @@ Match the situation to the right perspective:
 | Reviewing work with the human | **Cam** (post-build) | Structured walkthrough. Translate vague reactions into actionable items. |
 | Any frontend/UI change | **Dani** (accessibility lens) | WCAG compliance, performance, responsive design. Non-negotiable for any component or CSS change. |
 | API contract changes | **Archie** (API lens) | API-first: define the contract before implementing. |
-| Sprint boundary | **Diego** | Validate README, onboarding docs, API docs reflect current state. |
+| Sprint boundary | **Grace** (lead) + **Diego** | Grace runs `/project:sprint-boundary` (retro, sweep, gate). Diego validates docs reflect current state. |
 | Pre-release | **Pierrot** + **Diego** + **Ines** | Security, docs, observability — the release checklist. |
 | Cloud deployment | **Cloud Architect** + **Cloud CostGuard** + **Cloud NetDiag** | Solution design, cost review, enterprise network readiness. |
 
@@ -175,15 +175,19 @@ When work has natural divisions — distinct components, independent subsystems,
 
 **Default to parallel.** Sequential execution should be the exception (only when there's a true data dependency).
 
-## GitHub Project Board Integration
+## GitHub Project Board Integration (Mandatory)
 
-<!-- TODO: Configure your board details after project setup -->
+<!-- Board details are configured during kickoff (Phase 5) — project creation is NOT optional -->
+<!-- project-number: -->
+<!-- project-owner: -->
 
-When a GitHub Projects board is configured, three agents are responsible for keeping it current:
+A GitHub Projects board **must** be created during kickoff and linked to the repo. Issues are created as **repo issues** (not draft items) so they are visible on the repo and on the project board. This is not optional — sprint tracking, backlog sweeps, and retro gating all depend on the board existing.
+
+When a GitHub Projects board is configured, two agents are responsible for keeping it current:
 
 | Agent | Scope | Responsibilities |
 |---|---|---|
-| **Grace** | Sprint-level | Move items through statuses. Create sprint work items. Flag stuck items. Enforce WIP limits. |
+| **Grace** | Sprint-level | Move items through statuses. Create sprint work items. Flag stuck items. Enforce WIP limits. Run sprint boundary workflow. |
 | **Pat** | Program-level | Ensure priorities reflect business value. Review board at sprint boundaries. Manage scope changes. |
 
 **Mandatory status flow:** Ready → **In Progress** → **In Review** → Done
@@ -192,6 +196,24 @@ When a GitHub Projects board is configured, three agents are responsible for kee
 - After implementation, items move to "In Review" — NOT directly to "Done."
 - Only after review passes does an item move to "Done."
 - Grace flags any item that skips "In Progress" or "In Review."
+
+### Sprint Labels
+
+Issues are tagged with `sprint:N` labels to track which sprint they belong to. This enables backlog sweeps at sprint boundaries to catch orphaned or unassigned issues.
+
+## Sprint Boundary Rules
+
+At the end of every sprint, the `/project:sprint-boundary` workflow **must** run. This is automatic — Grace triggers it when all sprint items are Done or explicitly deferred. It is **not** something the user should have to remember to invoke.
+
+The sprint boundary workflow enforces three critical gates:
+
+1. **Retro runs automatically.** The retrospective is not optional and does not require manual triggering. It runs as Step 1 of the sprint boundary.
+
+2. **Backlog sweep catches orphans.** Every open issue is reviewed — issues from the current sprint, prior sprints, and issues with no sprint label (including user-created issues). Nothing falls through the cracks. This also means the user can influence the next sprint by creating issues directly on the repo.
+
+3. **Process-improvement issues gate the next sprint.** Problems identified in the retro become GitHub issues labeled `process-improvement`. These must be resolved or scheduled into the next sprint before new work begins. This prevents the same process failures from recurring sprint after sprint.
+
+See `.claude/commands/sprint-boundary.md` for the full workflow.
 
 ## Commit and Push Discipline
 
@@ -273,7 +295,8 @@ Custom slash commands live in `.claude/commands/`. Each `.md` file becomes a `/p
 | `/project:tdd` | Strict TDD implementation |
 | `/project:code-review` | Three-lens code review |
 | `/project:review` | Guided human review session |
-| `/project:retro` | Kaizen retrospective |
+| `/project:retro` | Kaizen retrospective (creates GH issues for findings) |
+| `/project:sprint-boundary` | Mandatory sprint boundary workflow (retro + sweep + gate) |
 | `/project:handoff` | Session handoff for continuity |
 | `/project:resume` | Resume from a previous handoff |
 | `/project:devcontainer` | Set up a dev container |

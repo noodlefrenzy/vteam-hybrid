@@ -1,4 +1,4 @@
-<!-- agent-notes: { ctx: "full discovery workflow, 5-phase", deps: [docs/team_personas.md, docs/hybrid-teams.md], state: active, last: "cam@2026-02-12" } -->
+<!-- agent-notes: { ctx: "full discovery workflow, 5-phase + mandatory board", deps: [docs/team_personas.md, docs/hybrid-teams.md], state: active, last: "grace@2026-02-14", key: ["board creation is mandatory not optional", "issues created as repo issues then added to project", "project linked to repo via gh project link"] } -->
 Run a full discovery workflow for: $ARGUMENTS
 
 This is a phased process. Complete each phase and get explicit human confirmation before moving to the next. Reference `docs/team_personas.md` for persona details.
@@ -68,3 +68,18 @@ Create the implementation plan:
 - Flag any remaining open questions or risks.
 
 **Checkpoint:** Review the plan. Confirm the human is ready to start building.
+
+### GitHub Project Board Setup (Mandatory)
+
+After the plan is confirmed, create a GitHub Projects board to track the work. This is **not optional** — a project board is required for sprint tracking, backlog sweeps, and retro gating.
+
+1. Detect the repo owner and name: `gh repo view --json owner,name`.
+2. Create the project: `gh project create --title "<project-name>" --owner @me`.
+3. Link the project to this repo: `gh project link <NUMBER> --owner @me --repo <owner>/<repo>`.
+4. Create work items as **repo issues** (not draft items), each with a clear title, acceptance criteria from Phase 4, and a `sprint:1` label for first-sprint items:
+   - `gh issue create --title "..." --body "..." --label "sprint:1"` (for first sprint)
+   - `gh issue create --title "..." --body "..."` (for backlog items)
+5. Add each issue to the project: `gh project item-add <NUMBER> --owner @me --url <issue-url>`.
+6. Set initial statuses: first sprint items → **Ready**, everything else → **Backlog**.
+7. Update the `CLAUDE.md` GitHub Project Board Integration section — uncomment and fill in `project-number` and `project-owner`.
+8. Confirm: "Board created and linked to repo with N items. First sprint has M items in Ready."
