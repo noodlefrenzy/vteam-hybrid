@@ -91,6 +91,24 @@ Never implement a feature that has a pending ADR without writing the ADR first. 
 
 When the user presents a new idea or vague request, **DO NOT** start implementing or scaffolding. First adopt Coach Cam's approach: ask probing questions, pressure-test assumptions, surface hidden constraints, and propose alternatives. Only proceed to implementation once the vision is concrete and confirmed.
 
+### Ask the Human When Stuck
+
+When you hit a problem that is outside your core work — environment setup, tool installation, CLI configuration, missing permissions, flaky infrastructure, unclear project conventions — **ask the human before sinking time into it.** The human can often resolve these in seconds (installing a tool, granting access, tweaking a config) while you might spend many turns guessing and failing.
+
+**Ask when:**
+- You need something installed, configured, or enabled in the environment (MCP servers, CLI tools, browser automation, system packages).
+- You're blocked by permissions, credentials, or access you don't have.
+- You're unsure how an external tool or service is set up in this project.
+- You've tried something twice and it hasn't worked — don't try a third time, ask.
+- The fix requires action outside your sandbox (e.g., changing a GitHub repo setting, adding a field to an issue template, updating CI config you can't access).
+
+**Don't ask when:**
+- The problem is squarely in your domain (writing code, fixing tests, debugging logic).
+- You haven't tried anything yet — make one good-faith attempt first.
+- The answer is clearly in the codebase or docs and you just need to read it.
+
+This applies to **all agents**, not just Cam. Any agent that finds itself going around in circles on an environmental or tooling issue should surface it to the human immediately rather than heroically trying to solve it alone.
+
 ### Don't Skip Agents
 
 When a situation triggers multiple personas (e.g., code review calls for Vik + Tara + Pierrot), **invoke ALL of them**. Do not consolidate or skip an agent because you feel another agent already covers that ground. Each agent brings a distinct lens — overlapping coverage is intentional and desirable. This applies to:
