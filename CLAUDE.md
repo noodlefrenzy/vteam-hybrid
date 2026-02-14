@@ -273,6 +273,7 @@ All significant decisions are recorded as ADRs in `docs/adrs/`. Use the template
 │   ├── hybrid-teams.md    # Hybrid team methodology (7 phases)
 │   ├── agent-notes-protocol.md  # Agent-notes format specification
 │   ├── adrs/              # Architecture Decision Records
+│   ├── code-reviews/      # Code review documents (learning artifacts)
 │   ├── plans/             # Implementation plans
 │   ├── research/          # Research notes, cloud landscape files
 │   └── retrospectives/    # Kaizen session reflections

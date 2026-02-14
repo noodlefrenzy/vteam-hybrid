@@ -1,4 +1,4 @@
-<!-- agent-notes: { ctx: "three-lens code review workflow", deps: [docs/team_personas.md, .claude/agents/code-reviewer.md], state: active, last: "vik@2026-02-12" } -->
+<!-- agent-notes: { ctx: "three-lens code review + review doc output", deps: [docs/team_personas.md, .claude/agents/code-reviewer.md], state: active, last: "grace@2026-02-14" } -->
 Run a multi-perspective code review on the current changes.
 
 This combines three persona lenses from the v-team (see `docs/team_personas.md`). Review the staged/unstaged changes or the most recent commits and apply each lens.
@@ -53,3 +53,13 @@ Organize findings by lens and severity:
 - **Suggestion** — Consider fixing. Style, naming, minor improvements.
 
 If no issues found for a lens, say so explicitly — a clean bill of health is useful information.
+
+---
+
+## Review Document
+
+For non-trivial reviews (M-sized or larger changes, Critical/Important findings, new patterns, or anything with teaching value), write a review document to `docs/code-reviews/{{date}}-<topic>.md`. These serve as learning artifacts for early-career developers.
+
+The document should include context, all findings with explanations of *why* they matter (not just what's wrong), and a **Lessons** section with generalizable takeaways. See the code-reviewer agent definition for the full template.
+
+When in doubt about whether a review is "large enough" to document — document it. The cost of an extra doc is low; the cost of lost knowledge is high.
