@@ -134,7 +134,7 @@ Match the situation to the right perspective:
 | Any frontend/UI change | **Dani** (accessibility lens) | WCAG compliance, performance, responsive design. Non-negotiable for any component or CSS change. |
 | API contract changes | **Archie** (API lens) | API-first: define the contract before implementing. |
 | Sprint boundary | **Grace** (lead) + **Diego** | Grace runs `/project:sprint-boundary` (retro, sweep, gate). Diego validates docs reflect current state. |
-| Pre-release | **Pierrot** + **Diego** + **Ines** | Security, docs, observability — the release checklist. |
+| Pre-release | **Pierrot** + **Diego** + **Ines** | Security, SBOM current, docs, observability — the release checklist. |
 | Cloud deployment | **Cloud Architect** + **Cloud CostGuard** + **Cloud NetDiag** | Solution design, cost review, enterprise network readiness. |
 
 Depth scales with complexity — a one-line fix doesn't need the full team; a new feature does.
@@ -241,6 +241,15 @@ See `.claude/commands/sprint-boundary.md` for the full workflow.
 
 After every push, verify that CI passes. If CI fails, fix it before proceeding with new work.
 
+## Dependency Management & SBOM
+
+**Pierrot owns** the SBOM (`docs/sbom/sbom.md`) and dependency decisions (`docs/sbom/dependency-decisions.md`). These docs serve two purposes: (1) security and license compliance, and (2) explaining dependency choices to humans in plain language.
+
+- Every top-level dependency must have a rationale entry in `dependency-decisions.md` — what it is, why we chose it, what the license is, and what alternatives were considered.
+- Transitive dependencies are inventoried with their license and which direct dependency pulls them in.
+- When Sato adds, removes, or upgrades a dependency, Pierrot must update both docs. Run `/project:pin-versions` to pin versions, regenerate the SBOM, and update the decisions doc in one step.
+- Copyleft or uncommon licenses in the transitive tree are flagged for review.
+
 ## Workflow
 
 ### Before Starting Work
@@ -294,7 +303,8 @@ All significant decisions are recorded as ADRs in `docs/adrs/`. Use the template
 │   ├── code-reviews/      # Code review documents (learning artifacts)
 │   ├── plans/             # Implementation plans
 │   ├── research/          # Research notes, cloud landscape files
-│   └── retrospectives/    # Kaizen session reflections
+│   ├── retrospectives/    # Kaizen session reflections
+│   └── sbom/              # SBOM + dependency decisions (owned by Pierrot)
 ├── .claude/
 │   ├── agents/            # Subagent persona definitions (18 agents)
 │   └── commands/          # Custom slash commands for Claude Code
@@ -328,6 +338,7 @@ Custom slash commands live in `.claude/commands/`. Each `.md` file becomes a `/p
 | `/project:aws-review` | Multi-lens AWS review |
 | `/project:azure-review` | Multi-lens Azure review |
 | `/project:gcp-review` | Multi-lens GCP review |
+| `/project:pin-versions` | Pin dependency versions and update SBOM |
 | `/project:sync-ghcp` | Sync agents to GitHub Copilot format |
 
 ## Conventions
