@@ -1,4 +1,4 @@
-<!-- agent-notes: { ctx: "session handoff for continuity across sessions", deps: [CLAUDE.md, docs/plans/], state: active, last: "grace@2026-02-12" } -->
+<!-- agent-notes: { ctx: "session handoff for wave-based sprint execution", deps: [CLAUDE.md, docs/sprints/, docs/code-map.md], state: active, last: "coordinator@2026-02-15" } -->
 Create a session handoff document so the next session can pick up where this one left off.
 
 ## Steps
@@ -16,18 +16,25 @@ Create a session handoff document so the next session can pick up where this one
    - What ADRs were created
    - What's committed vs. uncommitted
 
-3. **Identify what's next.** Based on the current plan (check `docs/plans/`) and any in-flight work:
-   - What's the immediate next task?
+3. **Sprint wave context.** Check `docs/sprints/` for the current sprint wave plan:
+   - Which wave was this session executing?
+   - Which issues in the wave are Done vs. in-progress vs. not started?
+   - What's the next wave? List the issues with their titles and sizes.
+
+4. **Identify what's next.** Based on the wave plan and any in-flight work:
+   - What's the immediate next task (or next wave)?
    - What's blocked and on what?
    - What decisions are pending human input?
    - What open questions remain?
 
-4. **Write the handoff file.** Create or update `.claude/handoff.md` with this structure:
+5. **Write the handoff file.** Create or update `.claude/handoff.md` with this structure:
 
 ```markdown
 # Session Handoff
 
 **Created:** <today's date>
+**Sprint:** <sprint number>
+**Wave:** <wave number/name> of <total waves>
 **Session summary:** <1-2 sentence summary>
 
 ## What Was Done
@@ -37,16 +44,21 @@ Create a session handoff document so the next session can pick up where this one
 - **Branch:** <current branch>
 - **Last commit:** <hash + message>
 - **Uncommitted changes:** <description or "none">
-- **Tests:** <passing/failing/not run>
-- **Board status:** <summary or "no board configured">
+- **Tests:** <total passing> across <N> test files
+- **Board status:** <summary>
+
+## Sprint Progress
+- **Wave plan:** `docs/sprints/sprint-<N>-plan.md`
+- **Current wave:** <wave number> — <status>
+- **Issues completed this session:** #X, #Y, #Z
+- **Issues remaining in wave:** #A, #B (with brief status)
+- **Next wave:** <wave number> — <issues and sizes>
 
 ## What To Do Next (in order)
-1. <next task with enough context to execute>
-2. <following task>
-3. ...
-
-## Open Questions
-- <anything that needs human input>
+1. Read `docs/code-map.md` to orient
+2. Read `docs/sprints/sprint-<N>-plan.md` for wave context
+3. <specific next task with file paths and enough context to execute>
+4. ...
 
 ## Key Context
 - <any non-obvious context the next session needs>
@@ -54,11 +66,15 @@ Create a session handoff document so the next session can pick up where this one
 - <gotchas discovered during this session>
 ```
 
-5. **Commit the handoff.** If there are uncommitted changes, ask the user if they want to commit before creating the handoff. Then commit the handoff file itself.
+6. **Update MEMORY.md.** Ensure the session memory file has current sprint status and any new patterns discovered.
+
+7. **Commit the handoff.** If there are uncommitted changes, ask the user if they want to commit before creating the handoff. Then commit the handoff file itself.
 
 ## Important
 
 - Be specific in "What To Do Next" — include file paths, function names, and enough detail that the next session doesn't need to re-discover context.
+- The handoff's job is to make the next session's first 2 minutes productive, not its first 10 minutes.
+- "Read code-map.md" should always be step 1 in "What To Do Next" — it replaces codebase exploration.
 - Don't include sensitive information (tokens, credentials, personal data) in the handoff.
-- If the session discovered patterns or gotchas, update `CLAUDE.md` as well — the handoff is ephemeral, `CLAUDE.md` is durable.
+- If the session discovered patterns or gotchas, update `docs/process/gotchas.md` (durable) not just the handoff (ephemeral).
 - Add agent-notes frontmatter to the handoff file per `docs/agent-notes-protocol.md`.

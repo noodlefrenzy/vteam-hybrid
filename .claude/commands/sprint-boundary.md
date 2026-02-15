@@ -1,4 +1,4 @@
-<!-- agent-notes: { ctx: "mandatory sprint boundary: retro + sweep + gate", deps: [CLAUDE.md, docs/team_personas.md, docs/hybrid-teams.md], state: active, last: "grace@2026-02-14" } -->
+<!-- agent-notes: { ctx: "mandatory sprint boundary: retro + sweep + gate + passes", deps: [CLAUDE.md, docs/team_personas.md, docs/hybrid-teams.md, docs/tech-debt.md, docs/performance-budget.md], state: active, last: "grace@2026-02-15" } -->
 Run the mandatory sprint boundary workflow for: $ARGUMENTS
 
 This is the **canonical end-of-sprint process**. It must be run at every sprint boundary — it is NOT optional and should NOT require the user to trigger it manually. When Grace detects that the sprint's work is complete (all sprint items are Done or explicitly deferred), this workflow triggers automatically.
@@ -53,12 +53,38 @@ Before the next sprint can begin, verify that process-improvement issues from th
 
 ---
 
-## Step 4: Next Sprint Setup
+## Step 4: Technical Debt Review
+
+Review the technical debt register (`docs/tech-debt.md`):
+
+1. **Log new debt:** Any shortcuts or known issues from this sprint get added to the register.
+2. **Review with Pat:** Which debt items should be paid down next sprint? Pat decides based on risk and business value.
+3. **Escalation check:** Any debt open for 3+ sprints gets flagged to the user.
+
+---
+
+## Step 5: Periodic Passes (when warranted)
+
+Not every sprint needs these. Grace decides based on how much code and dependencies changed this sprint. Run them if significant changes occurred, or at minimum every 3 sprints and before any release.
+
+### Dead Code Pass (Vik)
+- Sweep for unreachable functions, unused exports, orphaned tests, unused dependencies, commented-out code.
+- Report findings. Unused dependencies flagged to Pierrot for SBOM cleanup.
+
+### Dependency Health Pass (Pierrot)
+- Check for abandoned packages (no updates > 12 months), major version drift, single-maintainer risk.
+- Update SBOM with findings.
+- Flag concerning dependencies to Pat for prioritization.
+
+---
+
+## Step 6: Next Sprint Setup
 
 Once the gate passes:
 
 1. **Create `sprint:N+1` label** if it doesn't exist.
 2. **Carry forward items:** Apply `sprint:N+1` label to all carried-forward issues.
-3. **Sprint planning:** Invoke Pat for prioritization of the next sprint's backlog.
-4. **Update board:** Move next-sprint items to **Ready** status on the project board.
-5. **Announce:** Summarize the next sprint's scope to the user.
+3. **Include tech debt items** that Pat prioritized for paydown.
+4. **Sprint planning:** Invoke Pat for prioritization of the next sprint's backlog.
+5. **Update board:** Move next-sprint items to **Ready** status on the project board.
+6. **Announce:** Summarize the next sprint's scope to the user.

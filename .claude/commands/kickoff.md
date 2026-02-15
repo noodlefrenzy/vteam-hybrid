@@ -32,7 +32,7 @@ Generate 2-3 intentionally different approaches. These are **sacrificial** — d
 
 ---
 
-## Phase 3: Architecture Assessment (Archie)
+## Phase 3: Architecture Assessment (Archie + Pierrot)
 
 Based on the chosen direction:
 
@@ -40,8 +40,10 @@ Based on the chosen direction:
 - Identify key technology decisions that need to be made.
 - For each significant choice, create an ADR using `/project:adr`.
 - Flag risks and unknowns.
+- **Threat model:** Archie creates the data flow diagrams, then Pierrot creates the initial threat model at `docs/security/threat-model.md` — STRIDE analysis, trust boundaries, attack surface inventory. This doesn't need to be exhaustive yet; it grows with the system.
+- **Performance budget:** If the project has performance-sensitive requirements (user-facing latency, batch processing throughput, resource constraints), create an initial `docs/performance-budget.md` with targets.
 
-**Checkpoint:** Summarize architectural direction and key decisions. Confirm.
+**Checkpoint:** Summarize architectural direction, key decisions, and initial threat surface. Confirm.
 
 ---
 
@@ -58,7 +60,7 @@ Turn the vision into concrete, testable requirements:
 
 ---
 
-## Phase 5: Planning (Grace)
+## Phase 5: Planning (Grace + Tara)
 
 Create the implementation plan:
 
@@ -66,6 +68,8 @@ Create the implementation plan:
 - Identify the first sprint's work.
 - Note which v-team personas should be actively engaged during implementation.
 - Flag any remaining open questions or risks.
+- **Test strategy:** Tara creates `docs/test-strategy.md` — what gets tested at which level, coverage targets, test data approach. This guides all future test writing.
+- **Tech debt register:** Grace initializes `docs/tech-debt.md` (it will be empty, but the structure is in place for tracking).
 
 **Checkpoint:** Review the plan. Confirm the human is ready to start building.
 

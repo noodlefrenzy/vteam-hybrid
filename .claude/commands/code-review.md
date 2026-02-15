@@ -1,11 +1,11 @@
-<!-- agent-notes: { ctx: "three-lens code review + review doc output", deps: [docs/team_personas.md, .claude/agents/code-reviewer.md], state: active, last: "grace@2026-02-14" } -->
+<!-- agent-notes: { ctx: "multi-lens code review + migration + API compat + perf", deps: [docs/team_personas.md, .claude/agents/code-reviewer.md, docs/performance-budget.md, docs/security/threat-model.md], state: active, last: "grace@2026-02-15" } -->
 Run a multi-perspective code review on the current changes.
 
-This combines three persona lenses from the v-team (see `docs/team_personas.md`). Review the staged/unstaged changes or the most recent commits and apply each lens.
+This combines three persona lenses from the v-team (see `docs/team_personas.md`), plus situational checks for migrations, API changes, and performance. Review the staged/unstaged changes or the most recent commits and apply each lens.
 
 ---
 
-## Lens 1: Vik (Simplicity & Maintainability)
+## Lens 1: Vik (Simplicity, Maintainability & Performance)
 
 Review through the eyes of a veteran engineer asking "could a junior understand this at 2am during an incident?"
 
@@ -15,6 +15,7 @@ Review through the eyes of a veteran engineer asking "could a junior understand 
 - Concurrency risks?
 - Naming that obscures intent?
 - Is the code organized so that the next person can find things?
+- **Performance:** Does this change affect a hot path? Check against `docs/performance-budget.md` if it exists. Flag allocation patterns in loops, bundle size impacts, resource leaks.
 
 ---
 
@@ -28,6 +29,7 @@ Review through the eyes of a testing expert:
 - Is the test pyramid balanced? (Too many e2e? Not enough unit?)
 - Are test names descriptive enough to serve as documentation?
 - Any flaky test risks (timing, ordering, external dependencies)?
+- **Test strategy alignment:** Does coverage match `docs/test-strategy.md` if it exists?
 
 ---
 
@@ -40,7 +42,29 @@ Review through the eyes of a security and compliance expert:
 - Secrets or credentials exposed?
 - New dependencies introduced? Any known vulnerabilities or license issues?
 - Data handling changes? (PII, encryption, logging sensitive data?)
-- New attack surface exposed?
+- New attack surface exposed? If so, does `docs/security/threat-model.md` need updating?
+
+---
+
+## Situational Checks (apply when relevant)
+
+### Migration Safety (if the diff includes schema/data changes)
+
+Invoke Archie's migration safety review:
+
+- Is this migration reversible?
+- Is it backward-compatible with the currently running version?
+- Does it preserve existing data?
+- What's the performance impact on production-sized tables?
+- Flag any migration that fails these checks as **Critical**.
+
+### API Contract Compatibility (if the diff changes an API surface)
+
+Invoke Archie's API lens:
+
+- Does this change break any existing consumers?
+- If breaking: is it properly versioned? Is there a deprecation timeline?
+- Does the API spec (OpenAPI, GraphQL schema, protobuf) reflect the change?
 
 ---
 
