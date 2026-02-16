@@ -27,7 +27,9 @@ Create a session handoff document so the next session can pick up where this one
    - What decisions are pending human input?
    - What open questions remain?
 
-5. **Write the handoff file.** Create or update `.claude/handoff.md` with this structure:
+5. **Check tracking artifacts.** Read `docs/tracking/` for any active tracking artifacts from this session. Include the latest artifacts in the handoff so the next session can pick up phase context without re-discovering it.
+
+6. **Write the handoff file.** Create or update `.claude/handoff.md` with this structure:
 
 ```markdown
 # Session Handoff
@@ -60,15 +62,19 @@ Create a session handoff document so the next session can pick up where this one
 3. <specific next task with file paths and enough context to execute>
 4. ...
 
+## Tracking Artifacts
+- <list any active tracking artifacts from `docs/tracking/` relevant to in-flight work>
+- <include the artifact file names so the next session can read them for phase context>
+
 ## Key Context
 - <any non-obvious context the next session needs>
 - <files that were being actively worked on>
 - <gotchas discovered during this session>
 ```
 
-6. **Update MEMORY.md.** Ensure the session memory file has current sprint status and any new patterns discovered.
+7. **Update MEMORY.md.** Ensure the session memory file has current sprint status and any new patterns discovered.
 
-7. **Commit the handoff.** If there are uncommitted changes, ask the user if they want to commit before creating the handoff. Then commit the handoff file itself.
+8. **Commit the handoff.** If there are uncommitted changes, ask the user if they want to commit before creating the handoff. Then commit the handoff file itself.
 
 ## Important
 

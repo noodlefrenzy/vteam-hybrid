@@ -17,6 +17,8 @@ Slow down. Do NOT jump to solutions. Your job is to make the human's vision legi
 
 **Checkpoint:** Summarize your understanding of the vision, goals, and constraints. Ask: "Did I get this right? What did I miss?"
 
+**Tracking artifact:** After the human confirms, produce `docs/tracking/YYYY-MM-DD-<topic>-discovery.md` summarizing the vision, goals, constraints, and key insights from elicitation. Use the standard tracking format from `docs/tracking/README.md`. Set **Prior Phase** to "None".
+
 ---
 
 ## Phase 2: Sacrificial Concepts (Dani)
@@ -45,6 +47,8 @@ Based on the chosen direction:
 
 **Checkpoint:** Summarize architectural direction, key decisions, and initial threat surface. Confirm.
 
+**Tracking artifact:** After the human confirms, produce `docs/tracking/YYYY-MM-DD-<topic>-architecture.md` summarizing the chosen architecture, key ADRs created, technology decisions, and threat surface. Use the standard tracking format from `docs/tracking/README.md`. Set **Prior Phase** to the discovery artifact.
+
 ---
 
 ## Phase 4: Acceptance Criteria (Pat)
@@ -72,6 +76,8 @@ Create the implementation plan:
 - **Tech debt register:** Grace initializes `docs/tech-debt.md` (it will be empty, but the structure is in place for tracking).
 
 **Checkpoint:** Review the plan. Confirm the human is ready to start building.
+
+**Tracking artifact:** After the human confirms, produce `docs/tracking/YYYY-MM-DD-<topic>-plan.md` summarizing the plan goals, first sprint scope, test strategy decisions, and open risks. Use the standard tracking format from `docs/tracking/README.md`. Set **Prior Phase** to the architecture artifact.
 
 ### GitHub Project Board Setup (Mandatory)
 

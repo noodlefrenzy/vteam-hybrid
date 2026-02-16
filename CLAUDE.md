@@ -88,8 +88,9 @@ Run `/project:sprint-boundary` when all sprint items are Done or deferred. This 
 3. Process-improvement gate (blocks next sprint if unresolved)
 4. Tech debt review → `docs/tech-debt.md`
 5. Diego docs sweep
-6. Periodic passes (dead code, dep health) every 3 sprints
-7. Next sprint setup (Pat prioritizes, Grace sets up board)
+6. Archive tracking artifacts → `docs/tracking/archive/sprint-N/`
+7. Periodic passes (dead code, dep health) every 3 sprints
+8. Next sprint setup (Pat prioritizes, Grace sets up board)
 
 ## Session Management
 
@@ -100,6 +101,7 @@ Run `/project:sprint-boundary` when all sprint items are Done or deferred. This 
 3. **Background agents write to files.** Use `run_in_background: true` for agents whose detailed output isn't needed in the main conversation. Read summaries, not full output.
 4. **Read `docs/code-map.md` first.** Orient from the map rather than exploring the codebase from scratch each session.
 5. **Commit frequently.** Uncommitted work is the most expensive thing to reconstruct across sessions.
+6. **Tracking artifacts carry phase context.** Commands produce lightweight artifacts in `docs/tracking/` at each workflow phase. These survive across sessions — read them to pick up where a previous session left off. See `docs/tracking/README.md` for the protocol.
 
 ## Process Docs Index
 
@@ -114,6 +116,7 @@ Run `/project:sprint-boundary` when all sprint items are Done or deferred. This 
 | `docs/team_personas.md` | 18-agent persona catalog |
 | `docs/tech-debt.md` | Technical debt register |
 | `docs/test-strategy.md` | Test pyramid and coverage targets |
+| `docs/tracking/README.md` | Phase tracking artifact protocol and format |
 | `docs/adrs/` | Architecture Decision Records |
 
 ## Project Structure
@@ -126,6 +129,7 @@ Run `/project:sprint-boundary` when all sprint items are Done or deferred. This 
 │   ├── process/           # Extracted process docs (governance, gates, gotchas)
 │   ├── sprints/           # Sprint wave plans
 │   ├── adrs/              # Architecture Decision Records
+│   ├── tracking/          # Phase tracking artifacts (see README.md)
 │   ├── retrospectives/    # Sprint retros
 │   ├── sbom/              # SBOM + dependency decisions
 │   └── security/          # Threat model

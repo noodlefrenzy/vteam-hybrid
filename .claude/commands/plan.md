@@ -13,3 +13,7 @@ Create or update a plan document in `docs/plans/`. The plan should include:
 6. **Acceptance Criteria** — How we'll know the work is done.
 
 Check existing ADRs and plans for context before writing. Add agent-notes frontmatter per `docs/agent-notes-protocol.md`.
+
+## Tracking Artifact
+
+After the plan document is written, produce `docs/tracking/YYYY-MM-DD-<topic>-plan.md` summarizing the plan's goals, approach, key constraints, and acceptance criteria. Use the standard tracking format from `docs/tracking/README.md`. Set **Prior Phase** to the most recent tracking artifact for this topic (if any), or "None" if this is a standalone plan.

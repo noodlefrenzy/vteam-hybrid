@@ -87,3 +87,9 @@ For non-trivial reviews (M-sized or larger changes, Critical/Important findings,
 The document should include context, all findings with explanations of *why* they matter (not just what's wrong), and a **Lessons** section with generalizable takeaways. See the code-reviewer agent definition for the full template.
 
 When in doubt about whether a review is "large enough" to document — document it. The cost of an extra doc is low; the cost of lost knowledge is high.
+
+---
+
+## Tracking Artifact
+
+After the review is complete, produce `docs/tracking/YYYY-MM-DD-<topic>-review.md` summarizing the review findings (Critical/Important/Suggestion counts), key issues found, and resolution status. If a full review document was written to `docs/code-reviews/`, link to it. Use the standard tracking format from `docs/tracking/README.md`. Set **Prior Phase** to the most recent implementation artifact for this topic (if any).

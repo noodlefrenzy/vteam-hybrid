@@ -78,7 +78,19 @@ Not every sprint needs these. Grace decides based on how much code and dependenc
 
 ---
 
-## Step 6: Next Sprint Setup
+## Step 6: Archive Tracking Artifacts
+
+Archive completed tracking artifacts from this sprint:
+
+1. **Create archive directory:** `docs/tracking/archive/sprint-N/` (where N is the current sprint number).
+2. **Move completed artifacts:** Move all tracking artifacts with status `Complete` from `docs/tracking/` to the archive directory. Keep any `Active` or `Blocked` artifacts in place — they carry forward.
+3. **Verify links:** If any active artifacts reference archived ones in their **Prior Phase** field, update the path to the archive location.
+
+This prevents the tracking directory from growing unbounded while preserving the audit trail.
+
+---
+
+## Step 7: Next Sprint Setup
 
 Once the gate passes:
 
