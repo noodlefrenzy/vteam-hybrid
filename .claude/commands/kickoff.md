@@ -34,7 +34,7 @@ Generate 2-3 intentionally different approaches. These are **sacrificial** — d
 
 ---
 
-## Phase 3: Architecture Assessment (Archie + Pierrot)
+## Phase 3: Architecture Assessment (Archie + Pierrot + Wei)
 
 Based on the chosen direction:
 
@@ -45,9 +45,21 @@ Based on the chosen direction:
 - **Threat model:** Archie creates the data flow diagrams, then Pierrot creates the initial threat model at `docs/security/threat-model.md` — STRIDE analysis, trust boundaries, attack surface inventory. This doesn't need to be exhaustive yet; it grows with the system.
 - **Performance budget:** If the project has performance-sensitive requirements (user-facing latency, batch processing throughput, resource constraints), create an initial `docs/performance-budget.md` with targets.
 
-**Checkpoint:** Summarize architectural direction, key decisions, and initial threat surface. Confirm.
+### Adversarial Debate (Mandatory for each ADR)
 
-**Tracking artifact:** After the human confirms, produce `docs/tracking/YYYY-MM-DD-<topic>-architecture.md` summarizing the chosen architecture, key ADRs created, technology decisions, and threat surface. Use the standard tracking format from `docs/tracking/README.md`. Set **Prior Phase** to the discovery artifact.
+For **every** ADR created in this phase, run the adversarial debate protocol. This is not optional.
+
+1. **Invoke Wei** as a standalone agent on the ADR. Wei challenges the decision using at least 2 techniques from their persona (inversion, scale attack, assumption surfacing, alternative technology, cost of being wrong, historical precedent).
+2. **Feed Wei's challenges back to Archie.** Archie must respond point-by-point.
+3. **If unresolved concerns remain**, run a third round (Wei rebuttal). Cap at 3 rounds.
+4. **Track the debate** in `docs/tracking/YYYY-MM-DD-<topic>-debate.md` using the format from `docs/process/team-governance.md` § Debate Tracking Format.
+5. **Update the ADR** with any changes or acknowledged risks from the debate.
+
+**Do not proceed to Phase 4 until all ADR debates are complete and tracked.**
+
+**Checkpoint:** Summarize architectural direction, key decisions, initial threat surface, and debate outcomes (challenges raised, resolved, accepted as risks). Confirm.
+
+**Tracking artifact:** After the human confirms, produce `docs/tracking/YYYY-MM-DD-<topic>-architecture.md` summarizing the chosen architecture, key ADRs created, technology decisions, threat surface, and debate results. Use the standard tracking format from `docs/tracking/README.md`. Set **Prior Phase** to the discovery artifact.
 
 ---
 
@@ -83,13 +95,93 @@ Create the implementation plan:
 
 After the plan is confirmed, create a GitHub Projects board to track the work. This is **not optional** — a project board is required for sprint tracking, backlog sweeps, and retro gating.
 
-1. Detect the repo owner and name: `gh repo view --json owner,name`.
-2. Create the project: `gh project create --title "<project-name>" --owner @me`.
-3. Link the project to this repo: `gh project link <NUMBER> --owner @me --repo <owner>/<repo>`.
-4. Create work items as **repo issues** (not draft items), each with a clear title, acceptance criteria from Phase 4, and a `sprint:1` label for first-sprint items:
-   - `gh issue create --title "..." --body "..." --label "sprint:1"` (for first sprint)
-   - `gh issue create --title "..." --body "..."` (for backlog items)
-5. Add each issue to the project: `gh project item-add <NUMBER> --owner @me --url <issue-url>`.
-6. Set initial statuses: first sprint items → **Ready**, everything else → **Backlog**.
-7. Update the `CLAUDE.md` GitHub Project Board Integration section — uncomment and fill in `project-number` and `project-owner`.
-8. Confirm: "Board created and linked to repo with N items. First sprint has M items in Ready."
+#### Step 1: Create and Link the Project
+
+```bash
+# Detect repo owner and name
+gh repo view --json owner,name
+
+# Create the project
+gh project create --title "<project-name>" --owner @me
+
+# Link the project to this repo
+gh project link <NUMBER> --owner @me --repo <owner>/<repo>
+```
+
+#### Step 2: Configure Status Field (CRITICAL)
+
+GitHub Projects v2 only creates default status options (Todo, In Progress, Done). This project requires **5 statuses**: Backlog, Ready, In Progress, In Review, Done. You MUST add the missing ones.
+
+```bash
+# 1. Get the project's node ID and Status field ID
+gh project field-list <NUMBER> --owner @me --format json
+# Find the "Status" field — note its ID and existing option IDs/names
+
+# 2. Add missing status options via GraphQL
+# You need the project ID (from gh project list --owner @me --format json)
+# and the Status field ID (from step 1)
+
+# Add "Backlog" option
+gh api graphql -f query='
+  mutation {
+    updateProjectV2Field(input: {
+      projectId: "<PROJECT_NODE_ID>"
+      fieldId: "<STATUS_FIELD_ID>"
+      name: "Status"
+      singleSelectOptions: [
+        {name: "Backlog", color: GRAY, description: "Not yet scheduled"}
+        {name: "Ready", color: BLUE, description: "Scheduled for current sprint"}
+        {name: "In Progress", color: YELLOW, description: "Actively being worked on"}
+        {name: "In Review", color: ORANGE, description: "Implementation done, under review"}
+        {name: "Done", color: GREEN, description: "Completed and verified"}
+      ]
+    }) {
+      projectV2Field { ... on ProjectV2SingleSelectField { options { id name } } }
+    }
+  }'
+
+# 3. VERIFY all 5 statuses exist
+gh project field-list <NUMBER> --owner @me --format json
+# Confirm: Backlog, Ready, In Progress, In Review, Done all appear
+```
+
+**Do NOT proceed to issue creation until all 5 statuses are confirmed.** If the GraphQL mutation fails, try adding options one at a time or use the GitHub web UI as a fallback — but the statuses MUST exist before any items are added.
+
+#### Step 3: Create Issues and Add to Project
+
+```bash
+# Create work items as repo issues (not draft items)
+gh issue create --title "..." --body "..." --label "sprint:1"   # first sprint
+gh issue create --title "..." --body "..."                       # backlog
+
+# Add each issue to the project
+gh project item-add <NUMBER> --owner @me --url <issue-url>
+```
+
+#### Step 4: Set Initial Statuses
+
+After adding items, set their statuses. You need the Status field ID and option IDs from Step 2.
+
+```bash
+# Get item IDs
+gh project item-list <NUMBER> --owner @me --format json
+
+# Set status for each item
+gh project item-edit --project-id <PROJECT_NODE_ID> --id <ITEM_ID> --field-id <STATUS_FIELD_ID> --single-select-option-id <OPTION_ID>
+```
+
+- First sprint items → **Ready**
+- Everything else → **Backlog**
+
+#### Step 5: Record Board Metadata
+
+Update `CLAUDE.md` GitHub Board section with:
+- Project number and owner
+- Status field ID (so future commands don't need to look it up)
+- Option IDs for each status (Backlog, Ready, In Progress, In Review, Done)
+
+This metadata is required for all subsequent board operations. Without it, every status transition requires a field lookup first.
+
+#### Step 6: Confirm
+
+Report: "Board created and linked to repo with N items. First sprint has M items in Ready. Status field configured with 5 options: Backlog, Ready, In Progress, In Review, Done."

@@ -44,7 +44,7 @@ Engage Cam first: probe, clarify, pressure-test. Only implement once the vision 
 If blocked by environment, tools, permissions, or you've tried twice — ask. Don't heroically waste turns.
 
 ### Don't Skip the Done Gate
-Every work item passes the gate before closing. Review the full 12-item checklist at `docs/process/done-gate.md`. The non-negotiables: tests pass, code reviewed, board updated through "In Review" → "Done."
+Every work item passes the gate before closing. Review the full 13-item checklist at `docs/process/done-gate.md`. The non-negotiables: tests pass, code reviewed, board updated through "In Review" → "Done."
 
 ### Don't Skip Agents
 When a situation triggers multiple personas, invoke ALL of them. Overlapping coverage is intentional. The only exception is when the user explicitly asks to skip one.
@@ -52,15 +52,29 @@ When a situation triggers multiple personas, invoke ALL of them. Overlapping cov
 ### ADR Before Implementation
 Never implement a feature with a pending ADR without writing the ADR first.
 
+### Architecture Gate (Mandatory)
+Before entering Implementation (Phase 3) for any sprint item that involves an architectural decision — new patterns, new integrations, technology choices, data model changes, new package boundaries — the following gate **must** pass:
+
+1. **ADR exists** — Archie has written an ADR for the decision.
+2. **Wei has challenged it** — Wei has been invoked as a standalone agent on the ADR. This is not optional.
+3. **Debate is tracked** — The multi-round debate (Archie vs Wei) is recorded in `docs/tracking/YYYY-MM-DD-<topic>-debate.md`.
+4. **Resolution documented** — The coordinator has summarized which challenges were addressed, which were accepted as risks, and what changed.
+
+If the sprint plan includes items that trigger this gate, the coordinator must identify them at sprint planning and note "**Requires Architecture Gate:** ADR + Wei debate" on each one. See `docs/process/team-governance.md` § Architecture Decision Gate for the full checklist.
+
+**How to recognize architectural decisions:** If you're choosing *how* to structure something (not just *what* to build), it's architectural. Examples: adding a new package, choosing between two libraries, designing an API contract, changing data flow between stages, introducing a new external dependency. When in doubt, route through the gate — a 10-minute debate is cheaper than a bad decision baked into code.
+
 ## Development Workflow
 
 ### Per Work Item
-1. **Start** — Move issue to "In Progress."
+1. **Start** — Move issue to **"In Progress"** on the board. Do this BEFORE writing any code.
 2. **TDD** — Red → Green → Refactor. M+ items: Tara writes failing tests first as standalone agent.
 3. **Commit** — One commit per issue, conventional message, `Closes #N`.
-4. **Review** — Invoke code-reviewer (Vik + Tara + Pierrot). Fix Critical/Important findings.
+4. **Review** — Move issue to **"In Review"** on the board. Then invoke code-reviewer (Vik + Tara + Pierrot). Fix Critical/Important findings.
 5. **Done Gate** — Full checklist at `docs/process/done-gate.md`.
-6. **Close** — Move issue to "In Review" → "Done". Push.
+6. **Close** — Move issue to **"Done"** on the board. Push.
+
+**Status transitions are mandatory and ordered.** Every item must pass through In Progress → In Review → Done. Skipping "In Review" is a process violation that will be flagged in the sprint retro. See Grace's Board Status Rules for enforcement details.
 
 **STOP**: Do not start the next item until step 6 is complete.
 
@@ -76,9 +90,35 @@ After each sprint or coding session: retro in `docs/retrospectives/`, update thi
 <!-- project-number: -->
 <!-- project-owner: -->
 
-**Status flow:** Todo → **In Progress** → **In Review** → Done
+**Status flow:** Backlog → Ready → **In Progress** → **In Review** → Done
+
+**Required statuses:** The board MUST have all 5 status options configured. If "In Review", "Ready", or "Backlog" are missing, add them before starting any sprint work (see `/project:kickoff` Phase 5 Step 2 for setup commands).
 
 Grace manages board status. Pat manages priorities. Issues use `sprint:N` labels. Board creation is mandatory during `/project:kickoff`.
+
+### Board Status Commands
+
+Use these commands to move items through statuses. You need the project's Status field ID and the option IDs for each status.
+
+```bash
+# 1. Look up field IDs and status option IDs (do this once per session)
+gh project field-list <NUMBER> --owner <OWNER> --format json
+# Find the "Status" field → note its field ID
+# Find each option (Backlog, Ready, In Progress, In Review, Done) → note their option IDs
+
+# 2. Get the item ID for an issue
+gh project item-list <NUMBER> --owner <OWNER> --format json
+# Find the item matching your issue number → note its item ID
+
+# 3. Get the project node ID (needed for item-edit)
+gh project list --owner <OWNER> --format json
+# Find the project → note its node ID
+
+# 4. Move an item to a new status
+gh project item-edit --project-id <PROJECT_NODE_ID> --id <ITEM_ID> --field-id <STATUS_FIELD_ID> --single-select-option-id <STATUS_OPTION_ID>
+```
+
+**Per-item transitions only.** Never batch-update all items. Each item transitions individually as work progresses.
 
 ## Sprint Boundary (Mandatory)
 
@@ -109,7 +149,7 @@ Run `/project:sprint-boundary` when all sprint items are Done or deferred. This 
 |-----|---------|
 | `docs/code-map.md` | Package structure, public APIs, data flow — **read first** |
 | `docs/process/team-governance.md` | Agent roster, triggers, debate protocol, voice |
-| `docs/process/done-gate.md` | 12-item Done Gate checklist |
+| `docs/process/done-gate.md` | 13-item Done Gate checklist |
 | `docs/process/doc-ownership.md` | Who owns which docs, update triggers |
 | `docs/process/gotchas.md` | Implementation patterns and known pitfalls |
 | `docs/hybrid-teams.md` | 7-phase team methodology |

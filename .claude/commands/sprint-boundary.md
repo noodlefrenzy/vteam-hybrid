@@ -16,6 +16,54 @@ Run `/project:retro` inline. This is not a suggestion — it happens now, as par
 
 **Do not skip this step.** Do not ask the user if they want a retro. Just run it.
 
+### Wei / Debate Protocol Compliance Audit
+
+As part of the retro, audit whether the Architecture Gate was followed this sprint:
+
+1. **List ADRs created or modified this sprint** (check `docs/adrs/` for files with dates in this sprint's range).
+2. **List debate tracking artifacts** (check `docs/tracking/*-debate.md` for this sprint).
+3. **Cross-reference:** For every ADR, verify a corresponding debate artifact exists. Flag any ADR that lacks a Wei debate.
+4. **Scan for unrecorded decisions:** Review the sprint's commits and code changes for architectural decisions that were made *without* an ADR (new patterns, new integrations, new packages, data model changes). Flag each one.
+5. **Report in the retro document:**
+   - "**Architecture Gate compliance:** X/Y ADRs had Wei debates tracked. Z architectural decisions were made without ADRs."
+   - For each gap, note: which decision, what Wei could have challenged, and whether a retroactive ADR + debate should be scheduled.
+6. **Create process-improvement issues** for any gaps found — these feed into Step 3's gate, ensuring they're addressed before the next sprint.
+
+---
+
+## Step 1b: Board Health & Status Compliance Audit
+
+Audit the project board for configuration issues and status transition violations.
+
+### Board Configuration Check
+
+```bash
+# Verify all 5 required statuses exist
+gh project field-list <NUMBER> --owner <OWNER> --format json
+```
+
+Confirm the Status field has options: **Backlog, Ready, In Progress, In Review, Done**. If any are missing:
+- **BLOCKING:** Add the missing statuses immediately (see `/project:kickoff` Phase 5 Step 2 for GraphQL commands).
+- Create a `process-improvement` issue: "Board missing required status options."
+- This is a root cause for status transition violations — fix it before auditing transitions.
+
+### Status Transition Compliance
+
+```bash
+# List all items and their current statuses
+gh project item-list <NUMBER> --owner <OWNER> --format json
+```
+
+For every item marked **Done** this sprint:
+1. Verify it passed through **In Progress** before reaching In Review/Done.
+2. Verify it passed through **In Review** before reaching Done.
+3. Flag any item that jumped directly from Ready/In Progress → Done (skipping In Review).
+
+**Report in the retro document:**
+- "**Board compliance:** X/Y items followed the full status flow. Z items skipped statuses."
+- For each violation: which issue, what status was skipped, and why (if known).
+- Create `process-improvement` issues for systemic violations.
+
 ---
 
 ## Step 2: Backlog Sweep
@@ -58,8 +106,8 @@ Before the next sprint can begin, verify that process-improvement issues from th
 Review the technical debt register (`docs/tech-debt.md`):
 
 1. **Log new debt:** Any shortcuts or known issues from this sprint get added to the register.
-2. **Review with Pat:** Which debt items should be paid down next sprint? Pat decides based on risk and business value.
-3. **Escalation check:** Any debt open for 3+ sprints gets flagged to the user.
+2. **Escalation check (hard constraint):** Any debt open for 3+ sprints is **automatically P0 for the next sprint**. This is not a suggestion — escalated items MUST be included as P0 in the next sprint's plan. Grace has authority to enforce this over Pat's prioritization. The only override is an explicit user decision to defer.
+3. **Review with Pat:** Which non-escalated debt items should be paid down next sprint? Pat decides based on risk and business value. Pat CANNOT deprioritize escalated items below P0 or label them as stretch goals.
 
 ---
 
@@ -97,6 +145,6 @@ Once the gate passes:
 1. **Create `sprint:N+1` label** if it doesn't exist.
 2. **Carry forward items:** Apply `sprint:N+1` label to all carried-forward issues.
 3. **Include tech debt items** that Pat prioritized for paydown.
-4. **Sprint planning:** Invoke Pat for prioritization of the next sprint's backlog.
-5. **Update board:** Move next-sprint items to **Ready** status on the project board.
-6. **Announce:** Summarize the next sprint's scope to the user.
+4. **Sprint planning:** Invoke Pat for prioritization of the next sprint's backlog. For each item, identify whether it requires the Architecture Gate (see CLAUDE.md § Architecture Gate) and note it in the sprint plan.
+5. **Update board:** Move next-sprint items to **Ready** status on the project board using the board status commands (see CLAUDE.md § Board Status Commands). Each item transitions individually — do not batch-update.
+6. **Announce:** Summarize the next sprint's scope to the user. Include which items require the Architecture Gate (ADR + Wei debate before implementation).

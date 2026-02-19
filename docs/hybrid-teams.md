@@ -50,9 +50,20 @@ The coordinator's job is to recognize phase transitions and assemble the right t
 | Constraint | **Ines** | Operational feasibility |
 | Optional | **Cloud Architect** | Cloud-specific design (if targeting cloud) |
 
-**How it works:** Archie proposes architecture. Wei challenges it (adversarial debate protocol). Vik checks for over-engineering. Pierrot flags security concerns. Ines validates operational feasibility. Debates are multi-round — see the Adversarial Debate Protocol in CLAUDE.md.
+**How it works:** Archie proposes architecture. Wei challenges it (adversarial debate protocol). Vik checks for over-engineering. Pierrot flags security concerns. Ines validates operational feasibility. Debates are multi-round — see the Adversarial Debate Protocol in `docs/process/team-governance.md`.
 
-**Transition to next phase:** When the ADR is accepted and the human approves the architecture.
+**Mandatory steps before transition:**
+1. Archie writes or updates an ADR in `docs/adrs/`.
+2. Wei is invoked as a **standalone agent** to challenge the ADR. This is NOT optional — skipping Wei is a process violation.
+3. The multi-round debate (minimum 2 rounds) is executed and tracked in `docs/tracking/YYYY-MM-DD-<topic>-debate.md`.
+4. The ADR is updated to reflect debate outcomes.
+
+**Transition to next phase:** When ALL of the following are true:
+- The ADR exists and is marked Accepted.
+- Wei has challenged it and the debate is tracked.
+- The human approves the architecture.
+
+**If this phase is skipped:** The coordinator must check at Implementation entry: "Is there an architectural decision embedded in this work item?" If yes, **stop** — return to Phase 2 before proceeding. An architectural decision made during implementation without Wei's challenge is a process failure that will be flagged in the sprint retro.
 
 ---
 
@@ -156,10 +167,15 @@ Is the user presenting a new idea or vague request?
 
 Is there an architectural decision to make?
   → YES → Phase 2: Architecture
+           (ADR + Wei debate + tracking artifact — all mandatory)
   → NO ↓
 
 Is there code to write?
-  → YES → Are there 3+ independent work items?
+  → YES → ⚠️  GATE CHECK: Does this work item embed an architectural decision?
+           (New pattern, integration, tech choice, data model, package boundary?)
+           → YES → STOP. Route to Phase 2 first. Do not proceed to Implementation.
+           → NO ↓
+           Are there 3+ independent work items?
            → YES → Phase 4: Parallel Work (each item uses Phase 3 internally)
            → NO → Phase 3: Implementation
   → NO ↓
