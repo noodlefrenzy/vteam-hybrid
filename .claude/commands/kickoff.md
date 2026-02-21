@@ -111,6 +111,17 @@ Create the implementation plan:
 
 After the plan is confirmed, create a GitHub Projects board to track the work. This is **not optional** — a project board is required for sprint tracking, backlog sweeps, and retro gating.
 
+#### Pre-Flight: GitHub CLI Access
+
+Before creating the board, verify GitHub CLI access works:
+
+```bash
+gh auth status
+gh repo view --json owner,name
+```
+
+If either fails, **STOP**. Report: "GitHub CLI is not authenticated or cannot access this repo. Please run `gh auth login` and ensure this repo is accessible, then try again." Do not attempt board creation without working CLI access.
+
 #### Step 1: Create and Link the Project
 
 ```bash
@@ -201,3 +212,13 @@ This metadata is required for all subsequent board operations. Without it, every
 #### Step 6: Confirm
 
 Report: "Board created and linked to repo with N items. First sprint has M items in Ready. Status field configured with 5 options: Backlog, Ready, In Progress, In Review, Done."
+
+#### Development Environment Check
+
+Before announcing readiness to build:
+
+1. Check if `.devcontainer/devcontainer.json` exists.
+2. **If not:** Ask the user: "No devcontainer is configured. Would you like me to set one up before starting the first sprint? I can run `/project:devcontainer` to create one tailored to this project's stack."
+   - If yes: run `/project:devcontainer`.
+   - If no: proceed without one.
+3. **If it exists:** Confirm it's valid JSON and move on.

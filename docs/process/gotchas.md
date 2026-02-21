@@ -48,3 +48,7 @@ Extracted from CLAUDE.md to reduce context window load. Read this when working o
 - **Product-context is a hypothesis, not ground truth.** `docs/product-context.md` captures Pat's model of the human's product philosophy — it's an educated guess that improves over time. The human can correct it at any time. When the human overrides a product-context-based recommendation, Pat updates the doc and logs the correction in the Correction Log table. Don't treat product-context entries as immutable rules.
 
 - **Phase 1b must precede acceptance criteria writing.** Pat's Human Model Elicitation (kickoff Phase 1b) must complete before Pat writes acceptance criteria (Phase 4). The product context informs what "done" means to this human. Skipping 1b means acceptance criteria are written without understanding the human's quality bar, scope appetite, or non-negotiables.
+
+- **Verify GitHub access before board operations.** Sprint workflows (sprint-boundary, kickoff) must verify `gh auth status` and board accessibility before attempting any project board operations. If `gh` commands fail, STOP and ask the user to fix it — don't proceed and fail mid-workflow. The pre-flight check is in sprint-boundary Step 0 and kickoff Phase 5 Pre-Flight.
+
+- **Check devcontainer before implementation.** After planning completes (either via `/project:plan` or `/project:kickoff` Phase 5), check whether `.devcontainer/` exists. If not, ask the user if they want one before starting implementation. This prevents environment inconsistency issues during TDD cycles.

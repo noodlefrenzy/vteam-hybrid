@@ -29,3 +29,13 @@ Check existing ADRs and plans for context before writing. Add agent-notes frontm
 ## Tracking Artifact
 
 After the plan document is written, produce `docs/tracking/YYYY-MM-DD-<topic>-plan.md` summarizing the plan's goals, approach, key constraints, and acceptance criteria. Use the standard tracking format from `docs/tracking/README.md`. Set **Prior Phase** to the most recent tracking artifact for this topic (if any), or "None" if this is a standalone plan.
+
+## Development Environment Check
+
+After the plan is written, check whether a devcontainer is set up:
+
+1. Check if `.devcontainer/devcontainer.json` exists.
+2. **If it does not exist:** Ask the user: "No devcontainer is configured for this project. Would you like me to set one up before we start implementation? This ensures a consistent development environment. I can run `/project:devcontainer` to create one."
+   - If yes: run `/project:devcontainer` with the project's tech stack as context.
+   - If no: note the decision and proceed.
+3. **If it already exists:** No action needed — proceed to implementation.
