@@ -54,6 +54,7 @@ When Agent Teams is enabled and tmux is available, use real multi-session parall
 **Fallback:** Subagent mode always works. If Agent Teams is disabled, unavailable, or the task doesn't justify the token cost, use subagents.
 
 **Full guide:** `docs/methodology/agent-teams-runtime.md`
+**Setup guide:** `docs/guides/agent-teams-setup.md`
 
 ## Critical Rules
 

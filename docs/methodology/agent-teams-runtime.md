@@ -104,7 +104,9 @@ The `.devcontainer/` configuration provides a ready-to-go Agent Teams environmen
 - **Post-create:** Installs tmux, Claude Code, and project dependencies
 - **Environment:** `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1` set automatically
 
-To use in GitHub Codespaces: create a Codespace from this repo. tmux and Claude Code are installed automatically. Start a tmux session (`tmux`) before launching Claude Code for split-pane teammate support.
+**Important:** Use a proper terminal (iTerm2, Windows Terminal, Alacritty), not VS Code's integrated terminal — it doesn't handle tmux well.
+
+**Full setup guide:** `docs/guides/agent-teams-setup.md` — covers Dev Container CLI, Docker Compose, and GitHub Codespaces workflows.
 
 ## Disabling Agent Teams
 
