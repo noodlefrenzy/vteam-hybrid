@@ -134,13 +134,12 @@ Run `/project:sprint-boundary` when all sprint items are Done or deferred. Full 
 │   ├── methodology/          # System docs (phases, personas, agent-notes)
 │   ├── process/              # Governance, done gate, gotchas, doc ownership
 │   ├── integrations/         # Tracking adapters (GitHub Projects, Jira)
+│   ├── scaffolds/            # Project stubs (moved to docs/ during scaffold/kickoff)
 │   ├── adrs/                 # Architecture Decision Records
+│   │   └── template/         # Template-specific ADRs (removed during scaffold)
 │   ├── tracking/             # Phase tracking artifacts
 │   ├── sprints/              # Sprint wave plans
 │   ├── retrospectives/       # Sprint retros
-│   ├── code-map.md           # Codebase structural overview
-│   ├── test-strategy.md      # Test pyramid and targets
-│   ├── tech-debt.md          # Technical debt register
 │   ├── sbom/                 # SBOM + dependency decisions
 │   └── security/             # Threat model
 ├── .claude/

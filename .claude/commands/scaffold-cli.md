@@ -3,6 +3,22 @@ Scaffold a CLI project: $ARGUMENTS
 
 You are setting up this repository as a CLI tool. Follow these steps:
 
+## 0. Template Setup
+
+Move project scaffolds into place and clean up template-only files:
+
+```bash
+# Move stub docs from scaffolds/ to docs/ root
+mv docs/scaffolds/*.md docs/ 2>/dev/null
+rmdir docs/scaffolds 2>/dev/null
+
+# Remove template-specific ADRs (not relevant to inheriting projects)
+rm -rf docs/adrs/template/
+
+# Remove template research/comparison docs
+rm -f docs/research/how-we-compare-*.md docs/research/agent-teams-comparison.md
+```
+
 ## 1. Gather Requirements
 
 Ask the user to choose their tech stack. Present these options:

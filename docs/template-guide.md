@@ -73,12 +73,12 @@ Follow the TDD workflow: `/project:tdd <feature>` for each piece of work.
 | Path | Purpose |
 |------|---------|
 | `CLAUDE.md` | Slim runtime instructions for Claude Code |
-| `docs/methodology/phases.md` | 7-phase team methodology |
-| `docs/methodology/personas.md` | 18-agent persona catalog |
-| `docs/methodology/agent-notes.md` | Agent-notes format spec |
+| `docs/methodology/` | System docs (phases, personas, agent-notes) |
 | `docs/process/` | Governance, done gate, gotchas, doc ownership |
 | `docs/integrations/` | Tracking adapters (GitHub Projects, Jira) |
+| `docs/scaffolds/` | Project stub docs (moved to `docs/` during scaffold) |
 | `docs/adrs/` | Architecture Decision Records |
+| `docs/adrs/template/` | Template-specific ADRs (removed during scaffold) |
 | `.claude/agents/*.md` | 18 runnable agent definitions |
 | `.claude/commands/*.md` | 21+ workflow commands |
 

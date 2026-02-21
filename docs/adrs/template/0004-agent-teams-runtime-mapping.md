@@ -1,5 +1,5 @@
 ---
-agent-notes: { ctx: "speculative ADR for mapping vteam onto Agent Teams runtime", deps: [docs/methodology/phases.md, docs/methodology/personas.md, docs/research/agent-teams-comparison.md, docs/adrs/0003-hybrid-team-architecture.md], state: exploratory, last: "archie@2026-02-16", key: ["DO NOT IMPLEMENT without explicit human approval", "exploratory only", "significant token cost implications"] }
+agent-notes: { ctx: "speculative ADR for mapping vteam onto Agent Teams runtime", deps: [docs/methodology/phases.md, docs/methodology/personas.md, docs/research/agent-teams-comparison.md, docs/adrs/template/0003-hybrid-team-architecture.md], state: exploratory, last: "archie@2026-02-16", key: ["DO NOT IMPLEMENT without explicit human approval", "exploratory only", "significant token cost implications"] }
 ---
 
 # ADR-0004: Agent Teams Runtime Mapping
