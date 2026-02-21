@@ -7,7 +7,7 @@ Create a session handoff document so the next session can pick up where this one
    - `git log --oneline -10` — recent commits
    - `git status` — working tree state
    - `git diff --stat` — uncommitted changes summary
-   - Check the project board if configured: `gh project item-list <NUMBER> --owner @me --format json` (skip if no board)
+   - **Board check (if configured):** If `CLAUDE.md` has `project-number` and `project-owner` set, verify access first with `gh auth status` and then `gh project item-list <NUMBER> --owner @me --format json`. If board access fails, warn the user: "Board access failed — handoff will be written without board status. Fix GitHub access before the next session resumes." Continue writing the handoff (it's still useful), but note the board gap in the handoff's Current State section.
 
 2. **Summarize what was done.** Review the work completed in this session:
    - What features/fixes were implemented

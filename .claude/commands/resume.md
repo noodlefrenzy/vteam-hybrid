@@ -14,7 +14,12 @@ Resume from a previous session's handoff.
 3. **Verify state.** Run these checks:
    - `git log --oneline -5` — does the last commit match what the handoff says?
    - `git status` — is the working tree clean? If not, investigate before proceeding.
-   - If a project board is configured, quick scan of item statuses.
+   - **GitHub Board Pre-Flight (Blocking):** If `CLAUDE.md` has a `project-number` and `project-owner` configured (not commented out / not blank), run the full pre-flight:
+     1. `gh auth status` — if this fails, STOP: "GitHub CLI is not authenticated. Please run `gh auth login` and try again."
+     2. `gh project field-list <NUMBER> --owner <OWNER> --format json` — if this fails, STOP: "Cannot access project board #<NUMBER>. Check your auth scopes (you may need `gh auth refresh -s project`) and that the project exists."
+     3. Verify the Status field has all 5 required options (Backlog, Ready, In Progress, In Review, Done). If any are missing, STOP and report.
+
+     **Do not proceed to step 4 if board access fails.** A sprint running without board access causes silent tracking failures — every status transition is skipped, and the sprint boundary will find a broken board. Fix it now, not after a full sprint of lost state.
 
 4. **Summarize to the user.** Give a brief (5-10 line) summary:
    - What the previous session accomplished

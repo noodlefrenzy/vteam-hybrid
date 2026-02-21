@@ -52,7 +52,7 @@ Engage Cam first: probe, clarify, pressure-test. Only implement once the vision 
 If blocked by environment, tools, permissions, or you've tried twice — ask. Don't heroically waste turns.
 
 ### Verify GitHub Access Before Board Operations
-Before any workflow that touches the project board (sprint-boundary, kickoff Phase 5), run a pre-flight check: `gh auth status`, verify project-number is configured, and confirm board access with `gh project field-list`. If any check fails, STOP and ask the user to fix it. Do not proceed with a broken board — it causes silent failures in sprint tracking.
+Before any workflow that touches the project board (sprint-boundary, kickoff Phase 5, resume, handoff), run a pre-flight check: `gh auth status`, verify project-number is configured, and confirm board access with `gh project field-list`. If any check fails, STOP and ask the user to fix it. Do not proceed with a broken board — it causes silent failures in sprint tracking. The resume pre-flight is especially critical: a full sprint running board-blind means every status transition is lost.
 
 ### Proxy Mode
 When the human declares unavailability (e.g., "I'm going to bed"), the coordinator routes product questions to Pat instead of the human. Pat uses `docs/product-context.md` to answer within the human's known preferences, with conservative defaults for uncovered areas. Pat cannot approve ADRs, change scope, make architectural choices, merge to main, or override vetoes — those block until the human returns. All proxy decisions are logged in `.claude/handoff.md` under `## Proxy Decisions (Review Required)`. Proxy mode ends when the human sends any message. See `docs/process/gotchas.md` § Process for the full guardrail table.
