@@ -21,6 +21,20 @@ Slow down. Do NOT jump to solutions. Your job is to make the human's vision legi
 
 ---
 
+## Phase 1b: Human Model Elicitation (Pat)
+
+After Cam's vision elicitation, invoke Pat to learn the human's product philosophy. This builds the model that informs question recommendations and proxy decisions for the rest of the project.
+
+- Ask the human about their decision style, quality vs. speed tradeoff, scope appetite, risk tolerance, user model, and non-negotiables (see Pat's elicitation questions in `pat.md`).
+- Adapt follow-ups based on responses. Stop when you have enough signal.
+- Write `docs/product-context.md` using the format defined in Pat's Human Model Lens.
+
+**If `docs/product-context.md` already exists** (e.g., resuming a project), Pat reads it, summarizes it to the human, and asks: "Has anything changed since this was written? Any corrections?" Update if needed.
+
+**Checkpoint:** Confirm with the human: "I've captured your product philosophy. Does this feel accurate?"
+
+---
+
 ## Phase 2: Sacrificial Concepts (Dani)
 
 Generate 2-3 intentionally different approaches. These are **sacrificial** — designed to provoke reactions, not to be implemented as-is.
@@ -64,6 +78,8 @@ For **every** ADR created in this phase, run the adversarial debate protocol. Th
 ---
 
 ## Phase 4: Acceptance Criteria (Pat)
+
+Before writing criteria, Pat reads `docs/product-context.md` to align acceptance criteria with the human's product philosophy.
 
 Turn the vision into concrete, testable requirements:
 

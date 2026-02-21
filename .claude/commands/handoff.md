@@ -27,7 +27,7 @@ Create a session handoff document so the next session can pick up where this one
    - What decisions are pending human input?
    - What open questions remain?
 
-5. **Check tracking artifacts.** Read `docs/tracking/` for any active tracking artifacts from this session. Include the latest artifacts in the handoff so the next session can pick up phase context without re-discovering it.
+5. **Check tracking artifacts.** Read `docs/tracking/` for any active tracking artifacts from this session. Include the latest artifacts in the handoff so the next session can pick up phase context without re-discovering it. Also check if `docs/product-context.md` exists and note its last-updated date in the handoff.
 
 6. **Write the handoff file.** Create or update `.claude/handoff.md` with this structure:
 
@@ -58,13 +58,18 @@ Create a session handoff document so the next session can pick up where this one
 
 ## What To Do Next (in order)
 1. Read `docs/code-map.md` to orient
-2. Read `docs/sprints/sprint-<N>-plan.md` for wave context
-3. <specific next task with file paths and enough context to execute>
+2. Read `docs/product-context.md` for human's product philosophy
+3. Read `docs/sprints/sprint-<N>-plan.md` for wave context
+4. <specific next task with file paths and enough context to execute>
 4. ...
 
 ## Tracking Artifacts
 - <list any active tracking artifacts from `docs/tracking/` relevant to in-flight work>
 - <include the artifact file names so the next session can read them for phase context>
+
+## Proxy Decisions (Review Required)
+<!-- If Pat made proxy decisions while the human was unavailable, list them here -->
+<!-- Each entry: question asked, Pat's decision, rationale, reversibility -->
 
 ## Key Context
 - <any non-obvious context the next session needs>

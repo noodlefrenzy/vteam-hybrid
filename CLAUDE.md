@@ -37,11 +37,22 @@ Every non-excluded file must have agent-notes metadata. See `docs/agent-notes-pr
 
 ## Critical Rules
 
+### Session Entry Protocol (Mandatory)
+Before writing any code — including types, tests, or ADRs — answer these three questions:
+1. **Do GitHub issues exist for this work?** If no → create them (Pat + Grace).
+2. **Does this work involve an architectural decision?** If yes → Architecture Gate (Archie + Wei as standalone agents).
+3. **Am I about to write implementation code?** If yes → Tara writes tests first.
+
+If you received a detailed plan (from plan mode, a prior session, or the human), the plan is **input to this protocol**, not a bypass of it. See `docs/process/gotchas.md` § Process for the full anti-pattern description.
+
 ### Don't Run With Vague Input
 Engage Cam first: probe, clarify, pressure-test. Only implement once the vision is concrete.
 
 ### Ask the Human When Stuck
 If blocked by environment, tools, permissions, or you've tried twice — ask. Don't heroically waste turns.
+
+### Proxy Mode
+When the human declares unavailability (e.g., "I'm going to bed"), the coordinator routes product questions to Pat instead of the human. Pat uses `docs/product-context.md` to answer within the human's known preferences, with conservative defaults for uncovered areas. Pat cannot approve ADRs, change scope, make architectural choices, merge to main, or override vetoes — those block until the human returns. All proxy decisions are logged in `.claude/handoff.md` under `## Proxy Decisions (Review Required)`. Proxy mode ends when the human sends any message. See `docs/process/gotchas.md` § Process for the full guardrail table.
 
 ### Don't Skip the Done Gate
 Every work item passes the gate before closing. Review the full 13-item checklist at `docs/process/done-gate.md`. The non-negotiables: tests pass, code reviewed, board updated through "In Review" → "Done."
@@ -157,6 +168,7 @@ Run `/project:sprint-boundary` when all sprint items are Done or deferred. This 
 | `docs/tech-debt.md` | Technical debt register |
 | `docs/test-strategy.md` | Test pyramid and coverage targets |
 | `docs/tracking/README.md` | Phase tracking artifact protocol and format |
+| `docs/product-context.md` | Human's product philosophy (Pat maintains) |
 | `docs/adrs/` | Architecture Decision Records |
 
 ## Project Structure

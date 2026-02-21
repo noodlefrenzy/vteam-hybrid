@@ -7,6 +7,7 @@ Resume from a previous session's handoff.
 
 2. **Read project context.** In parallel, read:
    - `CLAUDE.md` (already loaded, but review for any recent changes)
+   - `docs/product-context.md` (if it exists — the human's product philosophy)
    - The current plan in `docs/plans/` (if referenced in the handoff)
    - The auto-memory file at the path shown in your system prompt (if it exists)
 
@@ -19,6 +20,8 @@ Resume from a previous session's handoff.
    - What the previous session accomplished
    - Current state of the project
    - What you're about to do next
+
+4b. **Check for proxy decisions.** If the handoff contains a `## Proxy Decisions (Review Required)` section with entries, surface them to the human **immediately** before continuing any other work. Ask: "Pat made these decisions while you were away. Do you want to review or override any of them?" Do not proceed until the human acknowledges the proxy decisions.
 
 5. **Ask for confirmation.** Before executing, ask: "Ready to pick up from here? Or would you like to adjust the plan?"
 

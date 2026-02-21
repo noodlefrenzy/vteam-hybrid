@@ -23,6 +23,7 @@ Extracted from CLAUDE.md to reduce context window load. Referenced by CLAUDE.md 
 | Changelog | Diego | `CHANGELOG.md` | Releases |
 | Code map | Coordinator | `docs/code-map.md` | New packages, modules, or significant API changes |
 | ADRs | Archie | `docs/adrs/` | Significant architectural decisions |
+| Product context | Pat | `docs/product-context.md` | Kickoff Phase 1b, sprint boundaries, human corrections |
 
 ## Dependency Management Rules
 

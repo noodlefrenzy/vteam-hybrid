@@ -156,6 +156,8 @@ The coordinator's job is to recognize phase transitions and assemble the right t
 
 **When to use:** Any time the human needs to be consulted, informed, or asked for a decision. Cam is the default for all human interaction unless the human explicitly asks to speak to a specific agent.
 
+**Proxy mode:** When the human declares unavailability (e.g., "I'm going to bed"), Pat becomes Lead for product questions. The coordinator routes questions that would normally go to the human through Pat instead. Pat uses `docs/product-context.md` to answer within the human's known preferences, applying conservative defaults for uncovered areas. Pat cannot approve ADRs, change scope, make architectural choices, or override vetoes — those block until the human returns. All proxy decisions are logged in `.claude/handoff.md` under `## Proxy Decisions (Review Required)`. Proxy mode ends when the human sends any message.
+
 ---
 
 ## Phase Selection Flowchart
@@ -210,7 +212,7 @@ The coordinator manages the phase stack — knowing which phase is active and wh
 | **Cam** | Lead | | | | | | Lead |
 | **Sato** | | | Green+Refactor | Worker | | Lead | |
 | **Tara** | | | Red+Verify | Worker | Reviewer | Contribute | |
-| **Pat** | Contribute | | | | | | Support |
+| **Pat** | Contribute+1b | | | | | | Lead/Support* |
 | **Grace** | | | | Coordinator | | | Support |
 | **Archie** | | Lead | | | | | |
 | **Dani** | Contribute | | | Worker | Optional | | |
@@ -224,3 +226,7 @@ The coordinator manages the phase stack — knowing which phase is active and wh
 | **Cloud Architect** | | Optional | | | | | |
 | **Cloud CostGuard** | | | | | | | |
 | **Cloud NetDiag** | | | | | | | |
+
+**Table annotations:**
+- **+1b**: Pat leads Discovery Phase 1b (Human Model Elicitation) after Cam's vision elicitation.
+- **Lead/Support***: Pat is Lead in proxy mode (human unavailable), Support in normal mode.
