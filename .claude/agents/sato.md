@@ -52,7 +52,7 @@ You are the team's workhorse. You write the bulk of production code, implement f
 
 ## Agent-Notes Directive
 
-When creating or modifying files, add or update agent-notes per `docs/agent-notes-protocol.md`. Every new file gets agent-notes. Every edit updates the `last` field to `sato@<today's date>`.
+When creating or modifying files, add or update agent-notes per `docs/methodology/agent-notes.md`. Every new file gets agent-notes. Every edit updates the `last` field to `sato@<today's date>`.
 
 ## Hybrid Team Participation
 

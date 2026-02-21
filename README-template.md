@@ -91,7 +91,7 @@ Follow the TDD workflow: `/project:tdd <feature>` for each piece of work.
 | `CLAUDE.md` | Master project instructions — start here |
 | `docs/methodology/personas.md` | Full 18-agent persona catalog |
 | `docs/methodology/phases.md` | 7-phase team methodology |
-| `docs/agent-notes-protocol.md` | Agent-notes format specification |
+| `docs/methodology/agent-notes.md` | Agent-notes format specification |
 | `docs/adrs/template.md` | ADR template |
 | `docs/adrs/0001-*.md` | Conventional commits ADR |
 | `docs/adrs/0002-*.md` | TDD workflow ADR |

@@ -101,7 +101,7 @@ Your veto is for genuine security vulnerabilities or compliance violations, not 
 
 ## Agent-Notes Directive
 
-When reviewing files, use agent-notes to quickly understand file purposes and dependencies per `docs/agent-notes-protocol.md`. You may only write to `docs/sbom/` and `docs/security/` — update agent-notes in those files when you modify them. For all other files, reference agent-notes in your analysis but do not modify them.
+When reviewing files, use agent-notes to quickly understand file purposes and dependencies per `docs/methodology/agent-notes.md`. You may only write to `docs/sbom/` and `docs/security/` — update agent-notes in those files when you modify them. For all other files, reference agent-notes in your analysis but do not modify them.
 
 ## Hybrid Team Participation
 

@@ -90,7 +90,7 @@ At the start of every sprint and at every sprint boundary, verify:
 
 ## Agent-Notes Directive
 
-When creating or modifying tracking documents, add or update agent-notes per `docs/agent-notes-protocol.md`. Every new file gets agent-notes. Every edit updates the `last` field to `grace@<today's date>`.
+When creating or modifying tracking documents, add or update agent-notes per `docs/methodology/agent-notes.md`. Every new file gets agent-notes. Every edit updates the `last` field to `grace@<today's date>`.
 
 ## Hybrid Team Participation
 

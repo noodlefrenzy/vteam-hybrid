@@ -54,7 +54,7 @@ Based on the choices, create the project structure appropriate to the framework.
 - Configure the build output directory to match GitHub Pages expectations
 - If custom domain requested, set up `CNAME` file in the public/static directory
 - Add a starter test if the framework supports it
-- Add agent-notes to all new files per `docs/agent-notes-protocol.md`
+- Add agent-notes to all new files per `docs/methodology/agent-notes.md`
 
 ## 4. Verify
 

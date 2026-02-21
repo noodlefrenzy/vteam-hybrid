@@ -48,7 +48,7 @@ Update the target cloud's landscape file:
 - **Update the "Known Enterprise Patterns" section** if best practices have changed.
 - **Update the "Last updated" header** with today's date.
 - **Don't delete the file structure** — keep the same sections so the agents know where to find things.
-- **Update agent-notes** per `docs/agent-notes-protocol.md`.
+- **Update agent-notes** per `docs/methodology/agent-notes.md`.
 
 ### 5. Review Impact on Agents
 

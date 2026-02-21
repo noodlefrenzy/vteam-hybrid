@@ -83,7 +83,7 @@ tsconfig.json           # Root TypeScript config
 - Add `dev`, `build`, `test`, and `lint` scripts to root `package.json`
 - If CI was requested, create `.github/workflows/ci.yml`
 - Configure TypeScript strict mode
-- Add agent-notes to all new files per `docs/agent-notes-protocol.md`
+- Add agent-notes to all new files per `docs/methodology/agent-notes.md`
 
 ## 4. Verify
 

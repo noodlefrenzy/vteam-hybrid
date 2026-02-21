@@ -1,5 +1,5 @@
 ---
-agent-notes: { ctx: "consolidated 18-persona roster with capability tiers", deps: [CLAUDE.md, docs/methodology/phases.md, docs/agent-notes-protocol.md], state: canonical, last: "archie@2026-02-12", key: ["32→18 consolidation", "absorbed personas become lenses"] }
+agent-notes: { ctx: "consolidated 18-persona roster with capability tiers", deps: [CLAUDE.md, docs/methodology/phases.md, docs/methodology/agent-notes.md], state: canonical, last: "archie@2026-02-12", key: ["32→18 consolidation", "absorbed personas become lenses"] }
 ---
 
 # Team Personas — Consolidated Roster

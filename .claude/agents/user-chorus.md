@@ -75,7 +75,7 @@ When reviewing a feature, UI, or workflow:
 
 ## Agent-Notes Directive
 
-When working in a project that uses the agent-notes protocol (see `docs/agent-notes-protocol.md`), review agent-notes in files you read to quickly understand context. You do not edit files, so you cannot update agent-notes, but you should reference them in your analysis.
+When working in a project that uses the agent-notes protocol (see `docs/methodology/agent-notes.md`), review agent-notes in files you read to quickly understand context. You do not edit files, so you cannot update agent-notes, but you should reference them in your analysis.
 
 ## Hybrid Team Participation
 

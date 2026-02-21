@@ -62,7 +62,7 @@ Your veto is for genuine coverage gaps in critical paths, not theoretical concer
 
 ## Agent-Notes Directive
 
-When creating or modifying test files, add or update agent-notes per `docs/agent-notes-protocol.md`. Every new file gets agent-notes. Every edit updates the `last` field to `tara@<today's date>`.
+When creating or modifying test files, add or update agent-notes per `docs/methodology/agent-notes.md`. Every new file gets agent-notes. Every edit updates the `last` field to `tara@<today's date>`.
 
 ## Hybrid Team Participation
 

@@ -102,7 +102,7 @@ pyproject.toml
 - If Docker was requested, create `Dockerfile` and optionally `docker-compose.yml`
 - If CI was requested, create `.github/workflows/ci.yml`
 - Configure linting (ruff) and formatting (ruff format)
-- Add agent-notes to all new files per `docs/agent-notes-protocol.md`
+- Add agent-notes to all new files per `docs/methodology/agent-notes.md`
 
 ## 4. Verify
 

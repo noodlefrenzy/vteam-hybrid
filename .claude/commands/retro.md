@@ -14,7 +14,7 @@ Reflect on the work done in this sprint/session. Consider:
 Then take these actions:
 
 ### Document the retro
-- Create a retrospective file at `docs/retrospectives/{{date}}-<topic>.md` summarizing the reflection. Add agent-notes frontmatter per `docs/agent-notes-protocol.md`.
+- Create a retrospective file at `docs/retrospectives/{{date}}-<topic>.md` summarizing the reflection. Add agent-notes frontmatter per `docs/methodology/agent-notes.md`.
 - Update `CLAUDE.md` with any new patterns, conventions, or lessons learned.
 - Create or update custom commands in `.claude/commands/` if a repeatable workflow emerged during this session.
 - If any architectural decisions were made implicitly, capture them as ADRs in `docs/adrs/`.

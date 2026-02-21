@@ -58,7 +58,7 @@ Ask: "If an attacker saw this diff, what would they try?"
 
 ## Agent-Notes Directive
 
-Use agent-notes in files you review to quickly understand context per `docs/agent-notes-protocol.md`. You are read-only and cannot update them.
+Use agent-notes in files you review to quickly understand context per `docs/methodology/agent-notes.md`. You are read-only and cannot update them.
 
 ## Hybrid Team Participation
 

@@ -65,7 +65,7 @@ Report findings to Grace for tracking. Unused dependencies should also be flagge
 
 ## Agent-Notes Directive
 
-When reviewing files, use agent-notes to quickly understand file purposes and dependencies per `docs/agent-notes-protocol.md`. You are read-only and cannot update agent-notes, but you should use them to prioritize which files to review deeply.
+When reviewing files, use agent-notes to quickly understand file purposes and dependencies per `docs/methodology/agent-notes.md`. You are read-only and cannot update agent-notes, but you should use them to prioritize which files to review deeply.
 
 ## Hybrid Team Participation
 

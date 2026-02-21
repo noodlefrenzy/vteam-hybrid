@@ -1,5 +1,5 @@
 ---
-agent-notes: { ctx: "ADR for hybrid teams, agent consolidation, agent-notes", deps: [docs/methodology/phases.md, docs/methodology/personas.md, docs/agent-notes-protocol.md, CLAUDE.md], state: active, last: "archie@2026-02-12", key: ["three innovations in one ADR", "replaces vteam-agentapalooza fixed hierarchy"] }
+agent-notes: { ctx: "ADR for hybrid teams, agent consolidation, agent-notes", deps: [docs/methodology/phases.md, docs/methodology/personas.md, docs/methodology/agent-notes.md, CLAUDE.md], state: active, last: "archie@2026-02-12", key: ["three innovations in one ADR", "replaces vteam-agentapalooza fixed hierarchy"] }
 ---
 
 # ADR-0003: Hybrid Team Architecture
@@ -84,7 +84,7 @@ agent-notes: { ctx: "purpose <10 words", deps: [file1, file2], state: active, la
 ---
 ```
 
-Format adapts to file type (YAML frontmatter for .md, single-line comment for code, HTML comment for Svelte/agent files). See `docs/agent-notes-protocol.md` for the full specification.
+Format adapts to file type (YAML frontmatter for .md, single-line comment for code, HTML comment for Svelte/agent files). See `docs/methodology/agent-notes.md` for the full specification.
 
 ## Consequences
 

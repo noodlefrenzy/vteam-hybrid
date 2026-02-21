@@ -69,7 +69,7 @@ Cargo.toml
 - Create a starter test that invokes the CLI `--help` and asserts success
 - If CI was requested, create `.github/workflows/ci.yml`
 - If pre-commit hooks were requested, configure them (ruff/black for Python, clippy/rustfmt for Rust)
-- Add agent-notes to all new files per `docs/agent-notes-protocol.md`
+- Add agent-notes to all new files per `docs/methodology/agent-notes.md`
 
 ## 4. Verify
 

@@ -12,7 +12,7 @@
 
 ## Agent-Notes Protocol (MANDATORY)
 
-Every non-excluded file must have agent-notes metadata. See `docs/agent-notes-protocol.md` for spec.
+Every non-excluded file must have agent-notes metadata. See `docs/methodology/agent-notes.md` for spec.
 
 1. Every new file gets agent-notes (excluded: pure JSON, lock files, binaries).
 2. Every edit updates `last` to `<agent>@<date>`.

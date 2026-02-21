@@ -88,4 +88,4 @@ Create a session handoff document so the next session can pick up where this one
 - "Read code-map.md" should always be step 1 in "What To Do Next" — it replaces codebase exploration.
 - Don't include sensitive information (tokens, credentials, personal data) in the handoff.
 - If the session discovered patterns or gotchas, update `docs/process/gotchas.md` (durable) not just the handoff (ephemeral).
-- Add agent-notes frontmatter to the handoff file per `docs/agent-notes-protocol.md`.
+- Add agent-notes frontmatter to the handoff file per `docs/methodology/agent-notes.md`.

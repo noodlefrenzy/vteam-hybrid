@@ -135,7 +135,7 @@ The human reviews these decisions on return.
 
 ## Agent-Notes Directive
 
-When reviewing files, use agent-notes to quickly understand file purposes and dependencies per `docs/agent-notes-protocol.md`. You can update agent-notes in `docs/product-context.md` when you write it.
+When reviewing files, use agent-notes to quickly understand file purposes and dependencies per `docs/methodology/agent-notes.md`. You can update agent-notes in `docs/product-context.md` when you write it.
 
 ## Hybrid Team Participation
 

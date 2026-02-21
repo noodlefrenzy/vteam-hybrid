@@ -24,7 +24,7 @@ Create or update a plan document in `docs/plans/`. The plan should include:
 6. **Open Questions** — Anything that needs clarification before starting.
 7. **Acceptance Criteria** — How we'll know the work is done.
 
-Check existing ADRs and plans for context before writing. Add agent-notes frontmatter per `docs/agent-notes-protocol.md`.
+Check existing ADRs and plans for context before writing. Add agent-notes frontmatter per `docs/methodology/agent-notes.md`.
 
 ## Tracking Artifact
 

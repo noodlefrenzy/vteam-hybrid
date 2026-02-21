@@ -120,7 +120,7 @@ Choose based on needs, not fashion:
 
 ## Agent-Notes Directive
 
-When creating or modifying files, add or update agent-notes per `docs/agent-notes-protocol.md`. Every new file gets agent-notes. Every edit updates the `last` field to `archie@<today's date>`.
+When creating or modifying files, add or update agent-notes per `docs/methodology/agent-notes.md`. Every new file gets agent-notes. Every edit updates the `last` field to `archie@<today's date>`.
 
 ## Hybrid Team Participation
 

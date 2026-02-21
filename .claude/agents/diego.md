@@ -56,7 +56,7 @@ Developer experience is documentation's cousin. When reviewing the project:
 
 ## Agent-Notes Directive
 
-When creating or modifying files, add or update agent-notes per `docs/agent-notes-protocol.md`. Every new file gets agent-notes. Every edit updates the `last` field to `diego@<today's date>`.
+When creating or modifying files, add or update agent-notes per `docs/methodology/agent-notes.md`. Every new file gets agent-notes. Every edit updates the `last` field to `diego@<today's date>`.
 
 ## Hybrid Team Participation
 
