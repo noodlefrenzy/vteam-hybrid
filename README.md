@@ -1,8 +1,8 @@
-<!-- agent-notes: { ctx: "project README placeholder", deps: [CLAUDE.md], state: stub, last: "diego@2026-02-12" } -->
+<!-- agent-notes: { ctx: "quickstart stub, replaced after scaffolding", deps: [CLAUDE.md, docs/template-guide.md], state: stub, last: "diego@2026-02-21" } -->
 
 # Project Name
 
-> Replace this with your project's README after running a scaffold command.
+> Replace this README with your project's README after scaffolding.
 
 ## Quick Start
 
@@ -13,9 +13,19 @@
    - `/project:scaffold-ai-tool` — AI/data-centric tool
    - `/project:scaffold-static-site` — Static site
 3. Run `/project:kickoff` to start discovery
+4. Start building with `/project:tdd <feature>`
 
 ## What's Included
 
-This template provides the **vteam-hybrid** system — a virtual development team with 18 specialized agent personas, a 7-phase hybrid team methodology, and structured workflows for the full development lifecycle.
+This template provides **vteam-hybrid** — a virtual development team with 18 agent personas, a 7-phase hybrid methodology, and 21+ workflow commands for the full development lifecycle.
 
-See [README-template.md](README-template.md) for a detailed guide to what's in this template and how to use it.
+## Learning Path
+
+Read in this order. Stop when you have enough:
+
+| # | Doc | Time | What you'll learn |
+|---|-----|------|-------------------|
+| 1 | [Template Guide](docs/template-guide.md) | 5 min | What's in the template, how to customize it |
+| 2 | [Methodology Overview](docs/methodology/phases.md#tldr) | 2 min | The 7 phases at a glance |
+| 3 | [Phases (full)](docs/methodology/phases.md) | 10 min | How each phase works, who participates |
+| 4 | [Personas](docs/methodology/personas.md) | skim | The 18-agent roster, capabilities, governance |
