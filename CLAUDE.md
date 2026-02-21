@@ -35,6 +35,26 @@ Every non-excluded file must have agent-notes metadata. See `docs/methodology/ag
 **Full details:** Agent roster, persona triggers, debate protocol, voice rules → `docs/process/team-governance.md`
 **Doc ownership:** Who maintains what → `docs/process/doc-ownership.md`
 
+## Agent Teams Runtime
+
+When Agent Teams is enabled and tmux is available, use real multi-session parallelism for phases that benefit from it.
+
+| Phase | Runtime | Teammates |
+|-------|---------|-----------|
+| 1. Discovery | Single session + subagents | Blackboard is serial |
+| 2. Architecture | Agent Teams (2) | Proposer + Challenger |
+| 3. Implementation | Single session + subagents | TDD pipeline is sequential |
+| 4. Parallel Work | Agent Teams (2-4) | Grace as lead, workers self-claim |
+| 5. Code Review | Agent Teams (3) | Correctness + Coverage + Security |
+| 6. Debugging | Agent Teams (2) | Competing hypotheses |
+| 7. Human Interaction | Single session | Just Cam |
+
+**Spawn prompts:** Read the template at `.claude/spawn-prompts/phase-N-role.md`, fill in `[PLACEHOLDERS]`, and use it to spawn the teammate.
+
+**Fallback:** Subagent mode always works. If Agent Teams is disabled, unavailable, or the task doesn't justify the token cost, use subagents.
+
+**Full guide:** `docs/methodology/agent-teams-runtime.md`
+
 ## Critical Rules
 
 ### Session Entry Protocol (Mandatory)
@@ -117,6 +137,7 @@ Run `/project:sprint-boundary` when all sprint items are Done or deferred. Full 
 | `docs/methodology/phases.md` | 7-phase team methodology |
 | `docs/methodology/personas.md` | 18-agent persona catalog |
 | `docs/methodology/agent-notes.md` | Agent-notes protocol spec |
+| `docs/methodology/agent-teams-runtime.md` | Agent Teams runtime guide |
 | `docs/process/team-governance.md` | Triggers, debate protocol, architecture gate, voice rules |
 | `docs/process/done-gate.md` | 13-item Done Gate checklist |
 | `docs/process/doc-ownership.md` | Who owns which docs, update triggers |
@@ -144,6 +165,9 @@ Run `/project:sprint-boundary` when all sprint items are Done or deferred. Full 
 │   └── security/             # Threat model
 ├── .claude/
 │   ├── agents/               # Subagent persona definitions (18 agents)
-│   └── commands/             # Custom slash commands (auto-discovered)
+│   ├── commands/             # Custom slash commands (auto-discovered)
+│   ├── hooks/                # Governance hooks (done-gate, teammate-idle)
+│   └── spawn-prompts/        # Agent Teams spawn prompt templates
+├── .devcontainer/            # Devcontainer config (tmux + Claude Code)
 └── scripts/                  # Automation scripts
 ```
