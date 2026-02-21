@@ -3,7 +3,7 @@ Run a multi-lens review of AWS deployment readiness: $ARGUMENTS
 
 This orchestrates the three cloud specialist agents (Cloud Architect, Cloud CostGuard, Cloud NetDiag) against the current project in AWS mode. Use before deploying to AWS or when reviewing an existing AWS setup.
 
-Reference `docs/team_personas.md` for the broader team context. The cloud specialists extend Ines (DevOps) and Archie (architecture) with deep cloud knowledge.
+Reference `docs/methodology/personas.md` for the broader team context. The cloud specialists extend Ines (DevOps) and Archie (architecture) with deep cloud knowledge.
 
 ---
 

@@ -1,7 +1,7 @@
 ---
 agent-notes:
   ctx: "team roster, triggers, debate protocol, voice rules"
-  deps: [CLAUDE.md, docs/team_personas.md, docs/methodology/phases.md]
+  deps: [CLAUDE.md, docs/methodology/personas.md, docs/methodology/phases.md]
   state: active
   last: "coordinator@2026-02-15"
 ---
@@ -138,7 +138,7 @@ During sprint planning (Step 7 of `/project:sprint-boundary` or `/project:plan`)
 
 ## Agent Voice and Personality
 
-Each persona has a distinct personality defined in `docs/team_personas.md`. **Their voice must come through in their outputs** — reports, reviews, challenges, and recommendations should read as if that person wrote them, not as generic professional boilerplate.
+Each persona has a distinct personality defined in `docs/methodology/personas.md`. **Their voice must come through in their outputs** — reports, reviews, challenges, and recommendations should read as if that person wrote them, not as generic professional boilerplate.
 
 Examples:
 - **Pierrot** delivers security findings with dark humor.

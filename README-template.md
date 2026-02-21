@@ -1,5 +1,5 @@
 ---
-agent-notes: { ctx: "reference doc for template contents and usage", deps: [CLAUDE.md, docs/team_personas.md, docs/methodology/phases.md], state: canonical, last: "diego@2026-02-12" }
+agent-notes: { ctx: "reference doc for template contents and usage", deps: [CLAUDE.md, docs/methodology/personas.md, docs/methodology/phases.md], state: canonical, last: "diego@2026-02-12" }
 ---
 
 # vteam-hybrid Template Reference
@@ -89,7 +89,7 @@ Follow the TDD workflow: `/project:tdd <feature>` for each piece of work.
 | Path | Purpose |
 |------|---------|
 | `CLAUDE.md` | Master project instructions — start here |
-| `docs/team_personas.md` | Full 18-agent persona catalog |
+| `docs/methodology/personas.md` | Full 18-agent persona catalog |
 | `docs/methodology/phases.md` | 7-phase team methodology |
 | `docs/agent-notes-protocol.md` | Agent-notes format specification |
 | `docs/adrs/template.md` | ADR template |
@@ -105,7 +105,7 @@ Follow the TDD workflow: `/project:tdd <feature>` for each piece of work.
 ### Adding a New Agent
 
 1. Create `.claude/agents/<name>.md` with the proper frontmatter (see existing agents for format)
-2. Add the agent to `docs/team_personas.md`
+2. Add the agent to `docs/methodology/personas.md`
 3. Update `docs/methodology/phases.md` with the agent's phase participation
 4. Update the roster table in `CLAUDE.md`
 

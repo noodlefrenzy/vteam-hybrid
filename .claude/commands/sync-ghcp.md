@@ -1,4 +1,4 @@
-<!-- agent-notes: { ctx: "sync Claude Code agents to GitHub Copilot format", deps: [CLAUDE.md, .claude/agents/, .claude/commands/, docs/team_personas.md], state: active, last: "diego@2026-02-12" } -->
+<!-- agent-notes: { ctx: "sync Claude Code agents to GitHub Copilot format", deps: [CLAUDE.md, .claude/agents/, .claude/commands/, docs/methodology/personas.md], state: active, last: "diego@2026-02-12" } -->
 Sync the Claude Code agent/persona system to GitHub Copilot format.
 
 This command uses Claude Code as the source of truth and generates/updates the GHCP equivalents in `.github/`. It does NOT use a static generation script — instead it researches the current GHCP format at runtime and adapts accordingly.
@@ -16,7 +16,7 @@ Read all files that define the agent/persona system:
 - `CLAUDE.md` — project instructions and persona triggers
 - `.claude/agents/*.md` — all subagent definitions (frontmatter + body)
 - `.claude/commands/*.md` — all custom commands
-- `docs/team_personas.md` — shared persona catalog
+- `docs/methodology/personas.md` — shared persona catalog
 
 Take note of each agent's name, description, tool permissions (both allowed and disallowed), model preference, max turns, and the full body content that defines their behavior.
 

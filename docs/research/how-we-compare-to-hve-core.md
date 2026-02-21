@@ -1,5 +1,5 @@
 ---
-agent-notes: { ctx: "Competitive analysis vs HVE Core", deps: [docs/methodology/phases.md, docs/team_personas.md], state: active, last: "claude@2026-02-16" }
+agent-notes: { ctx: "Competitive analysis vs HVE Core", deps: [docs/methodology/phases.md, docs/methodology/personas.md], state: active, last: "claude@2026-02-16" }
 ---
 
 # How We Compare To: HVE Core

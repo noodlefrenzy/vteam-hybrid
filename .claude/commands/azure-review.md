@@ -3,7 +3,7 @@ Run a multi-lens review of Azure deployment readiness: $ARGUMENTS
 
 This orchestrates the three cloud specialist agents (Cloud Architect, Cloud CostGuard, Cloud NetDiag) against the current project in Azure mode. Use before deploying to Azure or when reviewing an existing Azure setup.
 
-Reference `docs/team_personas.md` for the broader team context. The cloud specialists extend Ines (DevOps) and Archie (architecture) with deep cloud knowledge.
+Reference `docs/methodology/personas.md` for the broader team context. The cloud specialists extend Ines (DevOps) and Archie (architecture) with deep cloud knowledge.
 
 ---
 

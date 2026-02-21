@@ -3,7 +3,7 @@ Run a multi-lens review of GCP deployment readiness: $ARGUMENTS
 
 This orchestrates the three cloud specialist agents (Cloud Architect, Cloud CostGuard, Cloud NetDiag) against the current project in GCP mode. Use before deploying to GCP or when reviewing an existing GCP setup.
 
-Reference `docs/team_personas.md` for the broader team context. The cloud specialists extend Ines (DevOps) and Archie (architecture) with deep cloud knowledge.
+Reference `docs/methodology/personas.md` for the broader team context. The cloud specialists extend Ines (DevOps) and Archie (architecture) with deep cloud knowledge.
 
 ---
 

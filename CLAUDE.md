@@ -167,7 +167,7 @@ Run `/project:sprint-boundary` when all sprint items are Done or deferred. This 
 | `docs/process/doc-ownership.md` | Who owns which docs, update triggers |
 | `docs/process/gotchas.md` | Implementation patterns and known pitfalls |
 | `docs/methodology/phases.md` | 7-phase team methodology |
-| `docs/team_personas.md` | 18-agent persona catalog |
+| `docs/methodology/personas.md` | 18-agent persona catalog |
 | `docs/tech-debt.md` | Technical debt register |
 | `docs/test-strategy.md` | Test pyramid and coverage targets |
 | `docs/tracking/README.md` | Phase tracking artifact protocol and format |

@@ -1,5 +1,5 @@
 ---
-agent-notes: { ctx: "Competitive analysis template", deps: [docs/methodology/phases.md, docs/team_personas.md], state: canonical, last: "claude@2026-02-16" }
+agent-notes: { ctx: "Competitive analysis template", deps: [docs/methodology/phases.md, docs/methodology/personas.md], state: canonical, last: "claude@2026-02-16" }
 ---
 
 <!-- HOW TO USE THIS TEMPLATE:

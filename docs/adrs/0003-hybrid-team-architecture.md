@@ -1,5 +1,5 @@
 ---
-agent-notes: { ctx: "ADR for hybrid teams, agent consolidation, agent-notes", deps: [docs/methodology/phases.md, docs/team_personas.md, docs/agent-notes-protocol.md, CLAUDE.md], state: active, last: "archie@2026-02-12", key: ["three innovations in one ADR", "replaces vteam-agentapalooza fixed hierarchy"] }
+agent-notes: { ctx: "ADR for hybrid teams, agent consolidation, agent-notes", deps: [docs/methodology/phases.md, docs/methodology/personas.md, docs/agent-notes-protocol.md, CLAUDE.md], state: active, last: "archie@2026-02-12", key: ["three innovations in one ADR", "replaces vteam-agentapalooza fixed hierarchy"] }
 ---
 
 # ADR-0003: Hybrid Team Architecture
@@ -72,7 +72,7 @@ Collapse roles into capabilities. Absorbed personas don't disappear — their ex
 
 Unchanged: Cam, Sato, Tara, Vik, Code Reviewer, Diego, Wei, Debra, User Chorus.
 
-Result: 18 agent definitions (15 individuals + 1 composite + 3 cloud-adaptive), down from 32. See `docs/team_personas.md` for the full roster.
+Result: 18 agent definitions (15 individuals + 1 composite + 3 cloud-adaptive), down from 32. See `docs/methodology/personas.md` for the full roster.
 
 ### 3. Agent-Notes Protocol
 

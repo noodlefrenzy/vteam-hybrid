@@ -36,7 +36,7 @@ YAML frontmatter with an `agent-notes` key:
 
 ```yaml
 ---
-agent-notes: { ctx: "ADR for TDD workflow", deps: [CLAUDE.md, docs/team_personas.md], state: active, last: "archie@2026-02-12" }
+agent-notes: { ctx: "ADR for TDD workflow", deps: [CLAUDE.md, docs/methodology/personas.md], state: active, last: "archie@2026-02-12" }
 ---
 
 # Document title here
@@ -129,7 +129,7 @@ tools: Read, Write, Edit, Bash, Grep, Glob
 model: inherit
 maxTurns: 25
 ---
-<!-- agent-notes: { ctx: "principal SDE, TDD green phase", deps: [docs/team_personas.md, docs/methodology/phases.md], state: canonical, last: "archie@2026-02-12" } -->
+<!-- agent-notes: { ctx: "principal SDE, TDD green phase", deps: [docs/methodology/personas.md, docs/methodology/phases.md], state: canonical, last: "archie@2026-02-12" } -->
 ```
 
 ### Command files (.claude/commands/*.md)
@@ -137,7 +137,7 @@ maxTurns: 25
 HTML comment at the top of the file (before the first line of content):
 
 ```markdown
-<!-- agent-notes: { ctx: "kickoff discovery workflow", deps: [docs/team_personas.md], state: active, last: "cam@2026-02-12" } -->
+<!-- agent-notes: { ctx: "kickoff discovery workflow", deps: [docs/methodology/personas.md], state: active, last: "cam@2026-02-12" } -->
 Run a full discovery workflow for: $ARGUMENTS
 ```
 

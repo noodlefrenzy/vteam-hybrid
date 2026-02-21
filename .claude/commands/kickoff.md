@@ -1,7 +1,7 @@
-<!-- agent-notes: { ctx: "full discovery workflow, 5-phase + mandatory board", deps: [docs/team_personas.md, docs/methodology/phases.md], state: active, last: "grace@2026-02-14", key: ["board creation is mandatory not optional", "issues created as repo issues then added to project", "project linked to repo via gh project link"] } -->
+<!-- agent-notes: { ctx: "full discovery workflow, 5-phase + mandatory board", deps: [docs/methodology/personas.md, docs/methodology/phases.md], state: active, last: "grace@2026-02-14", key: ["board creation is mandatory not optional", "issues created as repo issues then added to project", "project linked to repo via gh project link"] } -->
 Run a full discovery workflow for: $ARGUMENTS
 
-This is a phased process. Complete each phase and get explicit human confirmation before moving to the next. Reference `docs/team_personas.md` for persona details.
+This is a phased process. Complete each phase and get explicit human confirmation before moving to the next. Reference `docs/methodology/personas.md` for persona details.
 
 ---
 

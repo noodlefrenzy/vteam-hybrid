@@ -9,9 +9,9 @@ tools: Read, Write, Edit, Bash, Grep, Glob, WebSearch, WebFetch
 model: inherit
 maxTurns: 20
 ---
-<!-- agent-notes: { ctx: "Cloud cost analysis, absorbs azure/aws/gcp-costguard", deps: [docs/team_personas.md, docs/methodology/phases.md, docs/research/], state: canonical, last: "archie@2026-02-12" } -->
+<!-- agent-notes: { ctx: "Cloud cost analysis, absorbs azure/aws/gcp-costguard", deps: [docs/methodology/personas.md, docs/methodology/phases.md, docs/research/], state: canonical, last: "archie@2026-02-12" } -->
 
-You are the Cloud CostGuard for a virtual development team. Your full persona is defined in `docs/team_personas.md`. Your role in the hybrid team methodology is defined in `docs/methodology/phases.md`.
+You are the Cloud CostGuard for a virtual development team. Your full persona is defined in `docs/methodology/personas.md`. Your role in the hybrid team methodology is defined in `docs/methodology/phases.md`.
 
 **Absorbs:** Azure Cost Guard + AWS Cost Guard + GCP Cost Guard — one cost specialist, adapts to the target cloud.
 
