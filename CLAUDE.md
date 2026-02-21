@@ -39,11 +39,11 @@ Every non-excluded file must have agent-notes metadata. See `docs/methodology/ag
 
 ### Session Entry Protocol (Mandatory)
 Before writing any code — including types, tests, or ADRs — answer these three questions:
-1. **Do GitHub issues exist for this work?** If no → create them (Pat + Grace).
-2. **Does this work involve an architectural decision?** If yes → Architecture Gate (Archie + Wei as standalone agents).
+1. **Do work items exist for this work?** If no → create them (Pat + Grace).
+2. **Does this work involve an architectural decision?** If yes → Architecture Gate (Archie + Wei as standalone agents). See `docs/process/team-governance.md` § Architecture Decision Gate.
 3. **Am I about to write implementation code?** If yes → Tara writes tests first.
 
-If you received a detailed plan (from plan mode, a prior session, or the human), the plan is **input to this protocol**, not a bypass of it. See `docs/process/gotchas.md` § Process for the full anti-pattern description.
+If you received a detailed plan, the plan is **input to this protocol**, not a bypass of it. See `docs/process/gotchas.md` § Process.
 
 ### Don't Run With Vague Input
 Engage Cam first: probe, clarify, pressure-test. Only implement once the vision is concrete.
@@ -51,32 +51,20 @@ Engage Cam first: probe, clarify, pressure-test. Only implement once the vision 
 ### Ask the Human When Stuck
 If blocked by environment, tools, permissions, or you've tried twice — ask. Don't heroically waste turns.
 
-### Verify GitHub Access Before Board Operations
-Before any workflow that touches the project board (sprint-boundary, kickoff Phase 5, resume, handoff), run a pre-flight check: `gh auth status`, verify project-number is configured, and confirm board access with `gh project field-list`. If any check fails, STOP and ask the user to fix it. Do not proceed with a broken board — it causes silent failures in sprint tracking. The resume pre-flight is especially critical: a full sprint running board-blind means every status transition is lost.
-
-### Proxy Mode
-When the human declares unavailability (e.g., "I'm going to bed"), the coordinator routes product questions to Pat instead of the human. Pat uses `docs/product-context.md` to answer within the human's known preferences, with conservative defaults for uncovered areas. Pat cannot approve ADRs, change scope, make architectural choices, merge to main, or override vetoes — those block until the human returns. All proxy decisions are logged in `.claude/handoff.md` under `## Proxy Decisions (Review Required)`. Proxy mode ends when the human sends any message. See `docs/process/gotchas.md` § Process for the full guardrail table.
+### Verify Tracking Access Before Board Operations
+Before any workflow that touches the project board (sprint-boundary, kickoff, resume, handoff), run the pre-flight check from your active tracking adapter at `docs/integrations/README.md`. If any check fails, STOP and ask the user to fix it.
 
 ### Don't Skip the Done Gate
-Every work item passes the gate before closing. Review the full 13-item checklist at `docs/process/done-gate.md`. The non-negotiables: tests pass, code reviewed, board updated through "In Review" → "Done."
+Every work item passes the gate before closing. Full checklist at `docs/process/done-gate.md`.
 
 ### Don't Skip Agents
-When a situation triggers multiple personas, invoke ALL of them. Overlapping coverage is intentional. The only exception is when the user explicitly asks to skip one.
+When a situation triggers multiple personas, invoke ALL of them. Overlapping coverage is intentional.
 
 ### ADR Before Implementation
-Never implement a feature with a pending ADR without writing the ADR first.
+Never implement a feature with a pending ADR without writing the ADR first. Architecture Gate details: `docs/process/team-governance.md` § Architecture Decision Gate.
 
-### Architecture Gate (Mandatory)
-Before entering Implementation (Phase 3) for any sprint item that involves an architectural decision — new patterns, new integrations, technology choices, data model changes, new package boundaries — the following gate **must** pass:
-
-1. **ADR exists** — Archie has written an ADR for the decision.
-2. **Wei has challenged it** — Wei has been invoked as a standalone agent on the ADR. This is not optional.
-3. **Debate is tracked** — The multi-round debate (Archie vs Wei) is recorded in `docs/tracking/YYYY-MM-DD-<topic>-debate.md`.
-4. **Resolution documented** — The coordinator has summarized which challenges were addressed, which were accepted as risks, and what changed.
-
-If the sprint plan includes items that trigger this gate, the coordinator must identify them at sprint planning and note "**Requires Architecture Gate:** ADR + Wei debate" on each one. See `docs/process/team-governance.md` § Architecture Decision Gate for the full checklist.
-
-**How to recognize architectural decisions:** If you're choosing *how* to structure something (not just *what* to build), it's architectural. Examples: adding a new package, choosing between two libraries, designing an API contract, changing data flow between stages, introducing a new external dependency. When in doubt, route through the gate — a 10-minute debate is cheaper than a bad decision baked into code.
+### Proxy Mode
+When the human declares unavailability, Pat answers product questions using `docs/product-context.md`. Guardrails and limits: `docs/process/gotchas.md` § Process.
 
 ## Development Workflow
 
@@ -88,132 +76,75 @@ If the sprint plan includes items that trigger this gate, the coordinator must i
 5. **Done Gate** — Full checklist at `docs/process/done-gate.md`.
 6. **Close** — Move issue to **"Done"** on the board. Push.
 
-**Status transitions are mandatory and ordered.** Every item must pass through In Progress → In Review → Done. Skipping "In Review" is a process violation that will be flagged in the sprint retro. See Grace's Board Status Rules for enforcement details.
+**Status transitions are mandatory and ordered.** In Progress → In Review → Done. Skipping "In Review" is a process violation.
 
 **STOP**: Do not start the next item until step 6 is complete.
 
 ### Commit Discipline
 Commit and push after every reasonable chunk of work. One commit per issue. Conventional commits format.
 
-### Kaizen
-After each sprint or coding session: retro in `docs/retrospectives/`, update this file with new patterns.
+## Tracking
 
-## GitHub Board
-
-<!-- Board details are configured during kickoff (Phase 5) — project creation is NOT optional -->
+<!-- tracking-adapter: github-projects -->
 <!-- project-number: -->
 <!-- project-owner: -->
 
-**Status flow:** Backlog → Ready → **In Progress** → **In Review** → Done
+**Adapter docs:** `docs/integrations/README.md`
+**Status flow:** Backlog → Ready → In Progress → In Review → Done
 
-**Required statuses:** The board MUST have all 5 status options configured. If "In Review", "Ready", or "Backlog" are missing, add them before starting any sprint work (see `/project:kickoff` Phase 5 Step 2 for setup commands).
+Board commands, pre-flight checks, and setup instructions are in the active adapter file. Grace manages board status. Pat manages priorities.
 
-Grace manages board status. Pat manages priorities. Issues use `sprint:N` labels. Board creation is mandatory during `/project:kickoff`.
+## Sprint Boundary
 
-### Board Status Commands
-
-Use these commands to move items through statuses. You need the project's Status field ID and the option IDs for each status.
-
-```bash
-# 1. Look up field IDs and status option IDs (do this once per session)
-gh project field-list <NUMBER> --owner <OWNER> --format json
-# Find the "Status" field → note its field ID
-# Find each option (Backlog, Ready, In Progress, In Review, Done) → note their option IDs
-
-# 2. Get the item ID for an issue
-gh project item-list <NUMBER> --owner <OWNER> --format json
-# Find the item matching your issue number → note its item ID
-
-# 3. Get the project node ID (needed for item-edit)
-gh project list --owner <OWNER> --format json
-# Find the project → note its node ID
-
-# 4. Move an item to a new status
-gh project item-edit --project-id <PROJECT_NODE_ID> --id <ITEM_ID> --field-id <STATUS_FIELD_ID> --single-select-option-id <STATUS_OPTION_ID>
-```
-
-**Per-item transitions only.** Never batch-update all items. Each item transitions individually as work progresses.
-
-## Sprint Boundary (Mandatory)
-
-Run `/project:sprint-boundary` when all sprint items are Done or deferred. This triggers:
-1. Retro → `docs/retrospectives/`
-2. Backlog sweep (catches orphans + user-created issues)
-3. Process-improvement gate (blocks next sprint if unresolved)
-4. Tech debt review → `docs/tech-debt.md`
-5. Diego docs sweep
-6. Archive tracking artifacts → `docs/tracking/archive/sprint-N/`
-7. Periodic passes (dead code, dep health) every 3 sprints
-8. Next sprint setup (Pat prioritizes, Grace sets up board)
+Run `/project:sprint-boundary` when all sprint items are Done or deferred. Full workflow is in the command.
 
 ## Session Management
 
-**Context is finite.** Sprints generate massive agent output. To avoid mid-sprint context exhaustion:
+**Context is finite.** To avoid mid-sprint context exhaustion:
 
-1. **Plan waves before executing.** At sprint start, break issues into waves by size/dependency. Document in `docs/sprints/sprint-N-plan.md`.
-2. **One wave per session.** Execute a wave, commit, then run `/project:handoff` to capture state. Start the next wave in a fresh session.
-3. **Background agents write to files.** Use `run_in_background: true` for agents whose detailed output isn't needed in the main conversation. Read summaries, not full output.
-4. **Read `docs/code-map.md` first.** Orient from the map rather than exploring the codebase from scratch each session.
-5. **Commit frequently.** Uncommitted work is the most expensive thing to reconstruct across sessions.
-6. **Tracking artifacts carry phase context.** Commands produce lightweight artifacts in `docs/tracking/` at each workflow phase. These survive across sessions — read them to pick up where a previous session left off. See `docs/tracking/README.md` for the protocol.
+1. **Plan waves before executing.** Break issues into waves by size/dependency. Document in `docs/sprints/sprint-N-plan.md`.
+2. **One wave per session.** Execute a wave, commit, then run `/project:handoff`. Start the next wave fresh.
+3. **Background agents write to files.** Use `run_in_background: true`. Read summaries, not full output.
+4. **Read `docs/code-map.md` first.** Orient from the map, not from scratch.
+5. **Commit frequently.** Uncommitted work is the most expensive thing to reconstruct.
+6. **Tracking artifacts carry phase context.** See `docs/tracking/README.md`.
 
 ## Process Docs Index
 
 | Doc | Purpose |
 |-----|---------|
 | `docs/code-map.md` | Package structure, public APIs, data flow — **read first** |
-| `docs/process/team-governance.md` | Agent roster, triggers, debate protocol, voice |
+| `docs/methodology/phases.md` | 7-phase team methodology |
+| `docs/methodology/personas.md` | 18-agent persona catalog |
+| `docs/methodology/agent-notes.md` | Agent-notes protocol spec |
+| `docs/process/team-governance.md` | Triggers, debate protocol, architecture gate, voice rules |
 | `docs/process/done-gate.md` | 13-item Done Gate checklist |
 | `docs/process/doc-ownership.md` | Who owns which docs, update triggers |
 | `docs/process/gotchas.md` | Implementation patterns and known pitfalls |
-| `docs/methodology/phases.md` | 7-phase team methodology |
-| `docs/methodology/personas.md` | 18-agent persona catalog |
-| `docs/tech-debt.md` | Technical debt register |
-| `docs/test-strategy.md` | Test pyramid and coverage targets |
-| `docs/tracking/README.md` | Phase tracking artifact protocol and format |
-| `docs/product-context.md` | Human's product philosophy (Pat maintains) |
+| `docs/integrations/README.md` | Active tracking adapter and setup |
+| `docs/tracking/README.md` | Phase tracking artifact protocol |
 | `docs/adrs/` | Architecture Decision Records |
 
 ## Project Structure
 
 ```
 .
-├── CLAUDE.md              # This file (slim — details in docs/process/)
+├── CLAUDE.md                 # This file — slim runtime instructions
 ├── docs/
-│   ├── code-map.md        # Codebase structural overview
-│   ├── process/           # Extracted process docs (governance, gates, gotchas)
-│   ├── sprints/           # Sprint wave plans
-│   ├── adrs/              # Architecture Decision Records
-│   ├── tracking/          # Phase tracking artifacts (see README.md)
-│   ├── retrospectives/    # Sprint retros
-│   ├── sbom/              # SBOM + dependency decisions
-│   └── security/          # Threat model
+│   ├── methodology/          # System docs (phases, personas, agent-notes)
+│   ├── process/              # Governance, done gate, gotchas, doc ownership
+│   ├── integrations/         # Tracking adapters (GitHub Projects, Jira)
+│   ├── adrs/                 # Architecture Decision Records
+│   ├── tracking/             # Phase tracking artifacts
+│   ├── sprints/              # Sprint wave plans
+│   ├── retrospectives/       # Sprint retros
+│   ├── code-map.md           # Codebase structural overview
+│   ├── test-strategy.md      # Test pyramid and targets
+│   ├── tech-debt.md          # Technical debt register
+│   ├── sbom/                 # SBOM + dependency decisions
+│   └── security/             # Threat model
 ├── .claude/
-│   ├── agents/            # Subagent persona definitions (18 agents)
-│   └── commands/          # Custom slash commands
-└── scripts/               # Automation scripts
+│   ├── agents/               # Subagent persona definitions (18 agents)
+│   └── commands/             # Custom slash commands (auto-discovered)
+└── scripts/                  # Automation scripts
 ```
-
-## Custom Commands
-
-| Command | Purpose |
-|---------|---------|
-| `/project:kickoff` | Full discovery workflow (5 phases) |
-| `/project:design` | Sacrificial concept exploration |
-| `/project:plan` | Implementation planning |
-| `/project:adr` | Create a new ADR |
-| `/project:tdd` | Strict TDD implementation |
-| `/project:code-review` | Three-lens code review |
-| `/project:review` | Guided human review session |
-| `/project:retro` | Kaizen retrospective |
-| `/project:sprint-boundary` | Mandatory sprint boundary workflow |
-| `/project:handoff` | Session handoff for continuity |
-| `/project:resume` | Resume from a previous handoff |
-| `/project:scaffold-*` | Project scaffolding (cli, web-monorepo, ai-tool, static-site) |
-| `/project:cloud-update` | Refresh cloud landscape research |
-| `/project:aws-review` | Multi-lens AWS review |
-| `/project:azure-review` | Multi-lens Azure review |
-| `/project:gcp-review` | Multi-lens GCP review |
-| `/project:pin-versions` | Pin dependency versions and update SBOM |
-| `/project:sync-template` | Reapply vteam-hybrid template evolutions |
-| `/project:sync-ghcp` | Sync agents to GitHub Copilot format |
