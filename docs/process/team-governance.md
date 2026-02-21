@@ -1,7 +1,7 @@
 ---
 agent-notes:
   ctx: "team roster, triggers, debate protocol, voice rules"
-  deps: [CLAUDE.md, docs/team_personas.md, docs/hybrid-teams.md]
+  deps: [CLAUDE.md, docs/team_personas.md, docs/methodology/phases.md]
   state: active
   last: "coordinator@2026-02-15"
 ---

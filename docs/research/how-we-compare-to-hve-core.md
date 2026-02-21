@@ -1,5 +1,5 @@
 ---
-agent-notes: { ctx: "Competitive analysis vs HVE Core", deps: [docs/hybrid-teams.md, docs/team_personas.md], state: active, last: "claude@2026-02-16" }
+agent-notes: { ctx: "Competitive analysis vs HVE Core", deps: [docs/methodology/phases.md, docs/team_personas.md], state: active, last: "claude@2026-02-16" }
 ---
 
 # How We Compare To: HVE Core
@@ -284,7 +284,7 @@ The fundamental philosophical difference: **vteam-hybrid models a team of humans
 | HVE Core Artifact Architecture | `../../../hve-core/docs/architecture/ai-artifacts.md` |
 | HVE Core Collection Manifests | `../../../hve-core/collections/` |
 | vteam-hybrid Team Personas | `../team_personas.md` |
-| vteam-hybrid Hybrid Teams | `../hybrid-teams.md` |
+| vteam-hybrid Hybrid Teams | `../methodology/phases.md` |
 | vteam-hybrid Agent-Notes Protocol | `../agent-notes-protocol.md` |
 | vteam-hybrid Done Gate | `../process/done-gate.md` |
 

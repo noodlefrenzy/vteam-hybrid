@@ -20,7 +20,7 @@ Every non-excluded file must have agent-notes metadata. See `docs/agent-notes-pr
 
 ## Team & Process
 
-**Methodology:** Phase-dependent hybrid teams. See `docs/hybrid-teams.md` for the 7-phase model.
+**Methodology:** Phase-dependent hybrid teams. See `docs/methodology/phases.md` for the 7-phase model.
 
 | Phase | Lead | Key Pattern |
 |-------|------|------------|
@@ -166,7 +166,7 @@ Run `/project:sprint-boundary` when all sprint items are Done or deferred. This 
 | `docs/process/done-gate.md` | 13-item Done Gate checklist |
 | `docs/process/doc-ownership.md` | Who owns which docs, update triggers |
 | `docs/process/gotchas.md` | Implementation patterns and known pitfalls |
-| `docs/hybrid-teams.md` | 7-phase team methodology |
+| `docs/methodology/phases.md` | 7-phase team methodology |
 | `docs/team_personas.md` | 18-agent persona catalog |
 | `docs/tech-debt.md` | Technical debt register |
 | `docs/test-strategy.md` | Test pyramid and coverage targets |

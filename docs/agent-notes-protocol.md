@@ -129,7 +129,7 @@ tools: Read, Write, Edit, Bash, Grep, Glob
 model: inherit
 maxTurns: 25
 ---
-<!-- agent-notes: { ctx: "principal SDE, TDD green phase", deps: [docs/team_personas.md, docs/hybrid-teams.md], state: canonical, last: "archie@2026-02-12" } -->
+<!-- agent-notes: { ctx: "principal SDE, TDD green phase", deps: [docs/team_personas.md, docs/methodology/phases.md], state: canonical, last: "archie@2026-02-12" } -->
 ```
 
 ### Command files (.claude/commands/*.md)

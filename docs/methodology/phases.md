@@ -1,8 +1,26 @@
 ---
-agent-notes: { ctx: "phase-dependent team compositions for hybrid methodology", deps: [docs/team_personas.md, CLAUDE.md], state: canonical, last: "archie@2026-02-12" }
+agent-notes: { ctx: "phase-dependent team compositions for hybrid methodology", deps: [docs/methodology/personas.md, CLAUDE.md], state: canonical, last: "archie@2026-02-21" }
 ---
 
 # Hybrid Team Methodology
+
+## TL;DR
+
+vteam-hybrid organizes AI-assisted development into **7 phases**, each with a different team structure. You don't need to memorize this — the coordinator picks the right team automatically.
+
+| Phase | When | Lead | Model |
+|-------|------|------|-------|
+| 1. Discovery | New idea or vague request | Cam | Blackboard (open brainstorm) |
+| 2. Architecture | Design decisions, tech choices | Archie | Ensemble + Wei debate |
+| 3. Implementation | Writing code | Tara → Sato | TDD pipeline (red-green-refactor) |
+| 4. Parallel Work | 3+ independent items | Grace | Market (self-claim) |
+| 5. Code Review | Reviewing changes | Vik + Tara + Pierrot | Three parallel lenses |
+| 6. Debugging | Fixing bugs | Sato | Blackboard (shared investigation) |
+| 7. Human Interaction | Consulting the user | Cam | Single point of contact |
+
+**Next:** See [personas.md](personas.md) for the full agent roster. See [../process/team-governance.md](../process/team-governance.md) for triggers, debate protocol, and governance rules.
+
+---
 
 Different development phases need different organizational structures. Instead of a fixed hierarchy, the coordinator selects the appropriate team composition at each phase transition. This document defines the 7 phases, their org models, and which agents participate.
 

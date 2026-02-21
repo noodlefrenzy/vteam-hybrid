@@ -1,5 +1,5 @@
 ---
-agent-notes: { ctx: "ADR for hybrid teams, agent consolidation, agent-notes", deps: [docs/hybrid-teams.md, docs/team_personas.md, docs/agent-notes-protocol.md, CLAUDE.md], state: active, last: "archie@2026-02-12", key: ["three innovations in one ADR", "replaces vteam-agentapalooza fixed hierarchy"] }
+agent-notes: { ctx: "ADR for hybrid teams, agent consolidation, agent-notes", deps: [docs/methodology/phases.md, docs/team_personas.md, docs/agent-notes-protocol.md, CLAUDE.md], state: active, last: "archie@2026-02-12", key: ["three innovations in one ADR", "replaces vteam-agentapalooza fixed hierarchy"] }
 ---
 
 # ADR-0003: Hybrid Team Architecture
@@ -52,7 +52,7 @@ Replace the fixed hierarchy with 7 phase-dependent team compositions:
 | Debugging | Blackboard | Sato |
 | Human Interaction | Hierarchical | Cam |
 
-The coordinator selects the appropriate phase at each transition point. Phases can nest (parallel work contains multiple implementation pipelines). See `docs/hybrid-teams.md` for the full specification.
+The coordinator selects the appropriate phase at each transition point. Phases can nest (parallel work contains multiple implementation pipelines). See `docs/methodology/phases.md` for the full specification.
 
 ### 2. Agent Consolidation (32 → 18)
 

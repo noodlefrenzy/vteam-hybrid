@@ -1,5 +1,5 @@
 ---
-agent-notes: { ctx: "comparison of vteam-hybrid vs Claude Code Agent Teams", deps: [docs/hybrid-teams.md, docs/team_personas.md, CLAUDE.md], state: active, last: "archie@2026-02-16" }
+agent-notes: { ctx: "comparison of vteam-hybrid vs Claude Code Agent Teams", deps: [docs/methodology/phases.md, docs/team_personas.md, CLAUDE.md], state: active, last: "archie@2026-02-16" }
 ---
 
 # How We Compare: vteam-hybrid vs Claude Code Agent Teams

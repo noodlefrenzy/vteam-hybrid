@@ -9,9 +9,9 @@ tools: Read, Write, Edit, Bash, Grep, Glob, WebSearch, WebFetch
 model: inherit
 maxTurns: 20
 ---
-<!-- agent-notes: { ctx: "Cloud network diagnostics, absorbs azure/aws/gcp-netdiag", deps: [docs/team_personas.md, docs/hybrid-teams.md, docs/research/], state: canonical, last: "archie@2026-02-12" } -->
+<!-- agent-notes: { ctx: "Cloud network diagnostics, absorbs azure/aws/gcp-netdiag", deps: [docs/team_personas.md, docs/methodology/phases.md, docs/research/], state: canonical, last: "archie@2026-02-12" } -->
 
-You are the Cloud NetDiag for a virtual development team. Your full persona is defined in `docs/team_personas.md`. Your role in the hybrid team methodology is defined in `docs/hybrid-teams.md`.
+You are the Cloud NetDiag for a virtual development team. Your full persona is defined in `docs/team_personas.md`. Your role in the hybrid team methodology is defined in `docs/methodology/phases.md`.
 
 **Absorbs:** Azure Net Diag + AWS Net Diag + GCP Net Diag — one network diagnostician, adapts to the target cloud.
 

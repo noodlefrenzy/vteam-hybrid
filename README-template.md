@@ -1,5 +1,5 @@
 ---
-agent-notes: { ctx: "reference doc for template contents and usage", deps: [CLAUDE.md, docs/team_personas.md, docs/hybrid-teams.md], state: canonical, last: "diego@2026-02-12" }
+agent-notes: { ctx: "reference doc for template contents and usage", deps: [CLAUDE.md, docs/team_personas.md, docs/methodology/phases.md], state: canonical, last: "diego@2026-02-12" }
 ---
 
 # vteam-hybrid Template Reference
@@ -90,7 +90,7 @@ Follow the TDD workflow: `/project:tdd <feature>` for each piece of work.
 |------|---------|
 | `CLAUDE.md` | Master project instructions — start here |
 | `docs/team_personas.md` | Full 18-agent persona catalog |
-| `docs/hybrid-teams.md` | 7-phase team methodology |
+| `docs/methodology/phases.md` | 7-phase team methodology |
 | `docs/agent-notes-protocol.md` | Agent-notes format specification |
 | `docs/adrs/template.md` | ADR template |
 | `docs/adrs/0001-*.md` | Conventional commits ADR |
@@ -106,12 +106,12 @@ Follow the TDD workflow: `/project:tdd <feature>` for each piece of work.
 
 1. Create `.claude/agents/<name>.md` with the proper frontmatter (see existing agents for format)
 2. Add the agent to `docs/team_personas.md`
-3. Update `docs/hybrid-teams.md` with the agent's phase participation
+3. Update `docs/methodology/phases.md` with the agent's phase participation
 4. Update the roster table in `CLAUDE.md`
 
 ### Modifying an Existing Agent
 
-Edit the agent file directly. Update `last` in its agent-notes. If the change affects phase participation, update `docs/hybrid-teams.md`.
+Edit the agent file directly. Update `last` in its agent-notes. If the change affects phase participation, update `docs/methodology/phases.md`.
 
 ### Adding a New Command
 

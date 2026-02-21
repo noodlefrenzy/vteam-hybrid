@@ -1,5 +1,5 @@
 ---
-agent-notes: { ctx: "consolidated 18-persona roster with capability tiers", deps: [CLAUDE.md, docs/hybrid-teams.md, docs/agent-notes-protocol.md], state: canonical, last: "archie@2026-02-12", key: ["32→18 consolidation", "absorbed personas become lenses"] }
+agent-notes: { ctx: "consolidated 18-persona roster with capability tiers", deps: [CLAUDE.md, docs/methodology/phases.md, docs/agent-notes-protocol.md], state: canonical, last: "archie@2026-02-12", key: ["32→18 consolidation", "absorbed personas become lenses"] }
 ---
 
 # Team Personas — Consolidated Roster
@@ -16,7 +16,7 @@ Each persona includes:
   - **P2 — Regular**: Engaged at feature, sprint, or release boundaries.
   - **Cloud**: Activated when the project targets a specific cloud platform.
 - **Absorbs**: Which original personas were consolidated into this one (if any).
-- **Hybrid Phases**: Which phases from `docs/hybrid-teams.md` this persona participates in.
+- **Hybrid Phases**: Which phases from `docs/methodology/phases.md` this persona participates in.
 
 ### Governance Rules
 

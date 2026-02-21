@@ -1,4 +1,4 @@
-<!-- agent-notes: { ctx: "implementation planning workflow", deps: [docs/team_personas.md, docs/hybrid-teams.md], state: active, last: "pat@2026-02-12" } -->
+<!-- agent-notes: { ctx: "implementation planning workflow", deps: [docs/team_personas.md, docs/methodology/phases.md], state: active, last: "pat@2026-02-12" } -->
 I need to plan the implementation of: $ARGUMENTS
 
 Before writing the plan, ensure the goal is well-understood. If the request is vague, first run through Coach Cam elicitation (see `docs/team_personas.md`) or use `/project:kickoff` for full discovery.
