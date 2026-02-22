@@ -173,3 +173,28 @@ Once the gate passes:
    4b. **Product context refresh:** Pat reads `docs/product-context.md` and the retro document from Step 1. If priorities have shifted, proxy decisions were corrected by the human, or the retro surfaced product-level insights, Pat updates `docs/product-context.md`. Log changes in the Correction Log table.
 5. **Update board:** Move next-sprint items to **Ready** status on the project board using the board status commands (see CLAUDE.md § Board Status Commands). Each item transitions individually — do not batch-update.
 6. **Announce:** Summarize the next sprint's scope to the user. Include which items require the Architecture Gate (ADR + Wei debate before implementation).
+
+---
+
+## Step 8: Clean-Tree Gate (Mandatory, Terminal)
+
+This step is the **final gate** of the sprint boundary. It runs after ALL other steps and ensures nothing was left behind.
+
+```bash
+git status --porcelain
+```
+
+**If the working tree is clean:** Sprint boundary is complete. Report success.
+
+**If the working tree is dirty:** The boundary is NOT complete. This catches late file operations — archive deletions, code reviews, tracking artifact moves — that weren't included in earlier commits.
+
+1. **Show the dirty files** to the operator: list every unstaged/untracked change.
+2. **Stage and commit them:**
+   ```bash
+   git add -A
+   git commit -m "chore: sprint-N boundary cleanup — stage orphaned changes"
+   ```
+3. **Re-check:** Run `git status --porcelain` again.
+4. **If STILL dirty:** STOP. Refuse to declare the boundary complete. Surface the remaining dirty files to the user and ask them to resolve manually.
+
+**Why this gate exists:** Sprint boundary workflows involve many file operations across multiple steps (archival, artifact creation, code reviews, backlog triage). Commits that run before or independently of all file operations leave deletions unstaged and new files untracked. Without this gate, every sprint boundary is a coin-flip on whether late-written artifacts get orphaned into the next session. This is a structural fix — do NOT remove it.
