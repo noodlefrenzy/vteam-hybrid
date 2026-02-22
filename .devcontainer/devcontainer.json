@@ -6,6 +6,9 @@
     "ghcr.io/devcontainers/features/github-cli:1": {}
   },
   "postCreateCommand": ".devcontainer/post-create.sh",
+  // Common dev server ports. Add/remove after scaffolding.
+  // Docker Desktop on WSL2 makes these accessible on Windows localhost automatically.
+  "forwardPorts": [3000, 4321, 5173, 8000, 8080],
   "remoteEnv": {
     "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
   },
