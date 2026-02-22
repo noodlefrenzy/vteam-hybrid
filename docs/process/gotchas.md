@@ -53,6 +53,8 @@ Extracted from CLAUDE.md to reduce context window load. Read this when working o
 
 - **Check devcontainer before implementation.** After planning completes (either via `/project:plan` or `/project:kickoff` Phase 5), check whether `.devcontainer/` exists. If not, ask the user if they want one before starting implementation. This prevents environment inconsistency issues during TDD cycles.
 
+- **Sprint boundary must end with a clean-tree gate.** Multi-step workflows (sprint boundary, kickoff) involve many file operations — archival moves, artifact creation, code reviews. Commits that run partway through the workflow leave late-written files unstaged. The `/project:sprint-boundary` Step 8 enforces a terminal `git status --porcelain` check and stages any orphaned changes. If you're writing a similar multi-step workflow, end it with the same pattern: check, stage, commit, re-check.
+
 ## Agent Teams
 
 - **Always launch with `--model opus`.** Teammates do not inherit the lead's model selection. Without `--model opus`, teammates may use a different (weaker) model. This is a known limitation of Agent Teams.
