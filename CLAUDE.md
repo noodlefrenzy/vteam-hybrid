@@ -49,7 +49,13 @@ When Agent Teams is enabled and tmux is available, use real multi-session parall
 | 6. Debugging | Agent Teams (2) | Competing hypotheses |
 | 7. Human Interaction | Single session | Just Cam |
 
+**Launch:** Always use `claude --model opus` — teammates do not inherit the lead's model selection.
+
 **Spawn prompts:** Read the template at `.claude/spawn-prompts/phase-N-role.md`, fill in `[PLACEHOLDERS]`, and use it to spawn the teammate.
+
+**Use real teammates, not subagents.** When a phase calls for Agent Teams, you MUST spawn teammates using Agent Teams. Do NOT substitute the Task tool with subagents or worktrees — they run in a single context window and defeat the purpose of independent reasoning chains.
+
+**Board status after review:** The lead (not the reviewer teammates) is responsible for moving board items from "In Review" → "Done" after synthesizing findings and confirming fixes.
 
 **Fallback:** Subagent mode always works. If Agent Teams is disabled, unavailable, or the task doesn't justify the token cost, use subagents.
 

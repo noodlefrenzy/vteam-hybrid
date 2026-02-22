@@ -43,8 +43,10 @@ Agent Teams detects the tmux session and spawns teammates as split panes automat
 ### 4. Launch Claude Code
 
 ```bash
-claude
+claude --model opus
 ```
+
+**Important:** Always use `--model opus`. Teammates do not inherit the lead's model — without this flag they may use a different (weaker) model. See `docs/methodology/agent-teams-runtime.md` § Known Issues.
 
 You're ready. When Claude Code spawns teammates, they'll appear as tmux splits in your terminal.
 
@@ -77,7 +79,7 @@ docker compose up -d
 docker compose exec dev bash
 ```
 
-Then tmux + claude as in Option A steps 3-4.
+Then `tmux` + `claude --model opus` as in Option A steps 3-4.
 
 ### 3. Clean up
 
@@ -111,7 +113,7 @@ This gives you a proper terminal connection. The browser-based terminal works bu
 
 ```bash
 tmux
-claude
+claude --model opus
 ```
 
 The devcontainer's `postCreateCommand` already installed tmux and Claude Code.
@@ -190,10 +192,13 @@ When Agent Teams spawns teammates, new panes appear automatically. You don't nee
 ## Troubleshooting
 
 **"no server running on /tmp/tmux-..."**
-You're not in a tmux session. Run `tmux` first, then `claude`.
+You're not in a tmux session. Run `tmux` first, then `claude --model opus`.
 
 **Teammates don't appear as split panes**
 Agent Teams falls back to in-process mode if tmux isn't detected. Make sure you started `claude` from *inside* a tmux session, not from a bare shell.
+
+**Teammates use a weaker model**
+Teammates don't inherit `--model`. Always launch with `claude --model opus`.
 
 **"permission denied" on hooks**
 Run `chmod +x .claude/hooks/*.sh` — the post-create script does this, but if you rebuilt the container without running it, the executable bits may be missing.
@@ -213,4 +218,5 @@ Once you're running, see `docs/methodology/agent-teams-runtime.md` for:
 - Which phases use Agent Teams vs. subagents
 - How to use the spawn prompt templates
 - What the governance hooks enforce
+- Known issues and workarounds
 - How to disable Agent Teams per-user or per-session

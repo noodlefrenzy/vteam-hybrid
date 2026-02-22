@@ -40,7 +40,8 @@ Agent Teams enables real multi-session parallelism where each teammate is an ind
 
 1. Agent Teams is enabled: `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1` (set in `.claude/settings.json`)
 2. You're in a tmux session (teammates appear as split panes)
-3. You've identified which phase you're in and which spawn prompts to use
+3. You launched Claude Code with `claude --model opus` (see Known Issues below)
+4. You've identified which phase you're in and which spawn prompts to use
 
 ### Spawn Workflow
 
@@ -127,6 +128,37 @@ CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=0 claude
 ```
 
 When disabled, all phases use subagent mode automatically. The spawn prompt templates and hooks still exist but are unused.
+
+## Known Issues
+
+### Teammates don't inherit `--model`
+
+Teammates do not inherit the lead's model selection. If the lead is running Opus, teammates may default to a different model. **Workaround:** Always launch Claude Code with `--model opus` explicitly:
+
+```bash
+claude --model opus
+```
+
+This applies to the lead session. Teammates spawned by the lead will then use the correct model.
+
+### Lead prefers subagents over spawning teammates
+
+Claude Code's default behavior is to use the Task tool with subagents and worktrees. When a phase calls for Agent Teams, the lead may fall back to subagents instead of spawning real teammates — especially for code review (Phase 5) where it's tempting to just run three sequential Task calls.
+
+**This defeats the purpose.** The value of Agent Teams is independent reasoning chains in separate context windows. Subagents share the lead's context and can see each other's findings, which causes convergence (reviewers anchoring on the first finding).
+
+The CLAUDE.md section on Agent Teams includes explicit instructions to use real teammates, not subagents, for phases mapped to Agent Teams. If you still see subagent substitution, reinforce the instruction in your prompt.
+
+### Tasks stuck in "In Review"
+
+Board items (GitHub Projects / Jira) can get stuck in "In Review" after code review completes. This happens because the reviewer teammates mark their own Agent Teams tasks as completed, but nobody transitions the board item to "Done."
+
+**Rule:** The lead — not the reviewer teammates — is responsible for moving board items from "In Review" → "Done" after:
+1. All reviewer teammates have completed their tasks
+2. Findings are synthesized
+3. Critical/Important fixes are confirmed
+
+The spawn prompts do not include board operations because reviewer teammates shouldn't touch the board. The lead must do it.
 
 ## Limitations
 

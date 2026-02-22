@@ -52,3 +52,11 @@ Extracted from CLAUDE.md to reduce context window load. Read this when working o
 - **Verify GitHub access before board operations.** Any workflow that touches the project board (sprint-boundary, kickoff, resume, handoff) must verify `gh auth status` and board accessibility before attempting board operations. If `gh` commands fail, STOP and ask the user to fix it — don't proceed and fail mid-workflow. The pre-flight checks are in: sprint-boundary Step 0, kickoff Phase 5 Pre-Flight, resume Step 3, and handoff Step 1. The resume check is especially critical — without it, a full sprint runs board-blind and every status transition is silently skipped.
 
 - **Check devcontainer before implementation.** After planning completes (either via `/project:plan` or `/project:kickoff` Phase 5), check whether `.devcontainer/` exists. If not, ask the user if they want one before starting implementation. This prevents environment inconsistency issues during TDD cycles.
+
+## Agent Teams
+
+- **Always launch with `--model opus`.** Teammates do not inherit the lead's model selection. Without `--model opus`, teammates may use a different (weaker) model. This is a known limitation of Agent Teams.
+
+- **Don't substitute subagents for teammates (Subagent Substitution anti-pattern).** When a phase calls for Agent Teams (Phases 2, 4, 5, 6), Claude Code will prefer using the Task tool with subagents and worktrees because that's its default behavior. This defeats the purpose — subagents share the lead's context window, so reviewers see each other's findings and converge. The whole point is independent reasoning chains. If CLAUDE.md says "Agent Teams," spawn real teammates. **Detection signal:** the lead uses the Task tool with `subagent_type` for a phase that the runtime mapping table says should use Agent Teams.
+
+- **Lead owns board transitions after review.** Reviewer teammates mark their Agent Teams tasks completed, but they don't touch the project board. The lead must move board items from "In Review" → "Done" after synthesizing findings and confirming fixes. Without this, items get stuck in "In Review" indefinitely.
