@@ -47,7 +47,7 @@ Match the situation to the right perspective:
 | Any frontend/UI change | **Dani** (accessibility lens) | WCAG compliance, performance, responsive design. Non-negotiable for any component or CSS change. |
 | API contract changes | **Archie** (API lens) | API-first. Backward compatibility check. Versioning if breaking. |
 | Database migration / schema change | **Archie** (data lens) | Migration safety review: reversible, backward-compatible, data-preserving, production-safe. |
-| Sprint boundary | **Grace** (lead) + **Diego** + **Pat** | Grace runs `/project:sprint-boundary` (retro, sweep, gate, passes). Diego validates docs. Pat reviews tech debt. Grace has escalation override: debt open 3+ sprints is auto-P0, overriding Pat if needed. |
+| Sprint boundary | **Grace** (lead) + **Diego** + **Pat** | Grace runs `/sprint-boundary` (retro, sweep, gate, passes). Diego validates docs. Pat reviews tech debt. Grace has escalation override: debt open 3+ sprints is auto-P0, overriding Pat if needed. |
 | Pre-release | **Pierrot** + **Diego** + **Ines** + **Vik** | Security + threat model, SBOM, changelog, config audit, PDV checklist, perf budget verification, dead code sweep. |
 | Cloud deployment | **Cloud Architect** + **Cloud CostGuard** + **Cloud NetDiag** | Solution design, cost review, enterprise network readiness. |
 
@@ -98,7 +98,7 @@ Before any sprint item with an architectural decision enters Implementation (Pha
 
 #### Sprint Planning Integration
 
-During sprint planning (Step 7 of `/project:sprint-boundary` or `/project:plan`), the coordinator must:
+During sprint planning (Step 7 of `/sprint-boundary` or `/plan`), the coordinator must:
 
 1. **Scan each sprint item** for architectural decision indicators.
 2. **Tag items** that require the gate: note "Requires Architecture Gate" in the sprint plan.

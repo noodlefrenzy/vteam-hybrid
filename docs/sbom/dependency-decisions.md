@@ -29,7 +29,7 @@ For each dependency we've explicitly chosen, document the rationale.
 
 ## Transitive Dependencies
 
-These are dependencies we pull in indirectly — we didn't choose them, but they're in our dependency tree because of packages we did choose. This table is regenerated whenever dependencies change (see `/project:pin-versions`).
+These are dependencies we pull in indirectly — we didn't choose them, but they're in our dependency tree because of packages we did choose. This table is regenerated whenever dependencies change (see `/pin-versions`).
 
 | Package | Version | License | Pulled in by |
 |---------|---------|---------|--------------|

@@ -54,7 +54,7 @@ Based on the chosen direction:
 
 - Propose a high-level architecture. Keep it simple — boxes and arrows, not a thesis.
 - Identify key technology decisions that need to be made.
-- For each significant choice, create an ADR using `/project:adr`.
+- For each significant choice, create an ADR using `/adr`.
 - Flag risks and unknowns.
 - **Threat model:** Archie creates the data flow diagrams, then Pierrot creates the initial threat model at `docs/security/threat-model.md` — STRIDE analysis, trust boundaries, attack surface inventory. This doesn't need to be exhaustive yet; it grows with the system.
 - **Performance budget:** If the project has performance-sensitive requirements (user-facing latency, batch processing throughput, resource constraints), create an initial `docs/performance-budget.md` with targets.
@@ -96,7 +96,7 @@ Turn the vision into concrete, testable requirements:
 
 Create the implementation plan:
 
-- Create a plan document in `docs/plans/` using `/project:plan`.
+- Create a plan document in `docs/plans/` using `/plan`.
 - Identify the first sprint's work.
 - Note which v-team personas should be actively engaged during implementation.
 - Flag any remaining open questions or risks.
@@ -218,7 +218,7 @@ Report: "Board created and linked to repo with N items. First sprint has M items
 Before announcing readiness to build:
 
 1. Check if `.devcontainer/devcontainer.json` exists.
-2. **If not:** Ask the user: "No devcontainer is configured. Would you like me to set one up before starting the first sprint? I can run `/project:devcontainer` to create one tailored to this project's stack."
-   - If yes: run `/project:devcontainer`.
+2. **If not:** Ask the user: "No devcontainer is configured. Would you like me to set one up before starting the first sprint? I can run `/devcontainer` to create one tailored to this project's stack."
+   - If yes: run `/devcontainer`.
    - If no: proceed without one.
 3. **If it exists:** Confirm it's valid JSON and move on.

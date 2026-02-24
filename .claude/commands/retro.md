@@ -28,7 +28,7 @@ For **each** problem, friction point, or process failure identified in the retro
    ```
    gh issue create --title "Process: <concise description>" --body "<details from retro, what went wrong, proposed fix>" --label "process-improvement"
    ```
-3. **These issues gate the next sprint.** They must be resolved or explicitly scheduled into the next sprint before new sprint work can begin. This is enforced by `/project:sprint-boundary` Step 3.
+3. **These issues gate the next sprint.** They must be resolved or explicitly scheduled into the next sprint before new sprint work can begin. This is enforced by `/sprint-boundary` Step 3.
 
 **Why this matters:** Without this step, retro findings become "lessons learned" docs that nobody reads. By turning them into issues, they become tracked work that blocks forward progress until addressed. This prevents the same process failures from recurring sprint after sprint.
 

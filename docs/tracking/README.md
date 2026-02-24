@@ -52,12 +52,12 @@ agent-notes: { ctx: "<phase> tracking for <topic>", deps: [...], state: active, 
 
 | Command | Phase | Trigger |
 |---------|-------|---------|
-| `/project:kickoff` Phase 1 | `discovery` | After vision elicitation checkpoint |
-| `/project:kickoff` Phase 3 | `architecture` | After architecture assessment checkpoint |
-| `/project:kickoff` Phase 5 | `plan` | After planning checkpoint |
-| `/project:plan` | `plan` | After plan document is written |
-| `/project:tdd` | `implementation` | After TDD work is complete |
-| `/project:code-review` | `review` | After review findings are compiled |
+| `/kickoff` Phase 1 | `discovery` | After vision elicitation checkpoint |
+| `/kickoff` Phase 3 | `architecture` | After architecture assessment checkpoint |
+| `/kickoff` Phase 5 | `plan` | After planning checkpoint |
+| `/plan` | `plan` | After plan document is written |
+| `/tdd` | `implementation` | After TDD work is complete |
+| `/code-review` | `review` | After review findings are compiled |
 
 Phases 2 and 4 of kickoff are intermediate — their output folds into the adjacent phase artifacts.
 
@@ -70,8 +70,8 @@ Phases 2 and 4 of kickoff are intermediate — their output folds into the adjac
 
 ## Cross-Session Continuity
 
-- `/project:handoff` references the latest tracking artifacts so the next session has phase context
-- `/project:resume` can read tracking artifacts to reconstruct where a multi-phase workflow left off
+- `/handoff` references the latest tracking artifacts so the next session has phase context
+- `/resume` can read tracking artifacts to reconstruct where a multi-phase workflow left off
 - Each artifact links to its **Prior Phase** artifact, creating a navigable chain
 
 ## Design Rationale

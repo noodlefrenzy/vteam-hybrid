@@ -15,7 +15,7 @@ Before any sprint boundary work, verify GitHub board access is functional. If an
    ```
    If this fails: "GitHub CLI is not authenticated. Please run `gh auth login` and try again."
 
-2. **Project board configured:** Check that `CLAUDE.md` has a `project-number` and `project-owner` set (not commented out / not blank). If missing: "No project board is configured in CLAUDE.md. Run `/project:kickoff` to set one up, or add the project-number and project-owner manually."
+2. **Project board configured:** Check that `CLAUDE.md` has a `project-number` and `project-owner` set (not commented out / not blank). If missing: "No project board is configured in CLAUDE.md. Run `/kickoff` to set one up, or add the project-number and project-owner manually."
 
 3. **Board accessible:**
    ```bash
@@ -23,7 +23,7 @@ Before any sprint boundary work, verify GitHub board access is functional. If an
    ```
    If this fails: "Cannot access project board #<NUMBER>. Check that the project exists, is linked to this repo, and you have write access. Fix this before continuing."
 
-4. **All 5 statuses exist:** From the field list output, confirm the Status field has Backlog, Ready, In Progress, In Review, and Done options. If any are missing: "Board is missing required status options. Fix this before continuing (see `/project:kickoff` Phase 5 Step 2)."
+4. **All 5 statuses exist:** From the field list output, confirm the Status field has Backlog, Ready, In Progress, In Review, and Done options. If any are missing: "Board is missing required status options. Fix this before continuing (see `/kickoff` Phase 5 Step 2)."
 
 Only proceed to Step 1 after all checks pass.
 
@@ -31,7 +31,7 @@ Only proceed to Step 1 after all checks pass.
 
 ## Step 1: Sprint Retro (Automatic)
 
-Run `/project:retro` inline. This is not a suggestion — it happens now, as part of this workflow. The retro will:
+Run `/retro` inline. This is not a suggestion — it happens now, as part of this workflow. The retro will:
 
 1. Reflect on the sprint.
 2. Create a retrospective document in `docs/retrospectives/`.
@@ -67,7 +67,7 @@ gh project field-list <NUMBER> --owner <OWNER> --format json
 ```
 
 Confirm the Status field has options: **Backlog, Ready, In Progress, In Review, Done**. If any are missing:
-- **BLOCKING:** Add the missing statuses immediately (see `/project:kickoff` Phase 5 Step 2 for GraphQL commands).
+- **BLOCKING:** Add the missing statuses immediately (see `/kickoff` Phase 5 Step 2 for GraphQL commands).
 - Create a `process-improvement` issue: "Board missing required status options."
 - This is a root cause for status transition violations — fix it before auditing transitions.
 

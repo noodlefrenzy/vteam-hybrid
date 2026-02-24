@@ -7,7 +7,7 @@ agent-notes: { ctx: "GCP service landscape for cloud specialists", deps: [.claud
 > **Last updated:** 2026-02-12
 > **Updated by:** Initial seed from template
 >
-> Run `/project:cloud-update GCP` to refresh this file with current information.
+> Run `/cloud-update GCP` to refresh this file with current information.
 
 This file is read by the cloud specialist agents (`cloud-architect`, `cloud-costguard`, `cloud-netdiag`) to supplement their built-in knowledge when operating in GCP mode. It captures the current state of GCP services, pricing, and gotchas that may change over time.
 
@@ -45,10 +45,10 @@ This file is read by the cloud specialist agents (`cloud-architect`, `cloud-cost
 
 ## Recent Changes and New Services
 
-<!-- Update this section when running /project:cloud-update GCP -->
+<!-- Update this section when running /cloud-update GCP -->
 <!-- Include: new service launches, significant pricing changes, deprecated services, new regions -->
 
-*No updates recorded yet. Run `/project:cloud-update GCP` to populate.*
+*No updates recorded yet. Run `/cloud-update GCP` to populate.*
 
 ## Known Enterprise Patterns
 

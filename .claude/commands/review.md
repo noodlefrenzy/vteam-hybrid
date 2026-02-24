@@ -53,5 +53,5 @@ Convert all feedback into concrete items:
 
 - Each item gets clear acceptance criteria — not "make it better" but "reduce the checkout flow from 4 steps to 2."
 - Prioritize with the human: what's blocking, what's next, what's backlog.
-- If any items need design exploration, flag them for `/project:design`.
+- If any items need design exploration, flag them for `/design`.
 - Summarize the action items and confirm with the human before ending.

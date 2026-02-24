@@ -14,4 +14,4 @@ These are **stub files** that get moved to `docs/` during scaffolding or kickoff
 | `tech-debt.md` | Technical debt register | Grace (tracks), Pat (prioritizes) |
 | `test-strategy.md` | Test pyramid, coverage targets, flaky test policy | Tara |
 
-**Scaffold commands** (`/project:scaffold-*`) and `/project:kickoff` move these files into `docs/` automatically.
+**Scaffold commands** (`/scaffold-*`) and `/kickoff` move these files into `docs/` automatically.

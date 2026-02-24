@@ -35,11 +35,11 @@ Resume from a previous session's handoff.
 ## If the user provides $ARGUMENTS
 
 Treat the arguments as an override or addition to the handoff's "What To Do Next" section. For example:
-- `/project:resume focus on issue #14` — prioritize that issue over the handoff's suggested order
-- `/project:resume skip to deployment` — jump ahead in the plan
+- `/resume focus on issue #14` — prioritize that issue over the handoff's suggested order
+- `/resume skip to deployment` — jump ahead in the plan
 
 ## Important
 
 - Do NOT blindly trust the handoff. Verify against actual repo/board state. If there's a discrepancy, flag it.
 - The handoff is a starting point, not a straitjacket. If the user wants to change direction, that's fine.
-- After resuming and completing a significant chunk of work, consider running `/project:handoff` again to update the state for the next potential session break.
+- After resuming and completing a significant chunk of work, consider running `/handoff` again to update the state for the next potential session break.

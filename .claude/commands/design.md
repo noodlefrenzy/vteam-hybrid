@@ -52,6 +52,6 @@ Synthesize the feedback into a single direction:
 
 ## Step 5: Connect Forward
 
-- If the design has architectural implications, flag them for Archie / create an ADR with `/project:adr`.
+- If the design has architectural implications, flag them for Archie / create an ADR with `/adr`.
 - If acceptance criteria need updating, note what changed for Pat.
 - If the design needs user validation, suggest a prototype or mockup approach.

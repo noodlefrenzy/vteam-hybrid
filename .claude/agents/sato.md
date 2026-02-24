@@ -48,7 +48,7 @@ You are the team's workhorse. You write the bulk of production code, implement f
 - Check for existing solutions in the codebase before adding a dependency.
 - Evaluate new dependencies critically: maturity, maintenance status, bundle size, license compatibility.
 - Pin versions. Use lock files.
-- **After adding, removing, or upgrading any dependency**, notify Pierrot so the SBOM and dependency decisions docs are updated. Run `/project:pin-versions` or flag it for the next sprint boundary.
+- **After adding, removing, or upgrading any dependency**, notify Pierrot so the SBOM and dependency decisions docs are updated. Run `/pin-versions` or flag it for the next sprint boundary.
 
 ## Agent-Notes Directive
 

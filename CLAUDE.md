@@ -32,7 +32,7 @@ Every non-excluded file must have agent-notes metadata. See `docs/methodology/ag
 | Parallel Work | Grace | Market / self-claim |
 | Code Review | Vik + Tara + Pierrot | Three parallel lenses |
 | Debugging | Sato | Blackboard with Tara, Vik, Pierrot |
-| Sprint Boundary | Grace | `/project:sprint-boundary` (mandatory) |
+| Sprint Boundary | Grace | `/sprint-boundary` (mandatory) |
 
 **Full details:** Agent roster, persona triggers, debate protocol, voice rules → `docs/process/team-governance.md`
 **Doc ownership:** Who maintains what → `docs/process/doc-ownership.md`
@@ -100,14 +100,14 @@ Board commands, pre-flight checks, and setup instructions are in the active adap
 
 ## Sprint Boundary
 
-Run `/project:sprint-boundary` when all sprint items are Done or deferred. Full workflow is in the command.
+Run `/sprint-boundary` when all sprint items are Done or deferred. Full workflow is in the command.
 
 ## Session Management
 
 **Context is finite.** To avoid mid-sprint context exhaustion:
 
 1. **Plan waves before executing.** Break issues into waves by size/dependency. Document in `docs/sprints/sprint-N-plan.md`.
-2. **One wave per session.** Execute a wave, commit, then run `/project:handoff`. Start the next wave fresh.
+2. **One wave per session.** Execute a wave, commit, then run `/handoff`. Start the next wave fresh.
 3. **Background agents write to files.** Use `run_in_background: true`. Read summaries, not full output.
 4. **Read `docs/code-map.md` first.** Orient from the map, not from scratch.
 5. **Commit frequently.** Uncommitted work is the most expensive thing to reconstruct.

@@ -7,7 +7,7 @@ agent-notes: { ctx: "AWS service landscape for cloud specialists", deps: [.claud
 > **Last updated:** 2026-02-12
 > **Updated by:** Initial seed from template
 >
-> Run `/project:cloud-update AWS` to refresh this file with current information.
+> Run `/cloud-update AWS` to refresh this file with current information.
 
 This file is read by the cloud specialist agents (`cloud-architect`, `cloud-costguard`, `cloud-netdiag`) to supplement their built-in knowledge when operating in AWS mode. It captures the current state of AWS services, pricing, and gotchas that may change over time.
 
@@ -47,10 +47,10 @@ This file is read by the cloud specialist agents (`cloud-architect`, `cloud-cost
 
 ## Recent Changes and New Services
 
-<!-- Update this section when running /project:cloud-update AWS -->
+<!-- Update this section when running /cloud-update AWS -->
 <!-- Include: new service launches, significant pricing changes, deprecated services, new regions -->
 
-*No updates recorded yet. Run `/project:cloud-update AWS` to populate.*
+*No updates recorded yet. Run `/cloud-update AWS` to populate.*
 
 ## Known Enterprise Patterns
 

@@ -78,12 +78,12 @@ The coordinator automatically selects the right team structure for each phase of
 
 1. **Use this template** — click "Use this template" on GitHub, or clone and reinitialize
 2. **Scaffold your tech stack:**
-   - `/project:scaffold-cli` — Python or Rust CLI
-   - `/project:scaffold-web-monorepo` — TypeScript monorepo (Next.js, React)
-   - `/project:scaffold-ai-tool` — Python AI/ML tool (FastAPI, Streamlit)
-   - `/project:scaffold-static-site` — Static site (GitHub Pages)
-3. **Run discovery** — `/project:kickoff` to define your product and set up tracking
-4. **Start building** — `/project:tdd <feature>` for TDD-driven development
+   - `/scaffold-cli` — Python or Rust CLI
+   - `/scaffold-web-monorepo` — TypeScript monorepo (Next.js, React)
+   - `/scaffold-ai-tool` — Python AI/ML tool (FastAPI, Streamlit)
+   - `/scaffold-static-site` — Static site (GitHub Pages)
+3. **Run discovery** — `/kickoff` to define your product and set up tracking
+4. **Start building** — `/tdd <feature>` for TDD-driven development
 
 ## Command Reference
 
@@ -91,57 +91,57 @@ The coordinator automatically selects the right team structure for each phase of
 
 | Command | What It Does |
 |---------|-------------|
-| `/project:kickoff` | Full 5-phase discovery workflow with board setup |
-| `/project:plan` | Create an implementation plan for a feature |
-| `/project:tdd` | TDD workflow: Tara writes failing tests, Sato implements |
-| `/project:code-review` | Three-lens code review (simplicity, tests, security) |
-| `/project:review` | Guided human review session with Cam |
-| `/project:sprint-boundary` | Sprint retro, backlog sweep, process gate, next sprint setup |
-| `/project:handoff` | Save session state for the next session to resume |
-| `/project:resume` | Pick up from a previous session's handoff |
-| `/project:retro` | Kaizen retrospective with GitHub issues for findings |
+| `/kickoff` | Full 5-phase discovery workflow with board setup |
+| `/plan` | Create an implementation plan for a feature |
+| `/tdd` | TDD workflow: Tara writes failing tests, Sato implements |
+| `/code-review` | Three-lens code review (simplicity, tests, security) |
+| `/review` | Guided human review session with Cam |
+| `/sprint-boundary` | Sprint retro, backlog sweep, process gate, next sprint setup |
+| `/handoff` | Save session state for the next session to resume |
+| `/resume` | Pick up from a previous session's handoff |
+| `/retro` | Kaizen retrospective with GitHub issues for findings |
 
 ### Design & Architecture
 
 | Command | What It Does |
 |---------|-------------|
-| `/project:design` | Sacrificial concept exploration with Dani |
-| `/project:adr` | Create a new Architecture Decision Record |
-| `/project:restack` | Re-evaluate tech stack choices |
+| `/design` | Sacrificial concept exploration with Dani |
+| `/adr` | Create a new Architecture Decision Record |
+| `/restack` | Re-evaluate tech stack choices |
 
 ### Scaffolding
 
 | Command | What It Does |
 |---------|-------------|
-| `/project:scaffold-cli` | Scaffold a CLI project (Python/Rust) |
-| `/project:scaffold-web-monorepo` | Scaffold a web/mobile monorepo (TypeScript) |
-| `/project:scaffold-ai-tool` | Scaffold an AI/data tool (Python) |
-| `/project:scaffold-static-site` | Scaffold a static site (GitHub Pages) |
+| `/scaffold-cli` | Scaffold a CLI project (Python/Rust) |
+| `/scaffold-web-monorepo` | Scaffold a web/mobile monorepo (TypeScript) |
+| `/scaffold-ai-tool` | Scaffold an AI/data tool (Python) |
+| `/scaffold-static-site` | Scaffold a static site (GitHub Pages) |
 
 ### Maintenance
 
 | Command | What It Does |
 |---------|-------------|
-| `/project:pin-versions` | Pin dependency versions, update SBOM |
-| `/project:sync-template` | Reapply template evolutions to an in-flight repo |
-| `/project:devcontainer` | Set up a dev container for any stack |
-| `/project:sync-ghcp` | Sync agent definitions to GitHub Copilot format |
+| `/pin-versions` | Pin dependency versions, update SBOM |
+| `/sync-template` | Reapply template evolutions to an in-flight repo |
+| `/devcontainer` | Set up a dev container for any stack |
+| `/sync-ghcp` | Sync agent definitions to GitHub Copilot format |
 
 ### Cloud
 
 | Command | What It Does |
 |---------|-------------|
-| `/project:aws-review` | AWS deployment readiness review |
-| `/project:azure-review` | Azure deployment readiness review |
-| `/project:gcp-review` | GCP deployment readiness review |
-| `/project:cloud-update` | Refresh cloud service landscape research |
+| `/aws-review` | AWS deployment readiness review |
+| `/azure-review` | Azure deployment readiness review |
+| `/gcp-review` | GCP deployment readiness review |
+| `/cloud-update` | Refresh cloud service landscape research |
 
 ## Key Features
 
 - **TDD Pipeline** — Tara writes failing tests first, Sato makes them pass. Structural quality enforcement, not just "write tests."
 - **Adversarial Debate** — Wei challenges architectural decisions through structured multi-round debate. Catches design flaws before implementation.
 - **Agent-Notes Protocol** — Structured metadata at the top of every file lets agents decide whether to read a file before opening it. Reduces context waste.
-- **Session Handoff/Resume** — `/project:handoff` saves session state; `/project:resume` picks up where you left off. Solves the ephemeral context problem.
+- **Session Handoff/Resume** — `/handoff` saves session state; `/resume` picks up where you left off. Solves the ephemeral context problem.
 - **Done Gate** — 13-item quality checklist every work item must pass. Tests, types, lint, review, accessibility, SBOM, and more.
 
 ## Learning Path

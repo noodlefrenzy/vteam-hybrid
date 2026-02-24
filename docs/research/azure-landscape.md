@@ -7,7 +7,7 @@ agent-notes: { ctx: "Azure service landscape for cloud specialists", deps: [.cla
 > **Last updated:** 2026-02-12
 > **Updated by:** Initial seed from template
 >
-> Run `/project:cloud-update Azure` to refresh this file with current information.
+> Run `/cloud-update Azure` to refresh this file with current information.
 
 This file is read by the cloud specialist agents (`cloud-architect`, `cloud-costguard`, `cloud-netdiag`) to supplement their built-in knowledge when operating in Azure mode. It captures the current state of Azure services, pricing, and gotchas that may change over time.
 
@@ -44,10 +44,10 @@ This file is read by the cloud specialist agents (`cloud-architect`, `cloud-cost
 
 ## Recent Changes and New Services
 
-<!-- Update this section when running /project:cloud-update Azure -->
+<!-- Update this section when running /cloud-update Azure -->
 <!-- Include: new service launches, significant pricing changes, deprecated services, new regions -->
 
-*No updates recorded yet. Run `/project:cloud-update Azure` to populate.*
+*No updates recorded yet. Run `/cloud-update Azure` to populate.*
 
 ## Known Enterprise Patterns
 

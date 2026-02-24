@@ -49,8 +49,8 @@ flowchart TD
     Review["Code Review<br/><strong>Vik</strong> + <strong>Tara</strong> + <strong>Pierrot</strong><br/>3 parallel lenses"]
     DoneGate["Done Gate<br/>13-item checklist"]
     More{"More items<br/>in sprint?"}
-    Boundary["Sprint Boundary<br/><code>/project:sprint-boundary</code>"]
-    Handoff["Session Handoff<br/><code>/project:handoff</code>"]
+    Boundary["Sprint Boundary<br/><code>/sprint-boundary</code>"]
+    Handoff["Session Handoff<br/><code>/handoff</code>"]
 
     Plan --> Gate
     Gate -->|Yes| ADR --> Debate --> TDD
@@ -87,18 +87,18 @@ git commit -m "chore: initialize from vteam-hybrid template"
 ### 2. Scaffold Your Tech Stack
 
 Run one of the scaffold commands:
-- `/project:scaffold-cli` — Python or Rust CLI tool
-- `/project:scaffold-web-monorepo` — TypeScript monorepo with Next.js, React, etc.
-- `/project:scaffold-ai-tool` — Python AI/ML tool with FastAPI, Streamlit, etc.
-- `/project:scaffold-static-site` — Static site for GitHub Pages
+- `/scaffold-cli` — Python or Rust CLI tool
+- `/scaffold-web-monorepo` — TypeScript monorepo with Next.js, React, etc.
+- `/scaffold-ai-tool` — Python AI/ML tool with FastAPI, Streamlit, etc.
+- `/scaffold-static-site` — Static site for GitHub Pages
 
 ### 3. Run Discovery
 
-Use `/project:kickoff` to run the full 5-phase discovery workflow before building.
+Use `/kickoff` to run the full 5-phase discovery workflow before building.
 
 ### 4. Start Building
 
-Follow the TDD workflow: `/project:tdd <feature>` for each piece of work.
+Follow the TDD workflow: `/tdd <feature>` for each piece of work.
 
 ## File Map
 
@@ -116,7 +116,7 @@ Follow the TDD workflow: `/project:tdd <feature>` for each piece of work.
 
 ## Command Reference
 
-All commands are invoked as `/project:<name>` in Claude Code.
+All commands are invoked as `/<name>` in Claude Code (e.g., `/kickoff`, `/tdd`).
 
 ### Lifecycle
 

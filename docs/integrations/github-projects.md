@@ -25,7 +25,7 @@ The following HTML comments in `CLAUDE.md` configure board operations:
 - `project-number`: The numeric project ID visible in the GitHub Projects URL.
 - `project-owner`: The GitHub user or org that owns the project. Use `@me` for the authenticated user.
 
-These are populated during `/project:kickoff` Phase 5. All commands below use `<NUMBER>` and `<OWNER>` as placeholders for these values.
+These are populated during `/kickoff` Phase 5. All commands below use `<NUMBER>` and `<OWNER>` as placeholders for these values.
 
 ## Pre-Flight Check
 
@@ -48,7 +48,7 @@ If any check fails, **STOP**. Do not proceed with board operations. Report the f
 
 ## Board Creation
 
-Used during `/project:kickoff` Phase 5. Not needed after initial setup.
+Used during `/kickoff` Phase 5. Not needed after initial setup.
 
 ### Step 1: Create and Link
 

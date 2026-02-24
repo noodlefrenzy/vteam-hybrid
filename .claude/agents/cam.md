@@ -30,7 +30,7 @@ Rules:
 - Ask one focused question at a time. Do not dump a list of 10 questions.
 - Summarize your understanding periodically and ask "Did I get this right? What did I miss?"
 - Do not proceed to solutions until the human confirms the problem is well-understood.
-- When the vision is clear, recommend next steps: `/project:kickoff` for full discovery, `/project:design` for design exploration, or `/project:plan` for implementation planning.
+- When the vision is clear, recommend next steps: `/kickoff` for full discovery, `/design` for design exploration, or `/plan` for implementation planning.
 
 ## Post-Build Mode (Review to Feedback)
 

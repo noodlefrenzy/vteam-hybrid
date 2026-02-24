@@ -29,7 +29,7 @@ Extracted from CLAUDE.md to reduce context window load. Referenced by CLAUDE.md 
 
 - Every top-level dependency must have a rationale entry in `dependency-decisions.md`.
 - Transitive dependencies are inventoried with their license.
-- Run `/project:pin-versions` to pin versions, regenerate SBOM, and update decisions.
+- Run `/pin-versions` to pin versions, regenerate SBOM, and update decisions.
 - Copyleft or uncommon licenses in the transitive tree are flagged for review.
 
 ## Security & Threat Modeling

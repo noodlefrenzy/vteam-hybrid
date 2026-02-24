@@ -1,7 +1,7 @@
 <!-- agent-notes: { ctx: "implementation planning workflow", deps: [docs/methodology/personas.md, docs/methodology/phases.md], state: active, last: "pat@2026-02-12" } -->
 I need to plan the implementation of: $ARGUMENTS
 
-Before writing the plan, ensure the goal is well-understood. If the request is vague, first run through Coach Cam elicitation (see `docs/methodology/personas.md`) or use `/project:kickoff` for full discovery.
+Before writing the plan, ensure the goal is well-understood. If the request is vague, first run through Coach Cam elicitation (see `docs/methodology/personas.md`) or use `/kickoff` for full discovery.
 
 ## Architecture Decision Scan (Mandatory Pre-Step)
 
@@ -35,7 +35,7 @@ After the plan document is written, produce `docs/tracking/YYYY-MM-DD-<topic>-pl
 After the plan is written, check whether a devcontainer is set up:
 
 1. Check if `.devcontainer/devcontainer.json` exists.
-2. **If it does not exist:** Ask the user: "No devcontainer is configured for this project. Would you like me to set one up before we start implementation? This ensures a consistent development environment. I can run `/project:devcontainer` to create one."
-   - If yes: run `/project:devcontainer` with the project's tech stack as context.
+2. **If it does not exist:** Ask the user: "No devcontainer is configured for this project. Would you like me to set one up before we start implementation? This ensures a consistent development environment. I can run `/devcontainer` to create one."
+   - If yes: run `/devcontainer` with the project's tech stack as context.
    - If no: note the decision and proceed.
 3. **If it already exists:** No action needed — proceed to implementation.
