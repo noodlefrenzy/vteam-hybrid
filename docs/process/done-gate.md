@@ -7,7 +7,7 @@ agent-notes:
 ---
 # Done Gate — Detailed Checklist
 
-Extracted from CLAUDE.md to reduce context window load. Referenced by CLAUDE.md § Workflow.
+This checklist is the quality gate every work item must pass before closing. Referenced by CLAUDE.md § Workflow.
 
 Every work item must pass this gate before closing:
 

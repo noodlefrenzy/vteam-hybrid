@@ -61,7 +61,7 @@ Create a session handoff document so the next session can pick up where this one
 2. Read `docs/product-context.md` for human's product philosophy
 3. Read `docs/sprints/sprint-<N>-plan.md` for wave context
 4. <specific next task with file paths and enough context to execute>
-4. ...
+5. ...
 
 ## Tracking Artifacts
 - <list any active tracking artifacts from `docs/tracking/` relevant to in-flight work>

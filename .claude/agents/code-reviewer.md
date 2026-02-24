@@ -7,7 +7,7 @@ description: >
   Not a persona — an invocation pattern combining three review lenses.
 tools: Read, Write, Grep, Glob, Bash
 disallowedTools: Edit, NotebookEdit, WebSearch, WebFetch
-model: sonnet
+model: inherit
 maxTurns: 15
 ---
 <!-- agent-notes: { ctx: "composite three-lens code reviewer, writes review docs", deps: [docs/methodology/personas.md, .claude/agents/vik.md, .claude/agents/tara.md, .claude/agents/pierrot.md], state: canonical, last: "grace@2026-02-14", key: ["writes review docs to docs/code-reviews/ for large reviews"] } -->

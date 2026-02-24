@@ -26,11 +26,11 @@ Resume from a previous session's handoff.
    - Current state of the project
    - What you're about to do next
 
-4b. **Check for proxy decisions.** If the handoff contains a `## Proxy Decisions (Review Required)` section with entries, surface them to the human **immediately** before continuing any other work. Ask: "Pat made these decisions while you were away. Do you want to review or override any of them?" Do not proceed until the human acknowledges the proxy decisions.
+5. **Check for proxy decisions.** If the handoff contains a `## Proxy Decisions (Review Required)` section with entries, surface them to the human **immediately** before continuing any other work. Ask: "Pat made these decisions while you were away. Do you want to review or override any of them?" Do not proceed until the human acknowledges the proxy decisions.
 
-5. **Ask for confirmation.** Before executing, ask: "Ready to pick up from here? Or would you like to adjust the plan?"
+6. **Ask for confirmation.** Before executing, ask: "Ready to pick up from here? Or would you like to adjust the plan?"
 
-6. **Execute.** Proceed with the "What To Do Next" items from the handoff. Follow all CLAUDE.md conventions (TDD, conventional commits, agent-notes, etc.).
+7. **Execute.** Proceed with the "What To Do Next" items from the handoff. Follow all CLAUDE.md conventions (TDD, conventional commits, agent-notes, etc.).
 
 ## If the user provides $ARGUMENTS
 

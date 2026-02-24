@@ -13,7 +13,7 @@ vteam-hybrid is a GitHub repo template for projects that use Claude Code with a 
 1. **18 specialized agent personas** organized into priority tiers (P0 Core, P1 Essential, P2 Regular, Cloud)
 2. **7-phase hybrid team methodology** that adapts team structure to the current development phase
 3. **Agent-notes protocol** for fast context bootstrapping across sessions
-4. **21+ command workflows** covering the full development lifecycle
+4. **24 command workflows** covering the full development lifecycle
 5. **Integration adapters** for different project tracking tools (GitHub Projects, Jira)
 6. **Cloud specialist agents** that adapt to AWS, Azure, or GCP
 
@@ -36,6 +36,38 @@ vteam-hybrid is a GitHub repo template for projects that use Claude Code with a 
 **Hybrid Team Methodology.** Phase-adaptive teams instead of fixed hierarchy. See `docs/methodology/phases.md`.
 
 **Agent-Notes Protocol.** Structured metadata at the top of every file for fast context bootstrapping. See `docs/methodology/agent-notes.md`.
+
+## Sprint Lifecycle
+
+```mermaid
+flowchart TD
+    Plan["Sprint Planning<br/><strong>Pat</strong> prioritizes<br/><strong>Grace</strong> sets up board"]
+    Gate{"Architecture<br/>Gate needed?"}
+    ADR["Write ADR<br/><strong>Archie</strong>"]
+    Debate["Adversarial Debate<br/><strong>Wei</strong> challenges"]
+    TDD["TDD Cycle<br/><strong>Tara</strong>: write failing tests<br/><strong>Sato</strong>: make them pass + refactor"]
+    Review["Code Review<br/><strong>Vik</strong> + <strong>Tara</strong> + <strong>Pierrot</strong><br/>3 parallel lenses"]
+    DoneGate["Done Gate<br/>13-item checklist"]
+    More{"More items<br/>in sprint?"}
+    Boundary["Sprint Boundary<br/><code>/project:sprint-boundary</code>"]
+    Handoff["Session Handoff<br/><code>/project:handoff</code>"]
+
+    Plan --> Gate
+    Gate -->|Yes| ADR --> Debate --> TDD
+    Gate -->|No| TDD
+    TDD --> Review --> DoneGate
+    DoneGate --> More
+    More -->|Yes| Gate
+    More -->|No| Boundary
+    TDD -.->|"context limit"| Handoff
+    Handoff -.->|"new session"| TDD
+
+    style Plan fill:#e1f5fe
+    style TDD fill:#e8f5e9
+    style Review fill:#fce4ec
+    style DoneGate fill:#fff3e0
+    style Boundary fill:#f3e5f5
+```
 
 ## Getting Started
 
@@ -80,7 +112,60 @@ Follow the TDD workflow: `/project:tdd <feature>` for each piece of work.
 | `docs/adrs/` | Architecture Decision Records |
 | `docs/adrs/template/` | Template-specific ADRs (removed during scaffold) |
 | `.claude/agents/*.md` | 18 runnable agent definitions |
-| `.claude/commands/*.md` | 21+ workflow commands |
+| `.claude/commands/*.md` | 24 workflow commands (see Command Reference below) |
+
+## Command Reference
+
+All commands are invoked as `/project:<name>` in Claude Code.
+
+### Lifecycle
+
+| Command | Description |
+|---------|-------------|
+| `kickoff` | Full 5-phase discovery workflow with board setup |
+| `plan` | Create an implementation plan for a feature |
+| `tdd` | TDD workflow: Tara writes failing tests, Sato implements |
+| `code-review` | Three-lens code review (simplicity, tests, security) |
+| `review` | Guided human review/walkthrough session with Cam |
+| `sprint-boundary` | Sprint retro, backlog sweep, process gate, next sprint setup |
+| `handoff` | Save session state for the next session to resume |
+| `resume` | Pick up from a previous session's handoff |
+| `retro` | Kaizen retrospective with GitHub issues for findings |
+
+### Design & Architecture
+
+| Command | Description |
+|---------|-------------|
+| `design` | Sacrificial concept exploration with Dani |
+| `adr` | Create a new Architecture Decision Record |
+| `restack` | Re-evaluate tech stack choices |
+
+### Scaffolding
+
+| Command | Description |
+|---------|-------------|
+| `scaffold-cli` | Scaffold a CLI project (Python/Rust) |
+| `scaffold-web-monorepo` | Scaffold a web/mobile monorepo (TypeScript) |
+| `scaffold-ai-tool` | Scaffold an AI/data tool (Python) |
+| `scaffold-static-site` | Scaffold a static site (GitHub Pages) |
+
+### Maintenance
+
+| Command | Description |
+|---------|-------------|
+| `pin-versions` | Pin dependency versions, update SBOM |
+| `sync-template` | Reapply template evolutions to an in-flight repo |
+| `devcontainer` | Set up a dev container for any stack |
+| `sync-ghcp` | Sync agent definitions to GitHub Copilot format |
+
+### Cloud
+
+| Command | Description |
+|---------|-------------|
+| `aws-review` | AWS deployment readiness review |
+| `azure-review` | Azure deployment readiness review |
+| `gcp-review` | GCP deployment readiness review |
+| `cloud-update` | Refresh cloud service landscape research |
 
 ## Customization Guide
 

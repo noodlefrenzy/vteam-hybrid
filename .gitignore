@@ -22,7 +22,7 @@ target/
 *.swo
 *~
 .DS_Store
-Thumbbs.db
+Thumbs.db
 
 # Environment and secrets
 .env
@@ -45,9 +45,11 @@ htmlcov/
 *.lcov
 
 # OS files
-.DS_Store
 Desktop.ini
 ehthumbs.db
+
+# Claude Code machine-specific memory
+.claude/projects/
 
 # Package manager lockfiles (uncomment the one you DON'T use)
 # package-lock.json

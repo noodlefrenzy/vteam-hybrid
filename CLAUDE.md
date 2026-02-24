@@ -10,6 +10,8 @@
 
 **Codebase map:** `docs/code-map.md` — read this first to understand the package structure, public APIs, and data flow.
 
+> **Note:** Several paths referenced below (e.g., `docs/code-map.md`, `docs/tech-debt.md`, `docs/test-strategy.md`) live under `docs/scaffolds/` until you run a scaffold command, which moves them to their final locations.
+
 ## Agent-Notes Protocol (MANDATORY)
 
 Every non-excluded file must have agent-notes metadata. See `docs/methodology/agent-notes.md` for spec.
@@ -59,6 +61,8 @@ Every work item passes the gate before closing. Full checklist at `docs/process/
 
 ### Don't Skip Agents
 When a situation triggers multiple personas, invoke ALL of them. Overlapping coverage is intentional.
+
+**When the human says "invoke the team", "use the team", "have X review this", or any language requesting persona involvement, you MUST spawn the named agents as standalone subagents using the Task tool.** Your own inline analysis is not a substitute for agent invocation. If the human names a persona, that persona runs as a subagent. If the human says "the team", invoke all personas appropriate to the current phase. Doing the work yourself without spawning agents when the human explicitly requested them is a process violation.
 
 ### ADR Before Implementation
 Never implement a feature with a pending ADR without writing the ADR first. Architecture Gate details: `docs/process/team-governance.md` § Architecture Decision Gate.

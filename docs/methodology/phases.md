@@ -180,36 +180,31 @@ The coordinator's job is to recognize phase transitions and assemble the right t
 
 ## Phase Selection Flowchart
 
-```
-Is the user presenting a new idea or vague request?
-  → YES → Phase 1: Discovery
-  → NO ↓
+```mermaid
+flowchart TD
+    A{"New idea or<br/>vague request?"} -->|Yes| P1["Phase 1: Discovery"]
+    A -->|No| B{"Architectural<br/>decision?"}
+    B -->|Yes| P2["Phase 2: Architecture<br/><em>ADR + Wei debate + tracking</em>"]
+    B -->|No| C{"Code to write?"}
+    C -->|Yes| D{"Embeds an arch<br/>decision?"}
+    D -->|Yes| STOP["STOP — Route to<br/>Phase 2 first"]
+    D -->|No| E{"3+ independent<br/>items?"}
+    E -->|Yes| P4["Phase 4: Parallel Work<br/><em>each item uses Phase 3</em>"]
+    E -->|No| P3["Phase 3: Implementation<br/><em>TDD pipeline</em>"]
+    C -->|No| F{"Code to review?"}
+    F -->|Yes| P5["Phase 5: Code Review"]
+    F -->|No| G{"Bug to fix?"}
+    G -->|Yes| P6["Phase 6: Debugging"]
+    G -->|No| P7["Phase 7: Human Interaction"]
 
-Is there an architectural decision to make?
-  → YES → Phase 2: Architecture
-           (ADR + Wei debate + tracking artifact — all mandatory)
-  → NO ↓
-
-Is there code to write?
-  → YES → ⚠️  GATE CHECK: Does this work item embed an architectural decision?
-           (New pattern, integration, tech choice, data model, package boundary?)
-           → YES → STOP. Route to Phase 2 first. Do not proceed to Implementation.
-           → NO ↓
-           Are there 3+ independent work items?
-           → YES → Phase 4: Parallel Work (each item uses Phase 3 internally)
-           → NO → Phase 3: Implementation
-  → NO ↓
-
-Is there code to review?
-  → YES → Phase 5: Code Review
-  → NO ↓
-
-Is there a bug to fix?
-  → YES → Phase 6: Debugging
-  → NO ↓
-
-Does the human need to be consulted?
-  → YES → Phase 7: Human Interaction
+    style STOP fill:#ffcdd2,stroke:#c62828
+    style P1 fill:#e1f5fe
+    style P2 fill:#fff3e0
+    style P3 fill:#e8f5e9
+    style P4 fill:#e8f5e9
+    style P5 fill:#fce4ec
+    style P6 fill:#fff8e1
+    style P7 fill:#f3e5f5
 ```
 
 ## Phase Nesting

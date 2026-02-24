@@ -7,7 +7,7 @@ description: >
   changes, compliance checks, or pre-release gates.
 tools: Read, Write, Grep, Glob, Bash, WebSearch, WebFetch
 disallowedTools: Edit, NotebookEdit
-model: sonnet
+model: inherit
 maxTurns: 20
 ---
 <!-- agent-notes: { ctx: "P1 security + compliance, dual veto, SBOM + threat model owner", deps: [docs/methodology/personas.md, docs/methodology/phases.md, docs/sbom/sbom.md, docs/sbom/dependency-decisions.md, docs/security/threat-model.md], state: canonical, last: "pierrot@2026-02-15", key: ["absorbs Pierrot + RegRaj", "veto on security AND compliance", "owns SBOM, dependency decisions, threat model"] } -->
