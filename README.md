@@ -6,9 +6,28 @@ A virtual development team for [Claude Code](https://docs.anthropic.com/en/docs/
 
 ## What This Is
 
-vteam-hybrid is a GitHub repo template that turns Claude Code into a structured development team. Instead of a single AI assistant, you get specialized agents — an architect, a tester, a security reviewer, a project manager — that collaborate through defined phases with built-in quality gates.
+[Claude Code](https://docs.anthropic.com/en/docs/claude-code) is Anthropic's CLI for AI-assisted development — you chat with Claude in your terminal and it can read/write files, run commands, and spawn specialized sub-agents. This template configures Claude Code with a team of specialized agents and structured workflows so that instead of a single AI assistant, you get an architect, a tester, a security reviewer, a project manager, and more — collaborating through defined phases with built-in quality gates.
 
 **You only need to know 5 agents to start.** The rest activate automatically when the work demands it.
+
+### What it looks like
+
+You talk to Claude Code in your terminal. The template's agents handle the rest:
+
+```
+You:  I want to build a CLI tool that converts markdown to PDF
+
+Cam:  Let me explore that with you. Who's the target user —
+      developers or non-technical users? And what's your priority:
+      fidelity to the markdown spec, or speed of conversion?
+
+You:  Developers, and speed matters more than perfect rendering.
+
+Cam:  Got it. Let me probe a few more things before we commit to
+      an approach...
+```
+
+After discovery, you'd run `/tdd add-pdf-export` and the system hands off to Tara (who writes failing tests) and then Sato (who makes them pass). You stay in control — the agents do the structured work.
 
 ### Requirements
 
@@ -73,6 +92,8 @@ The coordinator automatically selects the right team structure for each phase of
 | 5. Code Review | Changes to review | Vik + Tara + Pierrot | Three lenses: simplicity, tests, security |
 | 6. Debugging | Bug to fix | Sato | Shared investigation with Tara, Vik, Pierrot |
 | 7. Human Interaction | User consultation needed | Cam | Single point of contact for the human |
+
+![vteam-hybrid implementation cycle](./docs/media/vteam-hybrid-ukiyoe.png)
 
 ## Quick Start
 
@@ -154,12 +175,6 @@ Read in this order. Stop when you have enough:
 | 2 | [Phases (TL;DR)](docs/methodology/phases.md#tldr) | 2 min | The 7 phases at a glance |
 | 3 | [Phases (full)](docs/methodology/phases.md) | 10 min | How each phase works, who participates |
 | 4 | [Personas](docs/methodology/personas.md) | skim | The 18-agent roster, capabilities, tiers |
-
-## Template Lineage
-
-- **vteam-base** — Foundation: core personas, TDD, ADRs
-- **vteam-agentapalooza** — Extended: full 32-agent roster
-- **vteam-hybrid** (this) — Consolidated: 32 agents merged to 18, hybrid methodology, agent-notes protocol
 
 ## License
 

@@ -1,3 +1,4 @@
+<!-- For a human-readable overview, see README.md and docs/template-guide.md -->
 # CLAUDE.md — Project Instructions for Claude Code
 
 ## Project Overview
