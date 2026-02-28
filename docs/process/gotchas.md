@@ -3,7 +3,7 @@ agent-notes:
   ctx: "implementation gotchas and established patterns"
   deps: [CLAUDE.md]
   state: active
-  last: "coordinator@2026-02-15"
+  last: "coordinator@2026-02-28"
 ---
 # Known Patterns and Gotchas
 
@@ -15,7 +15,9 @@ Extracted from CLAUDE.md to reduce context window load. Read this when working o
 
 ## Adapter / Integration Gotchas
 
-<!-- Add gotchas related to adapters, external APIs, SDKs here -->
+- **execa v9 `stdin: 'pipe'` default hangs subprocesses.** execa v9 changed `stdin` from `'inherit'` to `'pipe'`. CLI tools that check stdin connectivity (e.g., `claude -p`, `gemini`) see a connected pipe and wait for EOF, which never comes — the subprocess hangs until timeout. **Detection signal:** subprocess calls work with `--version` or `--help` (which exit immediately) but hang with actual workload flags. **Fix:** always set `stdin: 'ignore'` unless you explicitly need to write to the subprocess's stdin. Audit all execa/child_process calls to explicitly configure all three stdio channels.
+
+- **Health checks that don't exercise the real code path.** A health check like `tool --version` exits immediately without reading stdin, so it succeeds even when the actual call (`tool -p "prompt"`) would hang. **Detection signal:** health check passes but actual tool invocation fails/hangs. **Fix:** health checks should exercise the same flags and stdio configuration as the real invocation, just with minimal input.
 
 ## Build and Run
 
@@ -56,3 +58,7 @@ Extracted from CLAUDE.md to reduce context window load. Read this when working o
 - **Check devcontainer before implementation.** After planning completes (either via `/plan` or `/kickoff` Phase 5), check whether `.devcontainer/` exists. If not, ask the user if they want one before starting implementation. This prevents environment inconsistency issues during TDD cycles.
 
 - **Sprint boundary must end with a clean-tree gate.** Multi-step workflows (sprint boundary, kickoff) involve many file operations — archival moves, artifact creation, code reviews. Commits that run partway through the workflow leave late-written files unstaged. The `/sprint-boundary` Step 8 enforces a terminal `git status --porcelain` check and stages any orphaned changes. If you're writing a similar multi-step workflow, end it with the same pattern: check, stage, commit, re-check.
+
+- **Horizontal Blindness anti-pattern.** Cross-cutting concerns (logging, error UX, config, debug support, README accuracy) fall between vertical work items. No single item owns them, so they degrade silently. **Detection signal:** 3+ sprints in with no logging or debug flags, README quick-start is broken, error messages are inconsistent across modules. **Fix:** run the operational baseline audit (`docs/process/operational-baseline.md`). Done Gate #14 catches per-item regressions; sprint boundary Step 5b catches product-level drift.
+
+- **Green-Bar-Red-Product anti-pattern.** Every Done Gate passes individually, but the product isn't shippable — no observability, broken quick-start, inconsistent errors. The per-item gate verifies each item in isolation; it cannot see product-level properties that emerge from the combination. **Detection signal:** all items pass Done Gate, but a new user can't get the product working from the README, or production failures produce no useful diagnostics. **Fix:** Done Gate #14 provides per-item defense; sprint boundary Step 5b provides product-level defense. Both reference `docs/process/operational-baseline.md`.

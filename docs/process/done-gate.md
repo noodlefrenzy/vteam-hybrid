@@ -1,9 +1,9 @@
 ---
 agent-notes:
-  ctx: "13-item Done Gate checklist for work items"
+  ctx: "15-item Done Gate checklist for work items"
   deps: [CLAUDE.md]
   state: active
-  last: "coordinator@2026-02-18"
+  last: "coordinator@2026-02-28"
 ---
 # Done Gate — Detailed Checklist
 
@@ -24,3 +24,9 @@ Every work item must pass this gate before closing:
 11. **API compatible** — if API contracts changed, backward compatibility verified or new version created.
 12. **Tech debt logged** — if shortcuts were taken, they're recorded in `docs/tech-debt.md`.
 13. **SBOM current** — if dependencies were added/removed/upgraded, Pierrot has updated the SBOM.
+14. **Operational baseline checked** — if this work item changes application behavior (not docs-only, not CI-only), verify it hasn't degraded the operational baseline (`docs/process/operational-baseline.md`):
+    - Logging: new code paths log at appropriate levels.
+    - Error patterns: new error handling follows the project's established pattern.
+    - Config: any new config values are documented and validated.
+    - README: if user-facing behavior changed, the quick-start is still accurate.
+15. **External integration smoke-tested** — if this work item integrates with external tools, services, or binaries (subprocess spawning, external APIs, CLI tool invocation), the happy path has been verified against the real tool, not just mocks. Mocked unit tests verify internal logic; this gate verifies the integration actually works end-to-end. If the external tool is unavailable in CI, document which manual verification was performed and by whom.

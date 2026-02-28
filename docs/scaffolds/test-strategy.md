@@ -3,7 +3,7 @@ agent-notes:
   ctx: "test strategy, pyramid, coverage targets"
   deps: []
   state: stub
-  last: "tara@2026-02-15"
+  last: "tara@2026-02-28"
   key: ["Tara owns, created during kickoff or sprint 1"]
 ---
 # Test Strategy
@@ -55,6 +55,7 @@ agent-notes:
 | UI components | Yes (render) | — | — | Component tests, not DOM tests |
 | Critical user flows | — | — | Yes | Only the flows that, if broken, are P0 |
 | Error handling | Yes | Yes | — | Unhappy paths at unit + integration |
+| External process invocation | — | Yes | — | Real binary smoke test gated behind env var; verifies spawn options, stdio config, and exit lifecycle |
 | Config/env loading | Yes | — | — | Validate all config shapes |
 
 ## What Is NOT Tested (and why)

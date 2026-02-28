@@ -1,4 +1,4 @@
-<!-- agent-notes: { ctx: "mandatory sprint boundary: retro + sweep + gate + passes", deps: [CLAUDE.md, docs/methodology/personas.md, docs/methodology/phases.md, docs/tech-debt.md, docs/performance-budget.md], state: active, last: "grace@2026-02-15" } -->
+<!-- agent-notes: { ctx: "mandatory sprint boundary: retro + sweep + gate + passes", deps: [CLAUDE.md, docs/methodology/personas.md, docs/methodology/phases.md, docs/tech-debt.md, docs/performance-budget.md], state: active, last: "coordinator@2026-02-28" } -->
 Run the mandatory sprint boundary workflow for: $ARGUMENTS
 
 This is the **canonical end-of-sprint process**. It must be run at every sprint boundary — it is NOT optional and should NOT require the user to trigger it manually. When Grace detects that the sprint's work is complete (all sprint items are Done or explicitly deferred), this workflow triggers automatically.
@@ -147,6 +147,54 @@ Not every sprint needs these. Grace decides based on how much code and dependenc
 - Check for abandoned packages (no updates > 12 months), major version drift, single-maintainer risk.
 - Update SBOM with findings.
 - Flag concerning dependencies to Pat for prioritization.
+
+---
+
+## Step 5b: Operational Baseline Audit (Ines + Diego) — Mandatory
+
+Unlike the periodic passes in Step 5, this audit runs **every sprint**. It checks product health, not just process health.
+
+### Ines: Operational Concerns Audit
+
+Invoke Ines to audit the codebase against the applicable concerns in `docs/process/operational-baseline.md`. For each concern in the applicability matrix that applies to this project type:
+
+1. **Logging coverage** — Is a logging module configured? Do significant operations log at appropriate levels? Do `--verbose`/`--debug` flags work (if applicable)?
+2. **Error pattern consistency** — Does an error module/pattern exist? Is it followed consistently across modules? Are user-facing errors actionable?
+3. **Debug support** — Can a developer diagnose failures from logs alone, without a debugger attached?
+4. **Config health** — Is config validated at startup? Do invalid values produce clear messages? Is `.env.example` or equivalent current?
+5. **Graceful degradation** — Do external calls have timeouts? Do failures produce user-friendly messages?
+
+### Diego: README "5-Minute Test"
+
+Invoke Diego to verify the README quick-start by **executing it**, not just reading it:
+
+1. Execute the quick-start commands against the current codebase (install deps, run the tool).
+2. If external tools are unavailable or require credentials, run the project's own entry point (e.g., `npm start -- --help`, `python main.py --help`) to verify it bootstraps without errors.
+3. For commands that cannot be executed, verify them by reading — but document which steps were execution-verified vs. read-verified.
+4. If any step fails or requires undocumented knowledge, flag it as a **P1 defect**.
+
+### Report
+
+Append findings to the sprint retro document:
+
+```markdown
+## Operational Baseline Audit — Sprint N
+
+### Ines: Operational Concerns
+| Concern | Status | Finding |
+|---------|--------|---------|
+| Logging | Foundation / Below / N/A | ... |
+| Error UX | Foundation / Below / N/A | ... |
+| ...     | ...    | ...     |
+
+### Diego: README 5-Minute Test
+- **Result:** Pass / Fail
+- **Issues found:** [list or "None"]
+```
+
+### Gate
+
+If **3 or more** applicable concerns are below Foundation level AND the project is past sprint 2, this is a **blocking gate**. Grace creates P1 work items for each below-Foundation concern and includes them in the next sprint. This mirrors the tech debt escalation pattern — it's enforceable, not advisory.
 
 ---
 

@@ -163,7 +163,7 @@ The coordinator automatically selects the right team structure for each phase of
 - **Adversarial Debate** — Wei challenges architectural decisions through structured multi-round debate. Catches design flaws before implementation.
 - **Agent-Notes Protocol** — Structured metadata at the top of every file lets agents decide whether to read a file before opening it. Reduces context waste.
 - **Session Handoff/Resume** — `/handoff` saves session state; `/resume` picks up where you left off. Solves the ephemeral context problem.
-- **Done Gate** — 13-item quality checklist every work item must pass. Tests, types, lint, review, accessibility, SBOM, and more.
+- **Done Gate** — 15-item quality checklist every work item must pass. Tests, types, lint, review, accessibility, SBOM, and more.
 
 ## Learning Path
 

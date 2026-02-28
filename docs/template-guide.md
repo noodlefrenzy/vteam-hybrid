@@ -47,7 +47,7 @@ flowchart TD
     Debate["Adversarial Debate<br/><strong>Wei</strong> challenges"]
     TDD["TDD Cycle<br/><strong>Tara</strong>: write failing tests<br/><strong>Sato</strong>: make them pass + refactor"]
     Review["Code Review<br/><strong>Vik</strong> + <strong>Tara</strong> + <strong>Pierrot</strong><br/>3 parallel lenses"]
-    DoneGate["Done Gate<br/>13-item checklist"]
+    DoneGate["Done Gate<br/>15-item checklist"]
     More{"More items<br/>in sprint?"}
     Boundary["Sprint Boundary<br/><code>/sprint-boundary</code>"]
     Handoff["Session Handoff<br/><code>/handoff</code>"]
