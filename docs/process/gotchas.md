@@ -3,15 +3,40 @@ agent-notes:
   ctx: "implementation gotchas and established patterns"
   deps: [CLAUDE.md]
   state: active
-  last: "coordinator@2026-02-28"
+  last: "coordinator@2026-03-01"
 ---
 # Known Patterns and Gotchas
 
 Extracted from CLAUDE.md to reduce context window load. Read this when working on implementation or debugging tasks. Projects populate sections as they discover gotchas.
 
-## Testing Patterns
+## Testing Patterns (Tara)
 
-<!-- Add project-specific testing gotchas here as you discover them -->
+<!-- Tara: add project-specific testing gotchas here as you discover them.
+     Examples: mocking strategies that work/fail, flaky test patterns,
+     edge cases that keep recurring, test setup quirks. -->
+
+## Code Review Findings (Vik)
+
+<!-- Vik: add recurring code smells, complexity hotspots, and accepted
+     trade-offs here. Tracking these avoids redundant flagging across sessions. -->
+
+## Security & Compliance (Pierrot)
+
+<!-- Pierrot: add accepted risks, threat surfaces evaluated, and security
+     trade-offs here. Decisions the human explicitly approved should be recorded
+     so they aren't re-flagged in future sessions. -->
+
+## Implementation Patterns (Sato)
+
+<!-- Sato: add codebase-specific implementation patterns, performance learnings,
+     and quirks here. Examples: which abstractions work well, fragile areas,
+     API client behaviors that differ from their types. -->
+
+## Architecture Patterns (Archie)
+
+<!-- Archie: add architectural constraints, integration point knowledge, and
+     schema evolution notes here. Patterns that informed past ADRs but aren't
+     worth a standalone ADR themselves. -->
 
 ## Adapter / Integration Gotchas
 
@@ -22,10 +47,6 @@ Extracted from CLAUDE.md to reduce context window load. Read this when working o
 ## Build and Run
 
 <!-- Add build, bundling, and runtime gotchas here -->
-
-## Architecture Patterns
-
-<!-- Add architecture patterns and constraints here -->
 
 ## Process
 
@@ -56,6 +77,8 @@ Extracted from CLAUDE.md to reduce context window load. Read this when working o
 - **Verify GitHub access before board operations.** Any workflow that touches the project board (sprint-boundary, kickoff, resume, handoff) must verify `gh auth status` and board accessibility before attempting board operations. If `gh` commands fail, STOP and ask the user to fix it — don't proceed and fail mid-workflow. The pre-flight checks are in: sprint-boundary Step 0, kickoff Phase 5 Pre-Flight, resume Step 3, and handoff Step 1. The resume check is especially critical — without it, a full sprint runs board-blind and every status transition is silently skipped.
 
 - **Check devcontainer before implementation.** After planning completes (either via `/plan` or `/kickoff` Phase 5), check whether `.devcontainer/` exists. If not, ask the user if they want one before starting implementation. This prevents environment inconsistency issues during TDD cycles.
+
+- **Agents own their gotchas sections.** The agent-attributed sections at the top of this file (Testing Patterns → Tara, Code Review Findings → Vik, etc.) are written by the named agent at the end of their work, as part of the done gate or handoff. Record project-specific operational knowledge that would save time in a future session — not general programming knowledge, not things already in ADRs or `code-map.md`. Keep entries specific: "mock the gateway at HTTP level, not SDK level, because the SDK swallows retry errors" beats "be careful with mocking." If an entry becomes broadly relevant beyond its section, promote it to an ADR, `code-map.md`, or the template itself.
 
 - **Sprint boundary must end with a clean-tree gate.** Multi-step workflows (sprint boundary, kickoff) involve many file operations — archival moves, artifact creation, code reviews. Commits that run partway through the workflow leave late-written files unstaged. The `/sprint-boundary` Step 8 enforces a terminal `git status --porcelain` check and stages any orphaned changes. If you're writing a similar multi-step workflow, end it with the same pattern: check, stage, commit, re-check.
 

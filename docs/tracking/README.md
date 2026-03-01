@@ -1,5 +1,5 @@
 ---
-agent-notes: { ctx: "artifact-driven phase tracking protocol", deps: [docs/methodology/agent-notes.md, CLAUDE.md], state: active, last: "grace@2026-02-16" }
+agent-notes: { ctx: "artifact-driven phase tracking protocol", deps: [docs/methodology/agent-notes.md, CLAUDE.md], state: active, last: "coordinator@2026-03-01" }
 ---
 
 # Phase Tracking Artifacts
@@ -36,6 +36,10 @@ agent-notes: { ctx: "<phase> tracking for <topic>", deps: [...], state: active, 
 **Prior Phase:** <link or "None">
 
 ## Key Decisions
+<!-- Record every non-trivial implementation choice made during this phase.
+     Include: what was chosen, what was rejected, and why.
+     These entries are the primary record for decisions too small for a full ADR.
+     Format: "Chose X over Y because Z" — one line each, be specific. -->
 - ...
 
 ## Artifacts Produced
@@ -74,6 +78,18 @@ Phases 2 and 4 of kickoff are intermediate — their output folds into the adjac
 - `/resume` can read tracking artifacts to reconstruct where a multi-phase workflow left off
 - Each artifact links to its **Prior Phase** artifact, creating a navigable chain
 
+## Key Decisions Are the Micro-Decision Record
+
+The **Key Decisions** section in each tracking artifact is the primary record for decisions that are too small for a full ADR but too valuable to lose. This is where implementation choices, accepted trade-offs, adopted patterns, and acknowledged risks get captured.
+
+**Write them as "Chose X over Y because Z"** — specific, searchable, and useful to a future session encountering the same code. Examples:
+
+- "Chose `Map` over plain `Object` for the cache because deletion performance matters for expire-on-access."
+- "Accepted Vik's complexity flag on `transform()` because extracting it would split a tight coupling."
+- "Went with property-based testing for the parser because the input space is combinatorial."
+
+At sprint boundary, if a Key Decision reveals architectural significance, promote it to an ADR.
+
 ## Design Rationale
 
 - **`docs/tracking/`** not `.copilot-tracking/` — artifacts are committed to the repo as an audit trail
@@ -81,3 +97,4 @@ Phases 2 and 4 of kickoff are intermediate — their output folds into the adjac
 - **Lightweight format** — ~20 lines per artifact, summaries not exhaustive research
 - **Archive at sprint boundary** — prevents the tracking directory from growing unbounded
 - **Prior Phase links** — each artifact links backward, creating a decision chain
+- **Key Decisions as micro-decision record** — fills the gap between full ADRs and no record at all
