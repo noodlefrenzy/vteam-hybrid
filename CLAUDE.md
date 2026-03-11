@@ -112,7 +112,7 @@ Run `/sprint-boundary` when all sprint items are Done or deferred. Full workflow
 3. **Background agents write to files.** Use `run_in_background: true`. Read summaries, not full output.
 4. **Read `docs/code-map.md` first.** Orient from the map, not from scratch.
 5. **Commit frequently.** Uncommitted work is the most expensive thing to reconstruct.
-6. **Tracking artifacts carry phase context.** See `docs/tracking/README.md`.
+6. **Tracking artifacts carry phase context.** See `docs/process/tracking-protocol.md`.
 
 ## Process Docs Index
 
@@ -128,7 +128,7 @@ Run `/sprint-boundary` when all sprint items are Done or deferred. Full workflow
 | `docs/process/doc-ownership.md` | Who owns which docs, update triggers |
 | `docs/process/gotchas.md` | Implementation patterns and known pitfalls |
 | `docs/integrations/README.md` | Active tracking adapter and setup |
-| `docs/tracking/README.md` | Phase tracking artifact protocol |
+| `docs/process/tracking-protocol.md` | Phase tracking artifact protocol |
 | `docs/adrs/` | Architecture Decision Records |
 
 ## Project Structure
@@ -143,11 +143,7 @@ Run `/sprint-boundary` when all sprint items are Done or deferred. Full workflow
 │   ├── scaffolds/            # Project stubs (moved to docs/ during scaffold/kickoff)
 │   ├── adrs/                 # Architecture Decision Records
 │   │   └── template/         # Template-specific ADRs (removed during scaffold)
-│   ├── tracking/             # Phase tracking artifacts
-│   ├── sprints/              # Sprint wave plans
-│   ├── retrospectives/       # Sprint retros
-│   ├── sbom/                 # SBOM + dependency decisions
-│   └── security/             # Threat model
+│   └── research/             # Cloud landscape and template research
 ├── .claude/
 │   ├── agents/               # Subagent persona definitions (18 agents)
 │   └── commands/             # Custom slash commands (auto-discovered)

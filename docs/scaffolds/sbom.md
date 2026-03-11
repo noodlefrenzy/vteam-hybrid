@@ -1,7 +1,7 @@
 ---
 agent-notes:
   ctx: "software bill of materials, all dependencies"
-  deps: [docs/sbom/dependency-decisions.md]
+  deps: [docs/scaffolds/dependency-decisions.md]
   state: stub
   last: "pierrot@2026-02-15"
 ---

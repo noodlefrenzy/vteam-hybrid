@@ -1,7 +1,7 @@
 ---
 agent-notes:
   ctx: "dependency rationale and transitive dep inventory"
-  deps: [docs/sbom/sbom.md]
+  deps: [docs/scaffolds/sbom.md]
   state: stub
   last: "pierrot@2026-02-15"
 ---

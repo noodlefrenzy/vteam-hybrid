@@ -50,7 +50,7 @@ Grace tracks in `docs/tech-debt.md`. Pat prioritizes debt against feature work a
 
 ## Runbooks
 
-Ines owns `docs/runbooks/`. Every alert must have a corresponding runbook. Created alongside the infrastructure they support. Template at `docs/runbooks/template.md`.
+Ines owns `docs/runbooks/`. Every alert must have a corresponding runbook. Created alongside the infrastructure they support. Template at `docs/scaffolds/runbook-template.md`.
 
 ## Configuration Management
 

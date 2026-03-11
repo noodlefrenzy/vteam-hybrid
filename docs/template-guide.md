@@ -1,5 +1,5 @@
 ---
-agent-notes: { ctx: "persistent template reference, survives scaffolding", deps: [CLAUDE.md, docs/methodology/personas.md, docs/methodology/phases.md], state: canonical, last: "diego@2026-02-21" }
+agent-notes: { ctx: "persistent template reference, survives scaffolding", deps: [CLAUDE.md, docs/methodology/personas.md, docs/methodology/phases.md], state: canonical, last: "diego@2026-03-11" }
 ---
 
 # vteam-hybrid Template Guide
@@ -16,6 +16,71 @@ vteam-hybrid is a GitHub repo template for projects that use Claude Code with a 
 4. **24 command workflows** covering the full development lifecycle
 5. **Integration adapters** for different project tracking tools (GitHub Projects, Jira)
 6. **Cloud specialist agents** that adapt to AWS, Azure, or GCP
+
+**You only need to know 5 agents to start.** The rest activate automatically when the work demands it.
+
+### What it looks like
+
+You talk to Claude Code in your terminal. The template's agents handle the rest:
+
+```
+You:  I want to build a CLI tool that converts markdown to PDF
+
+Cam:  Let me explore that with you. Who's the target user —
+      developers or non-technical users? And what's your priority:
+      fidelity to the markdown spec, or speed of conversion?
+
+You:  Developers, and speed matters more than speed.
+
+Cam:  Got it. Let me probe a few more things before we commit to
+      an approach...
+```
+
+After discovery, you'd run `/tdd add-pdf-export` and the system hands off to Tara (who writes failing tests) and then Sato (who makes them pass). You stay in control — the agents do the structured work.
+
+### How it works
+
+```mermaid
+graph LR
+    Human["Human Developer"]
+
+    subgraph "Claude Code + vteam-hybrid"
+        Coord["Coordinator<br/><em>reads CLAUDE.md, selects phase</em>"]
+
+        subgraph "P0 — Core (always available)"
+            Cam["Cam<br/>Vision &<br/>Elicitation"]
+            Sato["Sato<br/>Implementation"]
+            Tara["Tara<br/>Tests (TDD)"]
+            Pat["Pat<br/>Product &<br/>Priorities"]
+            Grace["Grace<br/>Tracking &<br/>Coordination"]
+        end
+
+        subgraph "P1 — Essential (invoked when needed)"
+            Archie["Archie<br/>Architecture"]
+            Vik["Vik<br/>Code Review"]
+            Pierrot["Pierrot<br/>Security"]
+            Dani["Dani<br/>Design & A11y"]
+            Ines["Ines<br/>DevOps & SRE"]
+        end
+
+        subgraph "P2 + Cloud (situational)"
+            Others["Diego · Wei · Debra<br/>User Chorus · Cloud Specialists"]
+        end
+    end
+
+    Human <-->|"natural language"| Coord
+    Coord -->|"invokes"| Cam
+    Coord -->|"invokes"| Sato
+    Coord -->|"invokes"| Tara
+    Coord -->|"invokes"| Pat
+    Coord -->|"invokes"| Grace
+    Coord -.->|"when needed"| Archie
+    Coord -.->|"when needed"| Vik
+    Coord -.->|"when needed"| Pierrot
+    Coord -.->|"when needed"| Dani
+    Coord -.->|"when needed"| Ines
+    Coord -.->|"situational"| Others
+```
 
 ## Template Lineage
 
@@ -106,13 +171,17 @@ Follow the TDD workflow: `/tdd <feature>` for each piece of work.
 |------|---------|
 | `CLAUDE.md` | Slim runtime instructions for Claude Code |
 | `docs/methodology/` | System docs (phases, personas, agent-notes) |
-| `docs/process/` | Governance, done gate, gotchas, doc ownership |
+| `docs/process/` | Governance, done gate, gotchas, tracking protocol, doc ownership |
 | `docs/integrations/` | Tracking adapters (GitHub Projects, Jira) |
-| `docs/scaffolds/` | Project stub docs (moved to `docs/` during scaffold) |
+| `docs/scaffolds/` | Project stub docs (deployed to final locations during scaffold/kickoff) |
 | `docs/adrs/` | Architecture Decision Records |
 | `docs/adrs/template/` | Template-specific ADRs (removed during scaffold) |
+| `docs/research/` | Cloud landscape files and template research |
+| `docs/media/` | Images and visual assets |
 | `.claude/agents/*.md` | 18 runnable agent definitions |
 | `.claude/commands/*.md` | 24 workflow commands (see Command Reference below) |
+
+Directories like `docs/code-reviews/`, `docs/plans/`, `docs/sprints/`, `docs/tracking/`, `docs/sbom/`, `docs/security/`, and `docs/runbooks/` are created automatically by commands when first needed — they don't exist in the template.
 
 ## Command Reference
 
@@ -192,3 +261,14 @@ See `docs/integrations/README.md` for how to switch between GitHub Projects, Jir
 - **Solo / small project (1-3 agents):** Collapse further. Sato absorbs Ines's infra work. Code-reviewer covers all review. Pat handles all planning.
 - **Medium project (2-3 teams):** Full roster. Grace earns her keep with cross-team coordination.
 - **Large project (4+ teams):** Every role is distinct. Consider splitting consolidated agents back into specialists.
+
+## Learning Path
+
+Read in this order. Stop when you have enough:
+
+| # | Doc | Time | What You'll Learn |
+|---|-----|------|-------------------|
+| 1 | This guide | 5 min | What's included, how to customize |
+| 2 | [Phases (TL;DR)](methodology/phases.md#tldr) | 2 min | The 7 phases at a glance |
+| 3 | [Phases (full)](methodology/phases.md) | 10 min | How each phase works, who participates |
+| 4 | [Personas](methodology/personas.md) | skim | The 18-agent roster, capabilities, tiers |

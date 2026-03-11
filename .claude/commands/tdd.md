@@ -15,4 +15,4 @@ For items sized M or larger, Tara must be invoked as a standalone agent for the 
 
 ## Tracking Artifact
 
-After all TDD cycles are complete and tests pass, produce `docs/tracking/YYYY-MM-DD-<topic>-implementation.md` summarizing what was built, test results (pass count, coverage if available), and any deviations from the plan. Use the standard tracking format from `docs/tracking/README.md`. Set **Prior Phase** to the most recent plan artifact for this topic (if any).
+After all TDD cycles are complete and tests pass, produce `docs/tracking/YYYY-MM-DD-<topic>-implementation.md` summarizing what was built, test results (pass count, coverage if available), and any deviations from the plan. Use the standard tracking format from `docs/process/tracking-protocol.md`. Set **Prior Phase** to the most recent plan artifact for this topic (if any).

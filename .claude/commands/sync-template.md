@@ -31,15 +31,14 @@ cp <template>/.claude/commands/*.md .claude/commands/
 Create any doc directories and template files that don't exist yet. **Do not overwrite existing docs** — they may contain project data.
 
 Check for and create if missing:
-- `docs/security/threat-model.md` (copy from template)
-- `docs/performance-budget.md` (copy from template)
-- `docs/test-strategy.md` (copy from template)
-- `docs/tech-debt.md` (copy from template)
-- `docs/config-manifest.md` (copy from template)
-- `docs/runbooks/template.md` (copy from template)
-- `docs/sbom/sbom.md` (copy from template)
-- `docs/sbom/dependency-decisions.md` (copy from template)
-- `docs/code-reviews/.gitkeep` (create if dir missing)
+- `docs/scaffolds/threat-model.md` → `docs/security/threat-model.md` (copy from template, mkdir -p)
+- `docs/scaffolds/performance-budget.md` → `docs/performance-budget.md` (copy from template)
+- `docs/scaffolds/test-strategy.md` → `docs/test-strategy.md` (copy from template)
+- `docs/scaffolds/tech-debt.md` → `docs/tech-debt.md` (copy from template)
+- `docs/scaffolds/config-manifest.md` → `docs/config-manifest.md` (copy from template)
+- `docs/scaffolds/runbook-template.md` → `docs/runbooks/template.md` (copy from template, mkdir -p)
+- `docs/scaffolds/sbom.md` → `docs/sbom/sbom.md` (copy from template, mkdir -p)
+- `docs/scaffolds/dependency-decisions.md` → `docs/sbom/dependency-decisions.md` (copy from template, mkdir -p)
 - `CHANGELOG.md` (copy from template)
 
 For each: `mkdir -p <dir>` then copy only if the file doesn't already exist.

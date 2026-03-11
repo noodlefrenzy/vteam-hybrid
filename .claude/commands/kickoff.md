@@ -17,7 +17,7 @@ Slow down. Do NOT jump to solutions. Your job is to make the human's vision legi
 
 **Checkpoint:** Summarize your understanding of the vision, goals, and constraints. Ask: "Did I get this right? What did I miss?"
 
-**Tracking artifact:** After the human confirms, produce `docs/tracking/YYYY-MM-DD-<topic>-discovery.md` summarizing the vision, goals, constraints, and key insights from elicitation. Use the standard tracking format from `docs/tracking/README.md`. Set **Prior Phase** to "None".
+**Tracking artifact:** After the human confirms, produce `docs/tracking/YYYY-MM-DD-<topic>-discovery.md` summarizing the vision, goals, constraints, and key insights from elicitation. Use the standard tracking format from `docs/process/tracking-protocol.md`. Set **Prior Phase** to "None".
 
 ---
 
@@ -73,7 +73,7 @@ For **every** ADR created in this phase, run the adversarial debate protocol. Th
 
 **Checkpoint:** Summarize architectural direction, key decisions, initial threat surface, and debate outcomes (challenges raised, resolved, accepted as risks). Confirm.
 
-**Tracking artifact:** After the human confirms, produce `docs/tracking/YYYY-MM-DD-<topic>-architecture.md` summarizing the chosen architecture, key ADRs created, technology decisions, threat surface, and debate results. Use the standard tracking format from `docs/tracking/README.md`. Set **Prior Phase** to the discovery artifact.
+**Tracking artifact:** After the human confirms, produce `docs/tracking/YYYY-MM-DD-<topic>-architecture.md` summarizing the chosen architecture, key ADRs created, technology decisions, threat surface, and debate results. Use the standard tracking format from `docs/process/tracking-protocol.md`. Set **Prior Phase** to the discovery artifact.
 
 ---
 
@@ -105,7 +105,7 @@ Create the implementation plan:
 
 **Checkpoint:** Review the plan. Confirm the human is ready to start building.
 
-**Tracking artifact:** After the human confirms, produce `docs/tracking/YYYY-MM-DD-<topic>-plan.md` summarizing the plan goals, first sprint scope, test strategy decisions, and open risks. Use the standard tracking format from `docs/tracking/README.md`. Set **Prior Phase** to the architecture artifact.
+**Tracking artifact:** After the human confirms, produce `docs/tracking/YYYY-MM-DD-<topic>-plan.md` summarizing the plan goals, first sprint scope, test strategy decisions, and open risks. Use the standard tracking format from `docs/process/tracking-protocol.md`. Set **Prior Phase** to the architecture artifact.
 
 ### GitHub Project Board Setup (Mandatory)
 
