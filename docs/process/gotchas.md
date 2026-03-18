@@ -3,7 +3,7 @@ agent-notes:
   ctx: "implementation gotchas and established patterns"
   deps: [CLAUDE.md]
   state: active
-  last: "coordinator@2026-03-12"
+  last: "coordinator@2026-03-18"
 ---
 # Known Patterns and Gotchas
 
@@ -34,7 +34,9 @@ Extracted from CLAUDE.md to reduce context window load. Read this when working o
 
 ## Architecture Patterns (Archie)
 
-<!-- Archie: add architectural constraints, integration point knowledge, and
+- **YAGNI vs. Planned Capabilities (the Drift Trap).** YAGNI says don't build abstractions for hypothetical futures. But when a future capability is architecturally planned (has an ADR, appears in the architecture doc, is on the roadmap), the abstraction boundary that enables it is a **current requirement**, not speculation. Using consumer-specific concepts in a shared type because "we only support X today" is not YAGNI — it's tech debt against a planned capability. **Detection signal:** a shared/core type contains concepts specific to one consumer while the architecture plans for multiple consumers. **Fix:** use format-neutral representations in shared types; consumer-specific conversions happen at the boundary (in the consumer, not in Core).
+
+<!-- Archie: add additional architectural constraints, integration point knowledge, and
      schema evolution notes here. Patterns that informed past ADRs but aren't
      worth a standalone ADR themselves. -->
 
@@ -53,6 +55,8 @@ Extracted from CLAUDE.md to reduce context window load. Read this when working o
 - **Plans don't replace process (Plan-as-Bypass anti-pattern).** A detailed implementation plan (from plan mode, a prior session, or a human-provided spec) is **input** to the V-Team phases, not a bypass. The plan still needs: GitHub issues (Grace), architecture gate if applicable (Archie + Wei as standalone agents), TDD (Tara → Sato), code review (Vik + Tara + Pierrot), and Done Gate. **Detection signal:** if the coordinator's first tool call is `Read` on a source file (not `docs/code-map.md`, governance docs, or the sprint plan), it's likely in bypass mode. See `2026-02-20-process-violation-plan-bypass.md` for the full retro.
 
 - **Wei must be invoked as a standalone agent.** The coordinator's own analysis of trade-offs is not a substitute for invoking Wei as a standalone agent during architecture debates. If an ADR claims "Wei debate resolved" but no Wei agent was spawned, the gate has not passed.
+
+- **Quick-Test Bypass anti-pattern.** The coordinator writes tests directly "to save time" instead of invoking Tara. The tests look reasonable but miss text content assertions, edge cases, and structural invariants. They become the committed suite and the gaps become permanent. **Detection signal:** test code appears in the coordinator's response with no Tara agent invocation. **Fix:** always invoke Tara for test authoring. Even for exploratory/diagnostic tests, hand them to Tara for review before committing. See `docs/process/team-governance.md` § Quick-Test Bypass for the full pattern.
 
 - **"Invoke the team" means spawn subagents (Solo-Coordinator anti-pattern).** When the human uses language like "invoke the team", "use the team", "have Cam look at this", or names any persona, the coordinator MUST spawn those agents via the Task tool. The coordinator doing the work inline — even if the output is good — violates the explicit human request. **Detection signal:** the human asked for a named persona or "the team" but no Task tool calls with `subagent_type` matching a persona appear in the response. **Fix:** parse the request for persona names or team-level language, then spawn the appropriate agents before doing any work.
 
@@ -77,6 +81,10 @@ Extracted from CLAUDE.md to reduce context window load. Read this when working o
 - **Verify GitHub access before board operations.** Any workflow that touches the project board (sprint-boundary, kickoff, resume, handoff) must verify `gh auth status` and board accessibility before attempting board operations. If `gh` commands fail, STOP and ask the user to fix it — don't proceed and fail mid-workflow. The pre-flight checks are in: sprint-boundary Step 0, kickoff Phase 5 Pre-Flight, resume Step 3, and handoff Step 1. The resume check is especially critical — without it, a full sprint runs board-blind and every status transition is silently skipped.
 
 - **Check devcontainer before implementation.** After planning completes (either via `/plan` or `/kickoff` Phase 5), check whether `.devcontainer/` exists. If not, ask the user if they want one before starting implementation. This prevents environment inconsistency issues during TDD cycles.
+
+- **Precedent-Blindness anti-pattern (False Architecture Dilemma).** The coordinator encounters a capability that needs to be added (e.g., "new module needs to read config files") and treats it as a novel architectural decision requiring human review — when the existing codebase already has an established pattern for the same problem (e.g., another module already reads config via a shared utility). **Detection signal:** the coordinator flags an "architecture decision" or "proxy decision" for something another module already does. The handoff says "deferred — needs architectural review" for a problem with a working solution in `src/`. **Fix:** before flagging a blocking decision, check whether another module/package already handles the same concern. If yes, follow that pattern — it's a precedent, not a decision. Only flag genuinely novel choices where no existing pattern applies.
+
+- **Run `/handoff` after completing each wave.** When a session completes a wave but not the full sprint, run `/handoff` before ending the session. A stale handoff forces the next session to reconstruct state from git history, which is slower and error-prone.
 
 - **Agents own their gotchas sections.** The agent-attributed sections at the top of this file (Testing Patterns → Tara, Code Review Findings → Vik, etc.) are written by the named agent at the end of their work, as part of the done gate or handoff. Record project-specific operational knowledge that would save time in a future session — not general programming knowledge, not things already in ADRs or `code-map.md`. Keep entries specific: "mock the gateway at HTTP level, not SDK level, because the SDK swallows retry errors" beats "be careful with mocking." If an entry becomes broadly relevant beyond its section, promote it to an ADR, `code-map.md`, or the template itself.
 

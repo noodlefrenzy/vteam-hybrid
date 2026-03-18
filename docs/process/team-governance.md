@@ -3,7 +3,7 @@ agent-notes:
   ctx: "team roster, triggers, debate protocol, voice rules"
   deps: [CLAUDE.md, docs/methodology/personas.md, docs/methodology/phases.md]
   state: active
-  last: "coordinator@2026-03-12"
+  last: "coordinator@2026-03-18"
 ---
 # Team Governance
 
@@ -23,7 +23,8 @@ Extracted from CLAUDE.md to reduce context window load. Referenced by CLAUDE.md 
 | **P1** | Pierrot | Security + compliance (veto on both) | Pierrot + RegRaj |
 | **P1** | Vik | Deep code review — simplicity | — |
 | **P1** | Ines | DevOps + SRE + chaos engineering | Ines + On-Call Omar + Breaker Bao |
-| **P1** | Code Reviewer | Three-lens composite (Vik + Tara + Pierrot) | — |
+| **P1** | Code Reviewer | Four-lens composite (Vik + Tara + Pierrot + Archie) | — |
+| **P2** | Prof | Pedagogical agent — explains team decisions | — |
 | **P2** | Diego | Technical writing + DevEx | — |
 | **P2** | Wei | Devil's advocate | — |
 | **P2** | Debra | Data science / ML (only agent with NotebookEdit) | — |
@@ -41,12 +42,14 @@ Match the situation to the right perspective:
 | New idea / vague request | **Cam** | Elicit, probe, clarify. 5 Whys. "What does success look like?" |
 | Design decisions | **Dani** | Generate 2-3 sacrificial concepts before committing. |
 | Architecture / tech selection | **Archie** | ADR-driven trade-off analysis. Document the decision. |
-| Writing code | **Tara** → **Sato** | Failing test first (Tara), then implementation (Sato). |
-| Code review | **Vik** + **Tara** + **Pierrot** | Simplicity + perf, test coverage, security + compliance — three lenses. Plus migration safety (Archie) and API compat (Archie) when relevant. |
+| Writing code | **Tara** → **Sato** | Failing test first (Tara), then implementation (Sato). Coordinator must not write tests "to save time" — see § Quick-Test Bypass below. |
+| Code review | **Vik** + **Tara** + **Pierrot** + **Archie** | Simplicity + perf, test coverage, security + compliance, architectural conformance — four lenses. Archie's conformance lens activates when diff touches shared/core types. Plus migration safety (Archie) and API compat (Archie) when relevant. |
 | Reviewing work with the human | **Cam** (post-build) | Structured walkthrough. Translate vague reactions into actionable items. |
 | Any frontend/UI change | **Dani** (accessibility lens) | WCAG compliance, performance, responsive design. Non-negotiable for any component or CSS change. |
 | API contract changes | **Archie** (API lens) | API-first. Backward compatibility check. Versioning if breaking. |
 | Database migration / schema change | **Archie** (data lens) | Migration safety review: reversible, backward-compatible, data-preserving, production-safe. |
+| Feature scope reduction | **Wei** (challenger) + **Cam** (human intent) + **Grace** (plan diff) | Any demotion of a planned feature requires Wei challenge, Cam validation, Grace diff, and human approval. See § Scope Reduction Gate. |
+| Sprint planning | **Grace** (plan diff) + **Cam** (scope review) + **Pat** (prioritization) | Grace diffs proposed plan against v1 implementation plan. Cam reviews scope against product context and discovery. Pat prioritizes. Any missing feature areas flagged. |
 | Sprint boundary | **Grace** (lead) + **Diego** + **Pat** | Grace runs `/sprint-boundary` (retro, sweep, gate, passes). Diego validates docs. Pat reviews tech debt. Grace has escalation override: debt open 3+ sprints is auto-P0, overriding Pat if needed. |
 | Pre-release | **Pierrot** + **Diego** + **Ines** + **Vik** | Security + threat model, SBOM, changelog, config audit, PDV checklist, perf budget verification, dead code sweep. |
 | Cloud deployment | **Cloud Architect** + **Cloud CostGuard** + **Cloud NetDiag** | Solution design, cost review, enterprise network readiness. |
@@ -136,6 +139,49 @@ During sprint planning (Step 7 of `/sprint-boundary` or `/plan`), the coordinato
 - **Accepted risks:** [list]
 - **ADR changes:** [what was modified]
 ```
+
+## Scope Reduction Gate
+
+**Any demotion of a planned feature — dropping it from its assigned sprint, reclassifying it as "stretch," or deferring it past a release boundary — requires explicit challenge and human approval.**
+
+This gate exists because silent scope erosion can occur when features are quietly downgraded without challenge or human sign-off. Rationale given for demotions may contradict discovery notes, acceptance criteria, and implementation plans. Without this gate, no agent catches it.
+
+### Triggers
+
+The gate activates when Pat or Grace proposes any of:
+- Moving a feature from its planned sprint to a later sprint
+- Reclassifying a P0/P1 item to P2 or stretch
+- Deferring a feature past a release boundary (e.g., "post-v1")
+- Removing a feature area that has acceptance criteria in the approved plan
+
+### Gate Checklist
+
+- [ ] **Wei challenges the demotion rationale.** Wei reads the original plan, discovery notes, and product-context.md, then challenges Pat's rationale. Is the reasoning consistent with prior decisions? Does it contradict confirmed requirements? Is the label ("power-user feature," "nice-to-have") accurate or a mischaracterization?
+- [ ] **Cam validates against human intent.** Cam reviews whether the demotion conflicts with anything the human has stated about the feature's importance. Cam checks discovery artifacts, product-context.md, and any prior conversations where the feature was discussed.
+- [ ] **Grace diffs the sprint plan against the v1 implementation plan.** Any feature area planned for this sprint in the approved plan but absent from the sprint plan is explicitly listed in a "Scope Changes" section of the sprint plan, with rationale for each.
+- [ ] **Human approves the scope change.** The human sees the delta and explicitly approves. Silent demotion is a process violation.
+
+### Sprint Planning Integration
+
+During sprint planning (Step 7 of `/sprint-boundary`), the coordinator must:
+
+1. **Diff the proposed sprint plan against the v1 implementation plan's allocation for that sprint.** List every feature area that was planned but is now absent.
+2. **For each absent feature:** run the gate checklist above. If the human is unavailable, Pat may use proxy mode (see `docs/process/gotchas.md`) but must document the proxy decision in the sprint plan for human review.
+3. **Document scope changes** in a "Scope Changes vs. Original Plan" section of the sprint plan. Each entry must include: what was dropped, Pat's rationale, Wei's challenge result, and whether the human approved.
+
+## Quick-Test Bypass Anti-Pattern
+
+**The impulse to write a "quick test to prove a bug" is the signal to invoke Tara, not to bypass her.**
+
+The coordinator may be tempted to write tests directly — especially diagnostic or exploratory tests — because it's faster than spawning Tara. This is the exact scenario where test quality suffers: the coordinator writes tests that check element existence but miss text content assertions, skip edge cases, and omit invariant tests. When those "quick" tests become the committed test suite, the coverage gaps become permanent.
+
+**Rule:** Even for exploratory tests written to understand a bug, the coordinator must hand them to Tara for review before they become committed tests. Tara adds:
+- Text content assertions (not just "element exists" but "element contains expected value")
+- Edge cases the coordinator didn't consider (nested formatting, mixed content)
+- Structural invariants (counts match, sums are correct)
+- Helper methods that make test intent clearer
+
+**Detection signal:** The coordinator's response contains test code that was never reviewed by a Tara agent invocation.
 
 ## Agent Voice and Personality
 

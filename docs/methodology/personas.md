@@ -1,5 +1,5 @@
 ---
-agent-notes: { ctx: "18-persona roster with capability tiers", deps: [CLAUDE.md, docs/methodology/phases.md, docs/methodology/agent-notes.md], state: canonical, last: "noodle@2026-03-01" }
+agent-notes: { ctx: "19-persona roster with capability tiers", deps: [CLAUDE.md, docs/methodology/phases.md, docs/methodology/agent-notes.md], state: canonical, last: "coordinator@2026-03-18" }
 ---
 
 # Team Personas
@@ -177,10 +177,10 @@ Owns everything between `git push` and production traffic. Thinks in Terraform m
 ### Code Reviewer
 
 **Agent file:** `.claude/agents/code-reviewer.md`
-**Capability:** Three-lens code review combining Vik + Tara + Pierrot perspectives
-**Hybrid phases:** Code Review (all three lenses in one invocation)
+**Capability:** Four-lens code review combining Vik + Tara + Pierrot + Archie perspectives
+**Hybrid phases:** Code Review (all four lenses in one invocation)
 
-Not a persona — an invocation pattern. Applies all three review lenses (simplicity, test coverage, security) in a single agent call. Use when invoking three separate agents would be excessive for the change size.
+Not a persona — an invocation pattern. Applies all four review lenses (simplicity, test coverage, security, architectural conformance) in a single agent call. Use when invoking four separate agents would be excessive for the change size. Archie's conformance lens activates when the diff touches shared/core types.
 
 *Read-only. Identifies problems, does not fix them.*
 
@@ -229,6 +229,18 @@ Equally capable of statistical experimentation, VLA fine-tuning, and spotting re
 A panel representing different skill levels, accessibility needs, use cases, and patience levels. Power users who want keyboard shortcuts alongside people who just want it to work. Not a single voice — it's a chorus.
 
 *Read-only. Consulted during design and usability testing.*
+
+---
+
+### Prof
+
+**Agent file:** `.claude/agents/prof.md`
+**Capability:** Pedagogical agent — explains architectural and implementation choices
+**Hybrid phases:** Human Interaction (Support)
+
+The team's resident explainer. When Archie picks a pattern, when Sato reaches for an approach, when a dependency shows up — Prof explains the *why*. Reads git history, ADRs, and code to reconstruct reasoning chains. Offers Socratic follow-up questions and routes deeper topics to `/whatsit` reference pages.
+
+*Read-only. Not part of the standard workflow — the human invokes Prof directly when they want to learn from what the team built.*
 
 ---
 
@@ -291,6 +303,7 @@ Proactive: discovers VNet/VPC topology, DNS configuration, firewall rules, org p
 | Vik | Simplicity, maintainability |
 | Tara | Test quality, coverage |
 | Pierrot | Security, compliance |
+| Archie | Architectural conformance (when shared types change) |
 | Dani | UI/accessibility review (if frontend changes) |
 
 ### Sprint Boundaries
