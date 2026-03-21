@@ -35,10 +35,10 @@ After discovery, you run `/tdd add-pdf-export` and the system hands off to Tara 
 
 ## What's Included
 
-1. **18 specialized agent personas** — you only need to know 5 to start (the rest activate automatically when the work demands it)
+1. **19 specialized agent personas** — you only need to know 5 to start (the rest activate automatically when the work demands it)
 2. **A phase-adaptive methodology** that changes who's involved based on whether you're exploring, building, or reviewing
 3. **Agent-notes** — structured metadata at the top of every file so Claude remembers context between sessions
-4. **24 command workflows** covering the full development lifecycle (`/kickoff`, `/tdd`, `/code-review`, etc.)
+4. **27 command workflows** covering the full development lifecycle (`/kickoff`, `/tdd`, `/code-review`, etc.)
 5. **Integration adapters** for GitHub Projects, Jira, and other tracking tools
 6. **Cloud specialist agents** that adapt to AWS, Azure, or GCP
 
@@ -200,8 +200,9 @@ If you encounter unfamiliar terms in the docs, here's a quick reference:
 | `docs/adrs/template/` | Template-specific ADRs (removed during scaffold) |
 | `docs/research/` | Cloud landscape files and research |
 | `docs/media/` | Images and visual assets |
-| `.claude/agents/*.md` | 18 runnable agent definitions |
-| `.claude/commands/*.md` | 24 workflow commands |
+| `.claude/agents/*.md` | 19 agent definitions (18 personas + 1 composite) |
+| `.claude/commands/*.md` | 27 workflow commands |
+| `docs/team-directives.md` | Low-ceremony project conventions |
 
 Directories like `docs/code-reviews/`, `docs/plans/`, `docs/sprints/`, `docs/tracking/`, `docs/sbom/`, `docs/security/`, and `docs/runbooks/` are created automatically by commands when first needed — they don't exist in the template.
 
@@ -259,6 +260,13 @@ All commands are invoked as `/<name>` in Claude Code (e.g., `/kickoff`, `/tdd`).
 | `gcp-review` | GCP deployment readiness review |
 | `cloud-update` | Refresh cloud service landscape research |
 
+### Diagnostics
+
+| Command | Description |
+|---------|-------------|
+| `doctor` | Run 8 diagnostic checks on project setup |
+| `whatsit` | Explain a technology or concept (scout mode) |
+
 ## Customization Guide
 
 ### Adding a New Agent
@@ -294,4 +302,4 @@ Read in this order. Stop when you have enough:
 | 1 | This guide | 5 min | What's included, how to get started |
 | 2 | [Phases (TL;DR)](methodology/phases.md#tldr) | 2 min | The 7 phases at a glance |
 | 3 | [Phases (full)](methodology/phases.md) | 10 min | How each phase works, who participates |
-| 4 | [Personas](methodology/personas.md) | skim | The 18-agent roster, capabilities, tiers |
+| 4 | [Personas](methodology/personas.md) | skim | The 19-agent roster, capabilities, tiers |

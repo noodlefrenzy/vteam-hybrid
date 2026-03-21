@@ -4,7 +4,7 @@
 
 > Claude Code is powerful, but on a real project it drifts. You ask it to implement a feature and it skips tests. You ask for architecture advice and it writes code instead. Reviews are inconsistent. Context evaporates between sessions.
 >
-> vteam-hybrid fixes this with 18 specialized agents — each with a defined role, clear boundaries, and rules about when they activate. You talk in natural language. The template handles the discipline.
+> vteam-hybrid fixes this with 19 specialized agents — each with a defined role, clear boundaries, and rules about when they activate. You talk in natural language. The template handles the discipline.
 
 ---
 
@@ -20,7 +20,7 @@ rm -rf .git && git init && git add -A
 git commit -m "chore: initialize from vteam-hybrid template"
 ```
 
-**Validate:** `ls .claude/agents/` — you should see 19 agent files.
+**Validate:** `ls .claude/agents/` — you should see 19 agent files (18 personas + 1 composite reviewer).
 
 ### 2. Open in Claude Code
 
@@ -174,6 +174,8 @@ flowchart TD
 | `/azure-review` | Azure deployment readiness review |
 | `/gcp-review` | GCP deployment readiness review |
 | `/cloud-update` | Refresh cloud service landscape research |
+| `/doctor` | Run 8 diagnostic checks on project setup |
+| `/whatsit` | Explain a technology or concept (scout mode) |
 
 ---
 
@@ -189,8 +191,8 @@ flowchart TD
 │   ├── adrs/                 # Architecture Decision Records
 │   └── template-guide.md     # Deep-dive reference and customization guide
 ├── .claude/
-│   ├── agents/               # 18 runnable agent definitions
-│   └── commands/             # 24 workflow commands
+│   ├── agents/               # 19 agent definitions (18 personas + 1 composite)
+│   └── commands/             # 27 workflow commands
 └── scripts/                  # Automation scripts
 ```
 
@@ -217,10 +219,10 @@ See what the methodology produces before committing to it:
 | [Template Guide](docs/template-guide.md) | 5 min | Customization, scaling, full command reference |
 | [Phases (TL;DR)](docs/methodology/phases.md#tldr) | 2 min | The 7 phases at a glance |
 | [Phases (full)](docs/methodology/phases.md) | 10 min | How each phase works, who participates |
-| [Personas](docs/methodology/personas.md) | skim | The 18-agent roster, capabilities, tiers |
+| [Personas](docs/methodology/personas.md) | skim | The 19-agent roster, capabilities, tiers |
 
 ---
 
 ## Replace This README
 
-After scaffolding or kickoff, this README is replaced with a project-specific placeholder. See [Template Guide](docs/template-guide.md) for the full reference.
+This README is automatically replaced during `/quickstart`, `/kickoff`, or any `/scaffold-*` command. See [Template Guide](docs/template-guide.md) for the full reference.

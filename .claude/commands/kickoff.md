@@ -15,6 +15,9 @@ if [ -f README-template.md ]; then
   mv README-template.md README.md
 fi
 
+# Remove samples directory (only useful on the template repo itself)
+rm -rf samples/ 2>/dev/null
+
 # Remove template-specific ADRs (not relevant to inheriting projects)
 rm -rf docs/adrs/template/ 2>/dev/null
 

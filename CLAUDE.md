@@ -130,7 +130,7 @@ Run `/sprint-boundary` when all sprint items are Done or deferred. Full workflow
 |-----|---------|
 | `docs/code-map.md` | Package structure, public APIs, data flow — **read first** |
 | `docs/methodology/phases.md` | 7-phase team methodology |
-| `docs/methodology/personas.md` | 18-agent persona catalog |
+| `docs/methodology/personas.md` | 19-agent persona catalog |
 | `docs/methodology/agent-notes.md` | Agent-notes protocol spec |
 | `docs/process/team-governance.md` | Triggers, debate protocol, architecture gate, voice rules |
 | `docs/process/done-gate.md` | 15-item Done Gate checklist |
@@ -156,7 +156,7 @@ Run `/sprint-boundary` when all sprint items are Done or deferred. Full workflow
 │   │   └── template/         # Template-specific ADRs (removed during scaffold)
 │   └── research/             # Cloud landscape and template research
 ├── .claude/
-│   ├── agents/               # Subagent persona definitions (18 agents)
-│   └── commands/             # Custom slash commands (auto-discovered)
+│   ├── agents/               # Subagent persona definitions (19 agent files)
+│   └── commands/             # Custom slash commands (27, auto-discovered)
 └── scripts/                  # Automation scripts
 ```

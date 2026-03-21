@@ -21,6 +21,9 @@ if [ -d docs/scaffolds ] && [ "$(ls -A docs/scaffolds/*.md 2>/dev/null)" ]; then
   rmdir docs/scaffolds 2>/dev/null
 fi
 
+# Remove samples directory (only useful on the template repo itself)
+rm -rf samples/ 2>/dev/null
+
 # Remove template-specific ADRs and research docs
 rm -rf docs/adrs/template/ 2>/dev/null
 rm -f docs/research/how-we-compare-*.md docs/research/agent-teams-comparison.md 2>/dev/null
@@ -90,7 +93,7 @@ This is the moment the user sees the system work. Don't delay it with more plann
 | Phase 1b (Human Model) | Captures your product philosophy | Run `/kickoff` Phase 1b standalone, or Pat learns organically over time |
 | Phase 2 (Sacrificial Concepts) | Explores alternative approaches | Run `/design` before any major feature |
 | Architecture Gate | Archie proposes + Wei challenges | Run `/adr` when you face a significant technical choice |
-| GitHub Projects board | Sprint tracking with status columns | Run `/kickoff` Phase 5 standalone, or set up manually |
+| GitHub Projects board | Sprint tracking with status columns | Ask Claude to set up a board (Grace handles this), or see `docs/integrations/README.md` |
 | Threat model | Security analysis | Pierrot creates one during first `/code-review` |
 | Test strategy | Testing approach doc | Tara creates one organically during TDD |
 

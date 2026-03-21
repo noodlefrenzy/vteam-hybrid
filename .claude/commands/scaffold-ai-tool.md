@@ -17,6 +17,9 @@ fi
 mv docs/scaffolds/*.md docs/ 2>/dev/null
 rmdir docs/scaffolds 2>/dev/null
 
+# Remove samples directory (only useful on the template repo itself)
+rm -rf samples/ 2>/dev/null
+
 # Remove template-specific ADRs (not relevant to inheriting projects)
 rm -rf docs/adrs/template/
 
