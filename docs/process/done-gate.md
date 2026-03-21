@@ -18,7 +18,8 @@ Every work item must pass this gate before closing:
 5. **Code reviewed** — the code-reviewer agent (or at minimum one review lens) has been invoked.
 6. **Acceptance criteria met** — the feature works as specified, not just "tests pass."
 7. **Docs current** — if the change affects user-facing behavior, Diego has updated docs.
-8. **Accessibility reviewed** — if any frontend/UI file was changed, Dani (accessibility lens) has reviewed.
+8. **Accessibility reviewed** — if any frontend/UI file was changed, Dani (accessibility lens) has reviewed. Dani must be spawned as a standalone agent, not reviewed inline by the coordinator.
+8b. **Visual verification** — if this item changes UI files (`ui/`, `pages/`, `components/`, templates, CSS, layouts), open the affected page(s) in a browser (via Playwright `browser_navigate` + `browser_take_screenshot`, or manual check) and verify they render correctly without console errors. Screenshot evidence is sufficient. This is not a full E2E suite — it's "does it render." _Not applicable to CLIs, libraries, or backend-only services._
 9. **Board updated** — status has passed through "In Progress" → "In Review" → "Done" in order (not skipping any). Verify by checking the item's current status on the board (`gh project item-list <NUMBER> --owner <OWNER> --format json`). If "In Review" status doesn't exist on the board, this is a board configuration failure — fix it before proceeding (see `/kickoff` Phase 5 Step 2).
 10. **Migration safe** — if schema/data changes are involved, Archie's migration safety checklist passes.
 11. **API compatible** — if API contracts changed, backward compatibility verified or new version created.

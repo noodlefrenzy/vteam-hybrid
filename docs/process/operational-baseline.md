@@ -159,6 +159,7 @@ Not every concern applies to every project type. Use this matrix to scope the ba
 | Idempotency | Situational | **Yes** | Situational | No |
 | i18n Readiness | Situational | Situational | Situational | Situational |
 | External Process Spawn Safety | **Yes** | Situational | **Yes** | No |
+| Visual Smoke Test | No | **Yes** | Situational | **Yes** |
 
 **Legend:** **Yes** = always checked. Partial = subset applies. Situational = check if the project has relevant requirements. Minimal = lightweight version applies. No = skip.
 
@@ -199,5 +200,5 @@ Aspirational; checked periodically but not gating:
 | Check frequency | Concerns |
 |----------------|----------|
 | **Per code review** | Logging coverage, error pattern consistency, config documentation, debug flag support, subprocess stdio configuration (lightweight — Ines situational lens on diffs that touch app behavior) |
-| **Per sprint boundary** | All 11 concerns audited by Ines + Diego README test (Step 5b). Full audit, not just diffs. |
+| **Per sprint boundary** | All 12 concerns audited by Ines + Diego README test (Step 5b). Visual smoke test by Dani + Playwright (Step 5c, web apps only). Full audit, not just diffs. |
 | **Per release** | All applicable concerns at Production maturity or above. Diego runs full documentation accuracy pass. Ines runs graceful degradation and config audit. |

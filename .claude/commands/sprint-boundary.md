@@ -198,6 +198,38 @@ If **3 or more** applicable concerns are below Foundation level AND the project 
 
 ---
 
+## Step 5c: Visual Smoke Test (Dani + Playwright) — Web Apps Only
+
+**Skip this step** if the project is a CLI, library, or backend-only service with no UI.
+
+For web-app projects (Dash, Next.js, React, Svelte, etc.), verify that the product actually renders:
+
+1. **Start the application** — run the project's start/dev command.
+2. **Navigate to each registered page/route** using Playwright (`browser_navigate`).
+3. **Take a screenshot** of each page (`browser_take_screenshot`).
+4. **Check browser console** for errors (`browser_console_messages`) — JavaScript errors, failed network requests, React/framework warnings.
+5. **Invoke Dani** to review the screenshots for obvious visual issues (broken layouts, missing content, unstyled components, accessibility red flags).
+
+### Report
+
+Append findings to the sprint retro document:
+
+```markdown
+### Dani: Visual Smoke Test
+- **Pages checked:** [list of routes/pages]
+- **Console errors:** [count, or "None"]
+- **Visual issues:** [list, or "None"]
+- **Screenshots:** [attached or "available on request"]
+```
+
+### Gate
+
+If any page fails to render or has JavaScript errors, this is a **blocking finding**. Grace creates a P0 work item for the next sprint. Visual issues (broken layout, missing content) are P1.
+
+**Why this exists:** The portfolio-manager project shipped 3 sprints of Dash UI code without anyone opening a browser. All code-centric gates passed. This step catches the "Invisible UI" anti-pattern — see `docs/process/gotchas.md`.
+
+---
+
 ## Step 6: Archive Tracking Artifacts
 
 Archive completed tracking artifacts from this sprint:
