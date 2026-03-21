@@ -198,6 +198,18 @@ Directories like `docs/plans/`, `docs/sprints/`, `docs/tracking/`, and `docs/sec
 
 ---
 
+## Samples
+
+See what the methodology produces before committing to it:
+
+| Sample | Demonstrates | Time |
+|--------|-------------|------|
+| [hello-tdd/](samples/hello-tdd/) | Core TDD workflow (Tara writes tests, Sato makes them pass) | ~5 min |
+| [architecture-debate/](samples/architecture-debate/) | Architecture Gate (Archie proposes, Wei challenges) | ~5 min |
+| [full-sprint/](samples/full-sprint/) | Complete sprint lifecycle (plan, TDD, review, retro) | ~10 min |
+
+---
+
 ## Going Deeper
 
 | Doc | Time | What you'll learn |
