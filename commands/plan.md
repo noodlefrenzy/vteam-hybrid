@@ -1,4 +1,4 @@
-<!-- agent-notes: { ctx: "implementation planning workflow", deps: [docs/methodology/personas.md, docs/methodology/phases.md], state: active, last: "pat@2026-02-12" } -->
+<!-- agent-notes: { ctx: "implementation planning workflow + tomux phase setup", deps: [docs/methodology/personas.md, docs/methodology/phases.md], state: active, last: "sato@2026-02-28" } -->
 I need to plan the implementation of: {arguments}
 
 Before writing the plan, ensure the goal is well-understood. If the request is vague, first run through Coach Cam elicitation (see `docs/methodology/personas.md`) or use `/kickoff` for full discovery.
@@ -25,6 +25,22 @@ Create or update a plan document in `docs/plans/`. The plan should include:
 7. **Acceptance Criteria** — How we'll know the work is done.
 
 Check existing ADRs and plans for context before writing. Add agent-notes frontmatter per `docs/methodology/agent-notes.md`.
+
+### Tomux Phase Setup
+
+When the plan defines waves or phases, create corresponding tomux phases:
+
+```sql
+-- Create phases matching the plan's wave structure
+INSERT INTO phases (id, name, ordinal, status) VALUES
+  ('w1', 'Wave 1: {description}', 1, 'pending');
+
+INSERT OR REPLACE INTO session_state (key, value) VALUES
+  ('activity', 'Plan created, ready to execute'),
+  ('total_phases', '{wave_count}');
+```
+
+Use short, hyphen-free phase IDs (`w1`, `w2`) and `{phase}-{task}` format for todo IDs.
 
 ## Tracking Artifact
 

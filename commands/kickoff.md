@@ -1,4 +1,4 @@
-<!-- agent-notes: { ctx: "full discovery workflow, 5-phase + mandatory board", deps: [docs/methodology/personas.md, docs/methodology/phases.md], state: active, last: "grace@2026-02-14", key: ["board creation is mandatory not optional", "issues created as repo issues then added to project", "project linked to repo via gh project link"] } -->
+<!-- agent-notes: { ctx: "full discovery workflow, 5-phase + mandatory board + tomux init", deps: [docs/methodology/personas.md, docs/methodology/phases.md], state: active, last: "sato@2026-02-28", key: ["board creation is mandatory not optional", "issues created as repo issues then added to project", "project linked to repo via gh project link", "tomux phases initialized after board setup"] } -->
 Run a full discovery workflow for: {arguments}
 
 This is a phased process. Complete each phase and get explicit human confirmation before moving to the next. Reference `docs/methodology/personas.md` for persona details.
@@ -238,6 +238,32 @@ This metadata is required for all subsequent board operations. Without it, every
 #### Step 6: Confirm
 
 Report: "Board created and linked to repo with N items. First sprint has M items in Ready. Status field configured with 5 options: Backlog, Ready, In Progress, In Review, Done."
+
+#### Tomux Phase Initialization
+
+After board setup, create initial tomux phases for the first sprint's wave items:
+
+```sql
+CREATE TABLE IF NOT EXISTS phases (
+  id TEXT PRIMARY KEY, name TEXT, ordinal INTEGER,
+  status TEXT DEFAULT 'pending' CHECK(status IN ('pending','in_progress','done','blocked'))
+);
+CREATE TABLE IF NOT EXISTS session_state (key TEXT PRIMARY KEY, value TEXT);
+
+-- Create a phase for each wave item planned
+-- Example for 3-item wave:
+INSERT INTO phases (id, name, ordinal, status) VALUES
+  ('w1', 'Wave 1: {first item title}', 1, 'pending'),
+  ('w2', 'Wave 2: {second item title}', 2, 'pending'),
+  ('w3', 'Wave 3: {third item title}', 3, 'pending');
+
+INSERT OR REPLACE INTO session_state (key, value) VALUES
+  ('activity', 'Kickoff complete, ready to start'),
+  ('phase_heading', 'Wave 1: {first item title}'),
+  ('phase_number', '1'),
+  ('total_phases', '{count}'),
+  ('total_tasks', '0');
+```
 
 #### Development Environment Check
 

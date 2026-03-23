@@ -1,4 +1,4 @@
-<!-- agent-notes: { ctx: "resume from previous session handoff", deps: [.claude/handoff.md, CLAUDE.md, docs/plans/], state: active, last: "grace@2026-02-12" } -->
+<!-- agent-notes: { ctx: "resume from previous session handoff + tomux state restore", deps: [.claude/handoff.md, CLAUDE.md, docs/plans/], state: active, last: "sato@2026-02-28" } -->
 Resume from a previous session's handoff.
 
 ## Steps
@@ -20,6 +20,26 @@ Resume from a previous session's handoff.
      3. Verify the Status field has all 5 required options (Backlog, Ready, In Progress, In Review, Done). If any are missing, STOP and report.
 
      **Do not proceed to step 4 if board access fails.** A sprint running without board access causes silent tracking failures — every status transition is skipped, and the sprint boundary will find a broken board. Fix it now, not after a full sprint of lost state.
+
+   ### Restore Tomux State
+
+   After reading the handoff file, restore the tomux phase state:
+
+   1. Create tables (idempotent):
+   ```sql
+   CREATE TABLE IF NOT EXISTS phases (
+     id TEXT PRIMARY KEY, name TEXT, ordinal INTEGER,
+     status TEXT DEFAULT 'pending' CHECK(status IN ('pending','in_progress','done','blocked'))
+   );
+   CREATE TABLE IF NOT EXISTS session_state (key TEXT PRIMARY KEY, value TEXT);
+   ```
+
+   2. Recreate phases from the handoff's "Tomux State" section.
+   3. Set `session_state` activity to indicate resumption:
+   ```sql
+   INSERT OR REPLACE INTO session_state (key, value) VALUES
+     ('activity', 'Resumed from handoff');
+   ```
 
 4. **Summarize to the user.** Give a brief (5-10 line) summary:
    - What the previous session accomplished

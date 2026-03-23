@@ -58,6 +58,40 @@ Before writing any code — including types, tests, or ADRs — answer these thr
 
 If you received a detailed plan, the plan is **input to this protocol**, not a bypass of it. See `docs/process/gotchas.md` § Process.
 
+### Tomux Progress Tracking (Always-On)
+At the start of every session that will do work, create the tomux tables (idempotent):
+
+```sql
+CREATE TABLE IF NOT EXISTS phases (
+  id TEXT PRIMARY KEY, name TEXT, ordinal INTEGER,
+  status TEXT DEFAULT 'pending' CHECK(status IN ('pending','in_progress','done','blocked'))
+);
+CREATE TABLE IF NOT EXISTS session_state (key TEXT PRIMARY KEY, value TEXT);
+```
+
+**Phase creation:** When planning a wave or starting work, create phases and update `session_state`:
+- Each wave item or work unit becomes a phase with a short, hyphen-free ID (`w1`, `w2`, `impl`)
+- For single-item sessions, use a single phase (`work`)
+- Update `session_state` keys: `activity`, `phase_heading`, `phase_number`, `total_phases`, `total_tasks`
+
+**Todo ID format:** Use `{phase_id}-{task_id}` so tomux can group tasks under phases:
+- ✅ `w1-tests`, `w1-impl`, `w1-review` (grouped under phase `w1`)
+- ❌ `user-auth`, `fix-login` (ungrouped — tomux can't associate with a phase)
+
+**Activity updates:** Update `session_state` activity on every workflow transition:
+```sql
+INSERT OR REPLACE INTO session_state (key, value) VALUES ('activity', 'TDD red: auth tests');
+```
+
+**Phase advancement:** When completing a phase, clean up and advance:
+```sql
+DELETE FROM todos WHERE id LIKE 'w1-%';
+UPDATE phases SET status = 'done' WHERE id = 'w1';
+UPDATE phases SET status = 'in_progress' WHERE id = 'w2';
+```
+
+See `TOMUX_AGENT_GUIDANCE.md` for the full tomux contract.
+
 ### Don't Run With Vague Input
 Engage Cam first: probe, clarify, pressure-test. Only implement once the vision is concrete.
 
@@ -84,12 +118,12 @@ When the human declares unavailability, Pat answers product questions using `doc
 ## Development Workflow
 
 ### Per Work Item
-1. **Start** — Move issue to **"In Progress"** on the board. Do this BEFORE writing any code.
-2. **TDD** — Red → Green → Refactor. M+ items: Tara writes failing tests first as standalone agent.
+1. **Start** — Move issue to **"In Progress"** on the board. Update tomux: `UPDATE phases SET status='in_progress'`, create todos with `{phase}-{task}` IDs, set `session_state` activity.
+2. **TDD** — Red → Green → Refactor. M+ items: Tara writes failing tests first as standalone agent. Update `session_state` activity at each step.
 3. **Commit** — One commit per issue, conventional message, `Closes #N`.
-4. **Review** — Move issue to **"In Review"** on the board. Then invoke code-reviewer (Vik + Tara + Pierrot). Fix Critical/Important findings.
+4. **Review** — Move issue to **"In Review"** on the board. Update `session_state` activity. Then invoke code-reviewer (Vik + Tara + Pierrot). Fix Critical/Important findings.
 5. **Done Gate** — Full checklist at `docs/process/done-gate.md`.
-6. **Close** — Move issue to **"Done"** on the board. Push.
+6. **Close** — Move issue to **"Done"** on the board. Update tomux: mark phase `done`, clean up phase todos (`DELETE FROM todos WHERE id LIKE '{phase}-%'`), advance to next phase. Push.
 
 **Status transitions are mandatory and ordered.** In Progress → In Review → Done. Skipping "In Review" is a process violation.
 
@@ -147,6 +181,11 @@ Run `/sprint-boundary` when all sprint items are Done or deferred. Full workflow
 ```
 .
 ├── CLAUDE.md                 # This file — slim runtime instructions
+├── AGENTS.md                 # Universal cross-platform agent instructions (generated)
+├── TOMUX_AGENT_GUIDANCE.md   # Tomux progress tracking contract
+├── agents/                   # Platform-agnostic persona manifest + prose
+├── commands/                 # Platform-agnostic command manifest + prose
+├── adapters/                 # Platform-specific overrides
 ├── docs/
 │   ├── methodology/          # System docs (phases, personas, agent-notes)
 │   ├── process/              # Governance, done gate, gotchas, doc ownership
@@ -157,6 +196,10 @@ Run `/sprint-boundary` when all sprint items are Done or deferred. Full workflow
 │   └── research/             # Cloud landscape and template research
 ├── .claude/
 │   ├── agents/               # Subagent persona definitions (19 agent files)
-│   └── commands/             # Custom slash commands (27, auto-discovered)
+│   └── commands/             # Custom slash commands (auto-discovered)
+├── .github/
+│   ├── agents/               # GitHub Copilot agent definitions (generated)
+│   ├── prompts/              # GitHub Copilot prompt files (generated)
+│   └── copilot-instructions.md
 └── scripts/                  # Automation scripts
 ```

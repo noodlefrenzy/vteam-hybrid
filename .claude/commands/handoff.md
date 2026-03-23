@@ -1,4 +1,4 @@
-<!-- agent-notes: { ctx: "session handoff for wave-based sprint execution", deps: [CLAUDE.md, docs/sprints/, docs/code-map.md], state: active, last: "coordinator@2026-02-15" } -->
+<!-- agent-notes: { ctx: "session handoff for wave-based sprint execution + tomux state capture", deps: [CLAUDE.md, docs/sprints/, docs/code-map.md], state: active, last: "sato@2026-02-28" } -->
 Create a session handoff document so the next session can pick up where this one left off.
 
 ## Steps
@@ -71,15 +71,29 @@ Create a session handoff document so the next session can pick up where this one
 <!-- If Pat made proxy decisions while the human was unavailable, list them here -->
 <!-- Each entry: question asked, Pat's decision, rationale, reversibility -->
 
+## Tomux State
+- **Current phase:** <active phase ID and name>
+- **Phase statuses:** <list of all phases with their statuses>
+- **Pending todos:** <list of incomplete todos with IDs>
+- **Last activity:** <current session_state activity value>
+
 ## Key Context
 - <any non-obvious context the next session needs>
 - <files that were being actively worked on>
 - <gotchas discovered during this session>
 ```
 
-7. **Update MEMORY.md.** Ensure the session memory file has current sprint status and any new patterns discovered.
+7. **Capture tomux state.** Query the current tomux phase and session state for inclusion in the handoff's "Tomux State" section:
 
-8. **Commit the handoff.** If there are uncommitted changes, ask the user if they want to commit before creating the handoff. Then commit the handoff file itself.
+   ```sql
+   SELECT id, name, ordinal, status FROM phases ORDER BY ordinal;
+   SELECT id, title, status FROM todos WHERE status != 'done';
+   SELECT key, value FROM session_state;
+   ```
+
+8. **Update MEMORY.md.** Ensure the session memory file has current sprint status and any new patterns discovered.
+
+9. **Commit the handoff.** If there are uncommitted changes, ask the user if they want to commit before creating the handoff. Then commit the handoff file itself.
 
 ## Important
 

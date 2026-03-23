@@ -472,20 +472,20 @@ Tmux status: ■● □□□  (Wave 1 done, Wave 2 starting with new tasks)
 ## 10. Open Questions
 
 1. **Phase granularity:** Should each GitHub issue be a phase (wave model) or should the TDD lifecycle within a single issue be phases (lifecycle model)?
-   - **Wave model:** `w1`, `w2`, `w3` — each issue is a phase, tasks are steps within it
+   - [x] **Wave model:** `w1`, `w2`, `w3` — each issue is a phase, tasks are steps within it
    - **Lifecycle model:** `tests`, `impl`, `review` — each TDD step is a phase, tasks are sub-tasks
    - **Recommendation:** Wave model for multi-issue sessions, lifecycle model for single-issue sessions. Grace decides based on wave plan.
 
 2. **Adoption mode:** Should tomux support be always-on or opt-in?
-   - Always-on: Every session creates phases/session_state (zero cost if tmux not running)
+   - [x] Always-on: Every session creates phases/session_state (zero cost if tmux not running)
    - Opt-in: Check for `TOMUX_AGENT_GUIDANCE.md` or a flag in `CLAUDE.md`
    - **Recommendation:** Always-on. The SQL is idempotent and costs nothing if tomux isn't installed.
 
 3. **Should we vendor TOMUX_AGENT_GUIDANCE.md?**
    - Yes: Self-contained, no external dependency
    - No: Stay in sync with upstream tomux changes
-   - **Recommendation:** Vendor it, but note the source version for future sync.
+   - [x] **Recommendation:** Vendor it, but note the source version for future sync.
 
 4. **Detail pane integration:** Tomux's `prefix+T` shows a full task breakdown. Should vteam-hybrid's task descriptions be optimized for this view?
    - e.g., shorter titles, consistent formatting, emoji status indicators
-   - **Recommendation:** Yes, but as a polish pass after the core integration works.
+   - [x] **Recommendation:** Yes, but as a polish pass after the core integration works.

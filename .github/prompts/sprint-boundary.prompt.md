@@ -9,7 +9,7 @@ tools:
   - fetch
 ---
 
-<!-- agent-notes: { ctx: "mandatory sprint boundary: retro + sweep + gate + passes", deps: [CLAUDE.md, docs/methodology/personas.md, docs/methodology/phases.md, docs/tech-debt.md, docs/performance-budget.md], state: active, last: "coordinator@2026-02-28" } -->
+<!-- agent-notes: { ctx: "mandatory sprint boundary: retro + sweep + gate + passes + tomux cleanup", deps: [CLAUDE.md, docs/methodology/personas.md, docs/methodology/phases.md, docs/tech-debt.md, docs/performance-budget.md], state: active, last: "sato@2026-02-28" } -->
 Run the mandatory sprint boundary workflow for: $PROMPT_INPUT
 
 This is the **canonical end-of-sprint process**. It must be run at every sprint boundary — it is NOT optional and should NOT require the user to trigger it manually. When Grace detects that the sprint's work is complete (all sprint items are Done or explicitly deferred), this workflow triggers automatically.
@@ -250,6 +250,19 @@ Archive completed tracking artifacts from this sprint:
 3. **Verify links:** If any active artifacts reference archived ones in their **Prior Phase** field, update the path to the archive location.
 
 This prevents the tracking directory from growing unbounded while preserving the audit trail.
+
+### Tomux Clean Slate
+
+Clear all tomux progress data for the completed sprint:
+
+```sql
+DELETE FROM todos;
+DELETE FROM phases;
+DELETE FROM todo_deps;
+DELETE FROM session_state;
+```
+
+This ensures the next sprint starts with a clean tmux status bar.
 
 ---
 
