@@ -682,17 +682,17 @@ When all platforms support MCP natively, the per-platform tool mapping becomes u
 ## 11. Open Questions
 
 1. **Where does the manifest live?** Options:
-   - `agents/` at repo root (clean, visible, tool-agnostic)
+   - [x] `agents/` at repo root (clean, visible, tool-agnostic)
    - `docs/platform/` (groups with methodology docs)
    - `.vteam/` (hidden, keeps root clean)
 
 2. **Script or command for generation?** Options:
    - `scripts/generate-platform.sh` (portable, no AI needed)
-   - `/generate-platform` command (AI-assisted, can web-search for format updates — like current `/sync-ghcp`)
+   - [x] `/generate-platform` command (AI-assisted, can web-search for format updates — like current `/sync-ghcp`)
    - Both (script for CI, command for interactive use)
 
 3. **Should generated files be committed?** Options:
-   - Yes: users on each platform see their files without running a generator
+   - [x] Yes: users on each platform see their files without running a generator
    - No: reduces repo clutter, ensures freshness
    - Recommended: **Yes, with CI staleness check**
 
@@ -700,14 +700,14 @@ When all platforms support MCP natively, the per-platform tool mapping becomes u
    - Copilot's `mcp-servers` field
    - Codex's `approval_policy` setting
    - Claude Code's `maxTurns`
-   - Answer: platform-specific overrides file (`adapters/{platform}/overrides.yaml`)
+   - [x] Answer: platform-specific overrides file (`adapters/{platform}/overrides.yaml`)
 
 5. **What's the MVP?** For a first release, ship:
-   - Persona manifest + capability mapping
-   - Claude Code adapter (proving the manifest reproduces current state)
-   - Copilot adapter (primary conversion target)
-   - Root AGENTS.md generation
-   - Skip Codex/Gemini/Cursor until demand exists
+   - [x] Persona manifest + capability mapping
+   - [x] Claude Code adapter (proving the manifest reproduces current state)
+   - [x] Copilot adapter (primary conversion target)
+   - [x] Root AGENTS.md generation
+   - [x] Skip Codex/Gemini/Cursor until demand exists
 
 ---
 

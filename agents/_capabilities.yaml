@@ -1,0 +1,113 @@
+# agents/_capabilities.yaml — Maps abstract capabilities to platform-specific tool names
+# agent-notes: { ctx: "capability-to-tool mapping for all platforms", deps: [agents/manifest.yaml], state: active, last: "copilot-cli@2026-03-22" }
+#
+# Abstract capabilities are used in agents/manifest.yaml.
+# Each platform section maps those capabilities to concrete tool names.
+# A value of null means the platform does not support that capability.
+# A value of "implicit" means the capability is available without explicit declaration.
+
+version: "1.0"
+
+capabilities:
+  read_files:      "Read file contents from the workspace"
+  write_files:     "Create or overwrite files"
+  edit_files:      "Make targeted edits to existing files"
+  run_terminal:    "Execute shell commands"
+  search_codebase: "Search file contents (grep/ripgrep)"
+  find_files:      "Find files by name or pattern (glob)"
+  web_search:      "Search the internet"
+  web_fetch:       "Fetch a URL"
+  edit_notebooks:  "Edit Jupyter notebooks"
+
+platforms:
+  claude-code:
+    tool_names:
+      read_files: Read
+      write_files: Write
+      edit_files: Edit
+      run_terminal: Bash
+      search_codebase: Grep
+      find_files: Glob
+      web_search: WebSearch
+      web_fetch: WebFetch
+      edit_notebooks: NotebookEdit
+    # Claude Code uses an allowlist in `tools:` and blocklist in `disallowedTools:`
+    permission_model: allowlist_plus_blocklist
+    all_tools: [Read, Write, Edit, Bash, Grep, Glob, WebSearch, WebFetch, NotebookEdit]
+    supports_max_turns: true
+    supports_model_selection: true
+    agent_file_pattern: ".claude/agents/{name}.md"
+    command_file_pattern: ".claude/commands/{name}.md"
+    instructions_file: "CLAUDE.md"
+
+  github-copilot:
+    tool_names:
+      read_files: read
+      write_files: editFiles
+      edit_files: editFiles
+      run_terminal: runInTerminal
+      search_codebase: "search/codebase"
+      find_files: "search/codebase"
+      web_search: fetch
+      web_fetch: fetch
+      edit_notebooks: null
+    permission_model: allowlist
+    supports_max_turns: false
+    supports_model_selection: false
+    agent_file_pattern: ".github/agents/{name}.agent.md"
+    command_file_pattern: ".github/prompts/{name}.prompt.md"
+    instructions_file: ".github/copilot-instructions.md"
+
+  codex-cli:
+    tool_names:
+      read_files: implicit
+      write_files: implicit
+      edit_files: implicit
+      run_terminal: implicit
+      search_codebase: implicit
+      find_files: implicit
+      web_search: implicit
+      web_fetch: implicit
+      edit_notebooks: implicit
+    # Codex uses global sandbox policies, not per-agent tool lists
+    permission_model: global_sandbox
+    supports_max_turns: false
+    supports_model_selection: true
+    instructions_file: "AGENTS.md"
+    config_file: ".codex/config.toml"
+    notes: "Codex does not support isolated sub-agents. Use persona-rotation in AGENTS.md."
+
+  cursor:
+    tool_names:
+      read_files: read_file
+      write_files: create_file
+      edit_files: edit_file
+      run_terminal: run_command
+      search_codebase: search
+      find_files: list_dir
+      web_search: null
+      web_fetch: null
+      edit_notebooks: null
+    permission_model: global
+    supports_max_turns: false
+    supports_model_selection: false
+    agent_file_pattern: ".cursor/rules/{name}.mdc"
+    instructions_file: ".cursor/rules/_project.mdc"
+    notes: "Cursor does not support isolated sub-agents. Use rules-based persona instructions."
+
+  gemini-code-assist:
+    tool_names:
+      read_files: "mcp:file/read"
+      write_files: "mcp:file/write"
+      edit_files: "mcp:file/edit"
+      run_terminal: "mcp:terminal/run"
+      search_codebase: "mcp:search/code"
+      find_files: "mcp:search/files"
+      web_search: "mcp:web/search"
+      web_fetch: "mcp:web/fetch"
+      edit_notebooks: null
+    permission_model: mcp_servers
+    supports_max_turns: false
+    supports_model_selection: false
+    instructions_file: ".gemini/GEMINI.md"
+    notes: "Gemini uses MCP for all tool access. No isolated sub-agents."
