@@ -1,0 +1,21 @@
+# agent-notes: { ctx: "Claude Code platform-specific overrides", deps: [agents/manifest.yaml, agents/_capabilities.yaml], state: active, last: "copilot-cli@2026-03-22" }
+
+# Claude Code Adapter Overrides
+
+Platform-specific overrides for Claude Code generation.
+These values supplement or override the manifest defaults when generating `.claude/` files.
+
+## Notes
+
+- Claude Code is the **original** platform for vteam-hybrid
+- The existing `.claude/agents/*.md` and `.claude/commands/*.md` files predate the manifest system
+- Future goal: regenerate `.claude/` files from the manifest (ensuring functional equivalence)
+- `CLAUDE.md` remains hand-maintained for now (it contains session management and process rules beyond what the manifest covers)
+
+## Claude Code-Specific Features Not in Manifest
+
+- `model: inherit` — agents inherit the coordinator's model selection
+- `maxTurns` — per-agent iteration limits
+- `disallowedTools` — blocklist (manifest uses allowlist capabilities; inversion needed)
+- Agent-notes HTML comments in `.claude/agents/` files (carried over from source)
+- `$ARGUMENTS` substitution in commands

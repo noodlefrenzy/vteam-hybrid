@@ -1,0 +1,286 @@
+# commands/manifest.yaml — Single source of truth for all vteam-hybrid commands/workflows
+# agent-notes: { ctx: "command manifest, source of truth for all workflows", deps: [agents/manifest.yaml], state: active, last: "copilot-cli@2026-03-22" }
+#
+# Each command defines:
+#   description      — what the command does
+#   has_arguments    — whether it accepts user-provided arguments
+#   arguments        — list of argument definitions (if has_arguments)
+#   agents_required  — agents that must be invoked
+#   agents_optional  — agents that may be invoked situationally
+#   phase            — which methodology phase this command belongs to
+#   workflow_file    — filename of the platform-agnostic workflow prose
+
+version: "1.0"
+
+commands:
+  adr:
+    description: "Create a new Architecture Decision Record"
+    has_arguments: true
+    arguments:
+      - name: topic
+        description: "The architectural decision to record"
+        required: true
+    agents_required: [archie]
+    agents_optional: []
+    phase: architecture
+    workflow_file: adr.md
+
+  aws-review:
+    description: "Multi-lens AWS deployment readiness review"
+    has_arguments: true
+    arguments:
+      - name: scope
+        description: "What to review for AWS readiness"
+        required: true
+    agents_required: [cloud-architect, cloud-costguard, cloud-netdiag]
+    agents_optional: [ines, archie]
+    phase: review
+    workflow_file: aws-review.md
+
+  azure-review:
+    description: "Multi-lens Azure deployment readiness review"
+    has_arguments: true
+    arguments:
+      - name: scope
+        description: "What to review for Azure readiness"
+        required: true
+    agents_required: [cloud-architect, cloud-costguard, cloud-netdiag]
+    agents_optional: [ines, archie]
+    phase: review
+    workflow_file: azure-review.md
+
+  cloud-update:
+    description: "Research and update cloud service landscape"
+    has_arguments: true
+    arguments:
+      - name: scope
+        description: "Which cloud services to research"
+        required: true
+    agents_required: [cloud-architect]
+    agents_optional: []
+    phase: research
+    workflow_file: cloud-update.md
+
+  code-review:
+    description: "Multi-perspective code review on current changes"
+    has_arguments: false
+    agents_required: [vik, tara, pierrot]
+    agents_optional: [grace, archie]
+    phase: review
+    workflow_file: code-review.md
+
+  design:
+    description: "Design exploration with sacrificial concepts"
+    has_arguments: true
+    arguments:
+      - name: feature
+        description: "Feature or problem to explore design for"
+        required: true
+    agents_required: [dani]
+    agents_optional: [archie, pat]
+    phase: discovery
+    workflow_file: design.md
+
+  devcontainer:
+    description: "Set up a devcontainer for this project"
+    has_arguments: true
+    arguments:
+      - name: stack
+        description: "Tech stack details for the devcontainer"
+        required: true
+    agents_required: [ines]
+    agents_optional: []
+    phase: implementation
+    workflow_file: devcontainer.md
+
+  doctor:
+    description: "Read-only project health check"
+    has_arguments: false
+    agents_required: [sato]
+    agents_optional: []
+    phase: maintenance
+    workflow_file: doctor.md
+
+  gcp-review:
+    description: "Multi-lens GCP deployment readiness review"
+    has_arguments: true
+    arguments:
+      - name: scope
+        description: "What to review for GCP readiness"
+        required: true
+    agents_required: [cloud-architect, cloud-costguard, cloud-netdiag]
+    agents_optional: [ines, archie]
+    phase: review
+    workflow_file: gcp-review.md
+
+  handoff:
+    description: "Create session handoff document for next session"
+    has_arguments: false
+    agents_required: [grace]
+    agents_optional: []
+    phase: coordination
+    workflow_file: handoff.md
+
+  kickoff:
+    description: "Full discovery workflow with board setup"
+    has_arguments: true
+    arguments:
+      - name: project_description
+        description: "What to build"
+        required: true
+    agents_required: [cam, pat, archie, wei, grace]
+    agents_optional: [dani, pierrot, tara]
+    phase: discovery
+    workflow_file: kickoff.md
+
+  pin-versions:
+    description: "Pin dependency versions and update SBOM"
+    has_arguments: false
+    agents_required: [pierrot]
+    agents_optional: [sato]
+    phase: maintenance
+    workflow_file: pin-versions.md
+
+  plan:
+    description: "Implementation planning workflow"
+    has_arguments: true
+    arguments:
+      - name: feature
+        description: "What to plan the implementation of"
+        required: true
+    agents_required: [pat, cam]
+    agents_optional: [archie, wei, grace]
+    phase: discovery
+    workflow_file: plan.md
+
+  quickstart:
+    description: "Fast 5-min onboarding, skips full kickoff"
+    has_arguments: true
+    arguments:
+      - name: project_description
+        description: "What to build"
+        required: true
+    agents_required: [cam, pat]
+    agents_optional: [tara, sato]
+    phase: discovery
+    workflow_file: quickstart.md
+
+  restack:
+    description: "Reconsider and update the tech stack"
+    has_arguments: true
+    arguments:
+      - name: scope
+        description: "Which parts of the stack to reevaluate"
+        required: true
+    agents_required: [archie]
+    agents_optional: []
+    phase: architecture
+    workflow_file: restack.md
+
+  resume:
+    description: "Resume from a previous session handoff"
+    has_arguments: false
+    agents_required: [grace]
+    agents_optional: [pat]
+    phase: coordination
+    workflow_file: resume.md
+
+  retro:
+    description: "Kaizen retrospective on sprint/session work"
+    has_arguments: false
+    agents_required: [grace]
+    agents_optional: []
+    phase: coordination
+    workflow_file: retro.md
+
+  review:
+    description: "Guided human review session for completed work"
+    has_arguments: false
+    agents_required: [cam]
+    agents_optional: []
+    phase: review
+    workflow_file: review.md
+
+  scaffold-ai-tool:
+    description: "Scaffold an AI/data-centric tool project"
+    has_arguments: true
+    arguments:
+      - name: project
+        description: "AI tool to scaffold"
+        required: true
+    agents_required: [sato]
+    agents_optional: []
+    phase: implementation
+    workflow_file: scaffold-ai-tool.md
+
+  scaffold-cli:
+    description: "Scaffold a CLI project"
+    has_arguments: true
+    arguments:
+      - name: project
+        description: "CLI tool to scaffold"
+        required: true
+    agents_required: [sato]
+    agents_optional: []
+    phase: implementation
+    workflow_file: scaffold-cli.md
+
+  scaffold-static-site:
+    description: "Scaffold a static site for GitHub Pages"
+    has_arguments: true
+    arguments:
+      - name: project
+        description: "Static site to scaffold"
+        required: true
+    agents_required: [sato]
+    agents_optional: []
+    phase: implementation
+    workflow_file: scaffold-static-site.md
+
+  scaffold-web-monorepo:
+    description: "Scaffold a web/mobile monorepo"
+    has_arguments: true
+    arguments:
+      - name: project
+        description: "Web/mobile monorepo to scaffold"
+        required: true
+    agents_required: [sato]
+    agents_optional: []
+    phase: implementation
+    workflow_file: scaffold-web-monorepo.md
+
+  sprint-boundary:
+    description: "Mandatory end-of-sprint workflow"
+    has_arguments: true
+    arguments:
+      - name: sprint
+        description: "Sprint identifier"
+        required: true
+    agents_required: [grace, vik, pierrot, tara]
+    agents_optional: [ines, diego, dani]
+    phase: coordination
+    workflow_file: sprint-boundary.md
+
+  tdd:
+    description: "Implement a feature using strict TDD"
+    has_arguments: true
+    arguments:
+      - name: feature
+        description: "Feature to implement via TDD"
+        required: true
+    agents_required: [tara, sato]
+    agents_optional: []
+    phase: implementation
+    workflow_file: tdd.md
+
+  whatsit:
+    description: "Research and explain a technology or concept"
+    has_arguments: true
+    arguments:
+      - name: topic
+        description: "Technology, concept, or discovery topic"
+        required: true
+    agents_required: []
+    agents_optional: []
+    phase: research
+    workflow_file: whatsit.md

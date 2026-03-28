@@ -1,0 +1,32 @@
+# agent-notes: { ctx: "GitHub Copilot platform-specific overrides", deps: [agents/manifest.yaml, agents/_capabilities.yaml], state: active, last: "copilot-cli@2026-03-22" }
+
+# GitHub Copilot Adapter Overrides
+
+Platform-specific overrides for GitHub Copilot generation.
+These values supplement or override the manifest defaults when generating `.github/` files.
+
+## Notes
+
+- Copilot uses allowlists only (no `disallowedTools`)
+- No `maxTurns` equivalent — agents run until completion
+- No `model` selection — uses Copilot's model
+- `$PROMPT_INPUT` replaces `$ARGUMENTS` for parameter substitution
+- `.agent.md` files go in `.github/agents/`
+- `.prompt.md` files go in `.github/prompts/`
+- `copilot-instructions.md` goes in `.github/`
+
+## Tool Mapping Notes
+
+- `editFiles` covers both `write_files` and `edit_files` capabilities
+- `search/codebase` covers both `search_codebase` and `find_files`
+- `fetch` covers both `web_search` and `web_fetch`
+- `edit_notebooks` has no Copilot equivalent (capability dropped)
+
+## MCP Server Integration
+
+If the project uses MCP servers, add them to the agent frontmatter:
+
+```yaml
+mcp-servers:
+  server-name: http://...
+```
