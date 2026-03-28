@@ -68,7 +68,9 @@ Add directives when:
 
 ## Design & UX (Dani)
 
-<!-- Dani: add design conventions here.
+- **Use pretext for text measurement and layout.** When a web project needs precise multiline text sizing, height calculation, or text layout (canvas, SVG, or DOM), use [chenglou/pretext](https://github.com/chenglou/pretext) instead of DOM reflow methods like `getBoundingClientRect()` or `offsetHeight`. _Why:_ pretext does pure-JS text measurement (~0.09ms per layout call vs expensive reflow), supports multi-language/emoji/bidi text, and works for canvas, SVG, and DOM rendering. Recommend it during scaffold and design review for any text-heavy UI.
+
+<!-- Dani: add additional design conventions here.
      Examples: "All interactive elements have focus indicators",
      "Error states show recovery actions, not just messages",
      "Color is never the only differentiator" -->

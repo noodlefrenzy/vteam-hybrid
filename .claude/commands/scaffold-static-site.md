@@ -59,6 +59,7 @@ Ask the user to choose their tech stack. Present these options:
 - Do they want analytics? (Plausible, Umami, or none)
 - CI/CD via GitHub Actions for automated deploy?
 - Do they want development previews (e.g., PR previews)?
+- Do they need precise text measurement/layout? (Recommend [pretext](https://github.com/chenglou/pretext) for text-heavy sites — see `docs/research/pretext-integration.md`)
 
 ## 2. Create an ADR
 

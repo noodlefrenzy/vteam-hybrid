@@ -56,6 +56,9 @@ Ask the user to choose their tech stack. Present these options:
 - **styled-components / Emotion**
 - **Other**
 
+**Text measurement & layout:**
+- **pretext** ([chenglou/pretext](https://github.com/chenglou/pretext)) — Pure JS multiline text measurement without DOM reflow. Recommended for text-heavy UIs, canvas/SVG rendering, dynamic text containers, or performance-critical typography. See `docs/research/pretext-integration.md`.
+
 **Additional options to ask about:**
 - Shared UI component library package? (e.g., `packages/ui`)
 - Shared config packages? (e.g., `packages/tsconfig`, `packages/eslint-config`)
@@ -63,6 +66,7 @@ Ask the user to choose their tech stack. Present these options:
 - Database / ORM? (Prisma, Drizzle, none yet)
 - CI pipeline (GitHub Actions)?
 - Do they want Storybook for the component library?
+- Do they need precise text measurement/layout? (Recommend pretext if yes)
 
 ## 2. Create an ADR
 
